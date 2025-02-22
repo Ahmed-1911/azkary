@@ -1,0 +1,55 @@
+pluginManagement {
+    def flutterSdkPath = {
+        def properties = new Properties()
+        def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
+        println "Local properties file path: ${localPropertiesFile.absolutePath}"
+        println "Local properties file exists: ${localPropertiesFile.exists()}"
+        
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withReader("UTF-8") { reader -> 
+                properties.load(reader)
+                println "Properties loaded: ${properties}"
+            }
+        }
+
+        def flutterSdkPath = properties.getProperty("flutter.sdk")
+        println "Flutter SDK Path from properties: ${flutterSdkPath}"
+        assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+        return flutterSdkPath
+    }()
+
+    includeBuild("${flutterSdkPath}/packages/flutter_tools/gradle")
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    id "com.android.application" version "8.1.0" apply false
+    id "org.jetbrains.kotlin.android" version "1.8.22" apply false
+}
+
+include ":app"
+
+def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
+def properties = new Properties()
+
+assert localPropertiesFile.exists()
+localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+
+def flutterSdkPath = properties.getProperty("flutter.sdk")
+assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
+apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+
+// Override flutter_vibrate namespace
+gradle.beforeProject { project ->
+    if (project.name == "flutter_vibrate") {
+        project.android {
+            namespace "com.benjaminabel.flutter_vibrate"
+        }
+    }
+}

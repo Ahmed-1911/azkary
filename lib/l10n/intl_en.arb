@@ -1,0 +1,288 @@
+{
+  "azkar": "Azkar",
+  "@azkar": {
+    "description": "Label for Azkar navigation item"
+  },
+  "tasbih": "Tasbih",
+  "@tasbih": {
+    "description": "Label for Tasbih navigation item"
+  },
+  "bookmarks": "Bookmarks",
+  "@bookmarks": {
+    "description": "Label for Bookmarks navigation item"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Label for Settings navigation item"
+  },
+  "no_internet_connection": "No internet connection, please check you network and try again",
+  "no_data": "No Available Data",
+  "no_order": "No Available Orders Now!",
+  "internal_server_error": "Internal Server Error",
+  "phoneNumber": "Phone Number",
+  "password": "Password",
+  "fullName": "Full Name",
+  "login": "Log in",
+  "register": "Register",
+  "welcomeMessage": "Welcome to Dawar",
+  "addAllFieldsFirst": "Add all the data first",
+  "phoneInvalid": "Phone number is incorrect",
+  "passwordCompleted": "Password has entered successfully",
+  "ok": "Ok",
+  "cancel": "Cancel",
+  "registerWithOtp": "Register with OTP",
+  "otp": "OTP",
+  "success": "Success...",
+  "alreadyRegistered": "Already registered",
+  "weight": "Weight",
+  "kg": "KG",
+  "receiveLoad": "Receive load",
+  "vehicleLoads": "Vehicle Loads",
+  "ordersNumber": "Orders number",
+  "bagsNumber": "Bags number",
+  "ticketNo": "Ticket No",
+  "totalWeight": "Total previous weight from this material  ",
+  "chooseWasteType": "Choose Waste Type First",
+  "language" : "Language",
+  "logOut" : "Log Out",
+  "appName": "Azkary",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "morningAzkar": "Morning Azkar",
+  "@morningAzkar": {
+    "description": "Title for morning remembrance category"
+  },
+  "morningAzkarAr": "أذكار الصباح",
+  "@morningAzkarAr": {
+    "description": "Arabic title for morning remembrance category"
+  },
+  "morningAzkarDesc": "Morning remembrance and supplications",
+  "@morningAzkarDesc": {
+    "description": "Description for morning azkar category"
+  },
+  "eveningAzkar": "Evening Azkar",
+  "@eveningAzkar": {
+    "description": "Title for evening remembrance category"
+  },
+  "eveningAzkarAr": "أذكار المساء",
+  "@eveningAzkarAr": {
+    "description": "Arabic title for evening remembrance category"
+  },
+  "eveningAzkarDesc": "Evening remembrance and supplications",
+  "@eveningAzkarDesc": {
+    "description": "Description for evening azkar category"
+  },
+  "sleepAzkar": "Sleep Azkar",
+  "@sleepAzkar": {
+    "description": "Title for sleep remembrance category"
+  },
+  "sleepAzkarAr": "أذكار النوم",
+  "@sleepAzkarAr": {
+    "description": "Arabic title for sleep remembrance category"
+  },
+  "sleepAzkarDesc": "Azkar before sleeping",
+  "@sleepAzkarDesc": {
+    "description": "Description for sleep azkar category"
+  },
+  "wakeupAzkar": "Wake Up Azkar",
+  "@wakeupAzkar": {
+    "description": "Title for wake up remembrance category"
+  },
+  "wakeupAzkarAr": "أذكار الاستيقاظ",
+  "@wakeupAzkarAr": {
+    "description": "Arabic title for wake up remembrance category"
+  },
+  "wakeupAzkarDesc": "Azkar after waking up",
+  "@wakeupAzkarDesc": {
+    "description": "Description for wake up azkar category"
+  },
+  "prayerAzkar": "After Prayer",
+  "@prayerAzkar": {
+    "description": "Title for after prayer remembrance category"
+  },
+  "prayerAzkarAr": "أذكار بعد الصلاة",
+  "@prayerAzkarAr": {
+    "description": "Arabic title for after prayer remembrance category"
+  },
+  "prayerAzkarDesc": "Azkar after completing prayer",
+  "@prayerAzkarDesc": {
+    "description": "Description for after prayer azkar category"
+  },
+  "quranicDuas": "Quranic Duas",
+  "@quranicDuas": {
+    "description": "Title for Quranic supplications category"
+  },
+  "quranicDuasAr": "أدعية قرآنية",
+  "@quranicDuasAr": {
+    "description": "Arabic title for Quranic supplications category"
+  },
+  "quranicDuasDesc": "Supplications from the Holy Quran",
+  "@quranicDuasDesc": {
+    "description": "Description for Quranic supplications category"
+  },
+  "azkarCategories": "Azkar Categories",
+  "@azkarCategories": {
+    "description": "Title for the categories screen"
+  },
+  "repeatCount": "Repeat {count} times",
+  "@repeatCount": {
+    "description": "Text showing how many times to repeat the zikr",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "33"
+      }
+    }
+  },
+  "noBookmarks": "No bookmarks yet",
+  "@noBookmarks": {
+    "description": "Message shown when no bookmarks exist"
+  },
+  "addBookmarksHint": "Add Azkar to your bookmarks\nto access them quickly",
+  "@addBookmarksHint": {
+    "description": "Hint text shown when bookmarks list is empty"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Title for appearance section in settings"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Label for dark mode toggle"
+  },
+  "fontSize": "Font Size",
+  "@fontSize": {
+    "description": "Label for font size slider"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Title for notifications section in settings"
+  },
+  "morningReminder": "Morning Azkar Reminder",
+  "@morningReminder": {
+    "description": "Label for morning reminder toggle"
+  },
+  "morningReminderDesc": "Daily reminder for morning azkar",
+  "@morningReminderDesc": {
+    "description": "Description for morning reminder setting"
+  },
+  "eveningReminder": "Evening Azkar Reminder",
+  "@eveningReminder": {
+    "description": "Label for evening reminder toggle"
+  },
+  "eveningReminderDesc": "Daily reminder for evening azkar",
+  "@eveningReminderDesc": {
+    "description": "Description for evening reminder setting"
+  },
+  "about": "About",
+  "@about": {
+    "description": "Title for about section in settings"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Label for app version"
+  },
+  "developer": "Developer",
+  "@developer": {
+    "description": "Label for developer info"
+  },
+  "permissionRequired": "Permission Required",
+  "@permissionRequired": {
+    "description": "Title for permission dialog"
+  },
+  "notificationPermission": "Please enable notifications in system settings",
+  "@notificationPermission": {
+    "description": "Message asking for notification permission"
+  },
+  "exactAlarmPermission": "This app needs permission to schedule exact alarms for Azkar reminders. Please grant this permission in system settings.",
+  "@exactAlarmPermission": {
+    "description": "Message asking for exact alarm permission"
+  },
+  "openSettings": "Open Settings",
+  "@openSettings": {
+    "description": "Label for button to open settings"
+  },
+  "digitalTasbih": "Digital Tasbih",
+  "@digitalTasbih": {
+    "description": "Title for tasbih screen"
+  },
+  "target": "Target: {count}",
+  "@target": {
+    "description": "Label showing target count for tasbih",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "33"
+      }
+    }
+  },
+  "namesOfAllah": "Names of Allah",
+  "@namesOfAllah": {
+    "description": "Label for 99 names option"
+  },
+  "century": "Century",
+  "@century": {
+    "description": "Label for 100 count option"
+  },
+  "morningAzkarReminder": "Morning Azkar Reminder",
+  "@morningAzkarReminder": {
+    "description": "Title for morning azkar reminder setting"
+  },
+  "eveningAzkarReminder": "Evening Azkar Reminder",
+  "@eveningAzkarReminder": {
+    "description": "Title for evening azkar reminder setting"
+  },
+  "dailyReminderForMorningAzkar": "Daily reminder for morning azkar",
+  "@dailyReminderForMorningAzkar": {
+    "description": "Description for morning azkar reminder"
+  },
+  "dailyReminderForEveningAzkar": "Daily reminder for evening azkar",
+  "@dailyReminderForEveningAzkar": {
+    "description": "Description for evening azkar reminder"
+  },
+  "timeForYourMorningRemembrance": "Time for your morning remembrance",
+  "@timeForYourMorningRemembrance": {
+    "description": "Notification message for morning azkar"
+  },
+  "timeForYourEveningRemembrance": "Time for your evening remembrance",
+  "@timeForYourEveningRemembrance": {
+    "description": "Notification message for evening azkar"
+  },
+  "repeat": "Repeat",
+  "@repeat": {
+    "description": "Text for repeat count label"
+  },
+  "times": "times",
+  "@times": {
+    "description": "Text for number of times"
+  },
+  "noAudioAvailable": "No audio available for this dhikr",
+  "@noAudioAvailable": {
+    "description": "Message shown when no audio is available for an Azkar"
+  },
+  "errorPlayingAudio": "Error playing audio: {error}",
+  "@errorPlayingAudio": {
+    "description": "Message shown when there's an error playing audio",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "audioComingSoon": "Audio feature coming soon!",
+  "@audioComingSoon": {
+    "description": "Message shown when audio feature is not yet available"
+  },
+  "categoryName": "{name}",
+  "@categoryName": {
+    "description": "The name of a category",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Morning Azkar"
+      }
+    }
+  }
+}
