@@ -1,137 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/services.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/services/notification_service.dart';
-import '../../../../core/services/storage_service.dart';
 import '../../../../l10n/app_localizations.dart';
-
-final notificationTimeProvider = StateProvider<TimeOfDay>((ref) => const TimeOfDay(hour: 5, minute: 0));
-
-final morningReminderProvider = StateNotifierProvider<ReminderNotifier, bool>((ref) {
-  final storage = ref.watch(storageServiceProvider);
-  return ReminderNotifier(
-    storage: storage,
-    isForMorning: true,
-    initialValue: storage.getMorningReminder(),
-  );
-});
-
-final eveningReminderProvider = StateNotifierProvider<ReminderNotifier, bool>((ref) {
-  final storage = ref.watch(storageServiceProvider);
-  return ReminderNotifier(
-    storage: storage,
-    isForMorning: false,
-    initialValue: storage.getEveningReminder(),
-  );
-});
-
-final languageProvider = StateProvider<Locale>((ref) {
-  final storage = ref.watch(storageServiceProvider);
-  return Locale(storage.getLanguage() ?? 'en');
-});
-
-class ReminderNotifier extends StateNotifier<bool> {
-  final StorageService storage;
-  final bool isForMorning;
-
-  ReminderNotifier({
-    required this.storage,
-    required this.isForMorning,
-    required bool initialValue,
-  }) : super(initialValue);
-
-  Future<void> toggle(bool value) async {
-    state = value;
-    if (isForMorning) {
-      await storage.setMorningReminder(value);
-    } else {
-      await storage.setEveningReminder(value);
-    }
-  }
-}
-
-final fontSizeProvider = StateProvider<double>((ref) => 1.0);
+import '../providers/settings_providers.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-  Future<void> _handleNotificationToggle({
-    required BuildContext context,
-    required NotificationService notificationService,
-    required StateNotifierProvider<ReminderNotifier, bool> reminderProvider,
-    required bool value,
-    required int id,
-    required String title,
-    required String body,
-    required TimeOfDay time,
-    required WidgetRef ref,
-  }) async {
-    try {
-      if (value) {
-        final hasPermission = await notificationService.requestPermission();
-        if (!hasPermission) {
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Please enable notifications in system settings'),
-              ),
-            );
-          }
-          return;
-        }
-      }
-      
-      await notificationService.scheduleDailyNotification(
-        id: id,
-        title: title,
-        body: body,
-        time: time,
-        enabled: value,
-      );
-
-      if (context.mounted) {
-        ref.read(reminderProvider.notifier).toggle(value);
-      }
-    } on PlatformException catch (e) {
-      if (context.mounted) {
-        if (e.code == 'exact_alarms_not_permitted') {
-          showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: Text(AppLocalizations.of(context)?.permissionRequired ?? 'Permission Required'),
-              content: const Text('This app needs permission to schedule exact alarms for Azkar reminders. Please grant this permission in system settings.'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(AppLocalizations.of(context)?.cancel ?? 'Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Open system settings for exact alarms
-                    notificationService.requestExactAlarmPermission();
-                    Navigator.pop(context);
-                  },
-                  child: Text(AppLocalizations.of(context)?.openSettings ?? 'Open Settings'),
-                ),
-              ],
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text( 'Failed to schedule notification: ${e.message}'),
-            ),
-          );
-        }
-        ref.read(reminderProvider.notifier).toggle(false);
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(settingsControllerProvider);
     final isDarkMode = ref.watch(themeProvider) == ThemeMode.dark;
     final morningReminder = ref.watch(morningReminderProvider);
     final eveningReminder = ref.watch(eveningReminderProvider);
@@ -154,11 +34,7 @@ class SettingsScreen extends ConsumerWidget {
               SwitchListTile(
                 title: Text(l10n.darkMode),
                 value: isDarkMode,
-                onChanged: (value) {
-                  ref.read(themeProvider.notifier).setTheme(
-                    value ? ThemeMode.dark : ThemeMode.light
-                  );
-                },
+                onChanged: controller.toggleTheme,
               ),
               ListTile(
                 title: Text(l10n.fontSize),
@@ -168,33 +44,29 @@ class SettingsScreen extends ConsumerWidget {
                   max: 1.4,
                   divisions: 6,
                   label: '${(fontSize * 100).round()}%',
-                  onChanged: (value) {
-                    ref.read(fontSizeProvider.notifier).state = value;
-                  },
+                  onChanged: controller.setFontSize,
                 ),
               ),
-              
               ListTile(
                 title: Text(l10n.language),
-                trailing: DropdownButton<String>(
-                  value: currentLanguage.languageCode,
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'en',
-                      child: Text('English'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      currentLanguage.languageCode == 'en' ? 'English' : 'العربية',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
                     ),
-                    DropdownMenuItem(
-                      value: 'ar',
-                      child: Text('العربية'),
+                    SizedBox(width: 8.w),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16.w,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ],
-                  onChanged: (value) {
-                    if (value != null) {
-                      ref.read(languageProvider.notifier).state = Locale(value);
-                      ref.read(storageServiceProvider).setLanguage(value);
-                    }
-                  },
                 ),
+                onTap: () => controller.showLanguageDialog(context),
               ),
             ],
           ),
@@ -206,7 +78,7 @@ class SettingsScreen extends ConsumerWidget {
                 title: Text(l10n.morningAzkarReminder),
                 subtitle: Text(l10n.dailyReminderForMorningAzkar),
                 value: morningReminder,
-                onChanged: (value) => _handleNotificationToggle(
+                onChanged: (value) => controller.handleNotificationToggle(
                   context: context,
                   notificationService: notificationService,
                   reminderProvider: morningReminderProvider,
@@ -215,14 +87,13 @@ class SettingsScreen extends ConsumerWidget {
                   title: l10n.morningAzkar,
                   body: l10n.timeForYourMorningRemembrance,
                   time: const TimeOfDay(hour: 5, minute: 0),
-                  ref: ref,
                 ),
               ),
               SwitchListTile(
                 title: Text(l10n.eveningAzkarReminder),
                 subtitle: Text(l10n.dailyReminderForEveningAzkar),
                 value: eveningReminder,
-                onChanged: (value) => _handleNotificationToggle(
+                onChanged: (value) => controller.handleNotificationToggle(
                   context: context,
                   notificationService: notificationService,
                   reminderProvider: eveningReminderProvider,
@@ -231,7 +102,6 @@ class SettingsScreen extends ConsumerWidget {
                   title: l10n.eveningAzkar,
                   body: l10n.timeForYourEveningRemembrance,
                   time: const TimeOfDay(hour: 17, minute: 0),
-                  ref: ref,
                 ),
               ),
             ],

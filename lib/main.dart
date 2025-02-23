@@ -1,3 +1,4 @@
+import 'package:azkary/features/settings/presentation/providers/settings_providers.dart';
 import 'package:azkary/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +8,6 @@ import 'core/theme/app_theme.dart';
 import 'core/services/notification_service.dart';
 import 'core/services/storage_service.dart';
 import 'features/azkar/presentation/screens/splash_screen.dart';
-import 'features/settings/presentation/screens/settings_screen.dart';
 import 'features/bookmarks/presentation/providers/bookmark_providers.dart';
 
 void main() async {

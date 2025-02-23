@@ -6,9 +6,15 @@ import '../providers/azkar_provider.dart';
 class AzkarListController extends StateNotifier<Map<String, bool>> {
   final Ref ref;
   final AzkarCategory category;
+  bool _isInitialized = false;
 
-  AzkarListController(this.ref, this.category) : super({}) {
-    _initializeRepeatCounts();
+  AzkarListController(this.ref, this.category) : super({});
+
+  void initializeIfNeeded() {
+    if (!_isInitialized) {
+      _initializeRepeatCounts();
+      _isInitialized = true;
+    }
   }
 
   void _initializeRepeatCounts() {
@@ -27,10 +33,11 @@ class AzkarListController extends StateNotifier<Map<String, bool>> {
 
   void handleCountDecrement(String azkarId, int currentCount) {
     if (currentCount <= 1) {
-      state = {...state, azkarId: true};
-      Future.delayed(const Duration(milliseconds: 800), () {
-        state = {...state}..remove(azkarId);
+      state = Map<String, bool>.from(state)..addAll({azkarId: true});
+      
+      Future.delayed(const Duration(milliseconds: 500), () {
         ref.read(azkarRepeatCountsProvider.notifier).decrementCount(azkarId);
+        state = Map<String, bool>.from(state)..remove(azkarId);
       });
     } else {
       ref.read(azkarRepeatCountsProvider.notifier).decrementCount(azkarId);
