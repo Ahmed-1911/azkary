@@ -68,17 +68,6 @@ class AzkarCard extends ConsumerWidget {
                 ),
               ],
             ),
-            // if (azkar.translation != null) ...[
-            //   SizedBox(height: 8.h),
-            //   Text(
-            //     azkar.translation!,
-            //     style: TextStyle(
-            //       fontSize: 14.sp,
-            //       color: Colors.grey[600],
-            //       height: 1.4,
-            //     ),
-            //   ),
-            // ],
             if (azkar.reference != null) ...[
               SizedBox(height: 8.h),
               Text(
