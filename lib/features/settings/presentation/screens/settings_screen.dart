@@ -110,9 +110,9 @@ class SettingsScreen extends ConsumerWidget {
           _buildSection(
             title: l10n.about,
             children: [
-             ListTile(
+              ListTile(
                 title: Text(l10n.version),
-                trailing: const Text('1.0.0'),
+                trailing: const Text('1.0.3'),
               ),
               ListTile(
                 title: Text(l10n.developer),

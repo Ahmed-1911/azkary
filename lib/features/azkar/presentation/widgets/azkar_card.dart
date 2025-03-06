@@ -56,7 +56,7 @@ class AzkarCard extends ConsumerWidget {
                       fontFamily: 'Amiri',
                       height: 1.5,
                     ),
-                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 IconButton(
@@ -100,13 +100,13 @@ class AzkarCard extends ConsumerWidget {
                     ),
                   ],
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.play_circle_outline,
-                    color: Colors.grey,
-                  ),
-                  onPressed: handlePlayback,
-                ),
+                // IconButton(
+                //   icon: const Icon(
+                //     Icons.play_circle_outline,
+                //     color: Colors.grey,
+                //   ),
+                //   onPressed: handlePlayback,
+                // ),
               ],
             ),
           ],

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "112545902474",
+    "firebase_url": "https://first-10ed5.firebaseio.com",
+    "project_id": "first-10ed5",
+    "storage_bucket": "first-10ed5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112545902474:android:e1ef3c9b13a9ffe9396273",
+        "android_client_info": {
+          "package_name": "com.am.azkary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112545902474-qoqkfpsd6ec06vvkt64clg5g9aihi5e9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6wgFbJ4MmXMD5gfVO2sqATDDEFuFyfdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112545902474-qoqkfpsd6ec06vvkt64clg5g9aihi5e9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

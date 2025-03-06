@@ -9,9 +9,11 @@ import 'core/services/notification_service.dart';
 import 'core/services/storage_service.dart';
 import 'features/azkar/presentation/screens/splash_screen.dart';
 import 'features/bookmarks/presentation/providers/bookmark_providers.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await MobileAds.instance.initialize();
   
   final prefs = await SharedPreferences.getInstance();
   final container = ProviderContainer(
