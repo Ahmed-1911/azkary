@@ -13,7 +13,7 @@ final fontSizeProvider = StateProvider<double>((ref) => 1.0);
 
 final languageProvider = StateProvider<Locale>((ref) {
   final storage = ref.watch(storageServiceProvider);
-  return Locale(storage.getLanguage() ?? 'en');
+  return Locale(storage.getLanguage() ?? 'ar');
 });
 
 class ReminderNotifier extends StateNotifier<bool> {

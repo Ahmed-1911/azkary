@@ -622,6 +622,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name}'**
   String categoryName(String name);
+
+  /// Title for the widget info dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Add Widget to Home Screen'**
+  String get addWidgetToHomeScreen;
+
+  /// Explanation about widget requirement
+  ///
+  /// In en, this message translates to:
+  /// **'The Azkary widget needs to be added to your home screen before it can be updated.'**
+  String get widgetNeededOnHomeScreen;
+
+  /// Header for widget addition instructions
+  ///
+  /// In en, this message translates to:
+  /// **'To add the widget:'**
+  String get toAddWidget;
+
+  /// Step 1 for adding widget
+  ///
+  /// In en, this message translates to:
+  /// **'Long press on an empty area of your home screen'**
+  String get longPressHomeScreen;
+
+  /// Step 2 for adding widget
+  ///
+  /// In en, this message translates to:
+  /// **'Select \"Widgets\" from the menu that appears'**
+  String get selectWidgets;
+
+  /// Step 3 for adding widget
+  ///
+  /// In en, this message translates to:
+  /// **'Find \"Azkary\" in the list of widgets'**
+  String get findAzkaryWidget;
+
+  /// Step 4 for adding widget
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the Azkary widget to your home screen'**
+  String get dragWidget;
+
+  /// Instructions for updating the widget
+  ///
+  /// In en, this message translates to:
+  /// **'Once added, you can update the widget by pressing the refresh button in this app.'**
+  String get widgetUpdateInstructions;
+
+  /// Note about device-specific differences
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Different Android devices may have slightly different steps to add widgets.'**
+  String get deviceSpecificNote;
+
+  /// Success message for widget update
+  ///
+  /// In en, this message translates to:
+  /// **'Widget updated successfully'**
+  String get widgetUpdatedSuccessfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

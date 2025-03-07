@@ -284,5 +284,45 @@
         "example": "Morning Azkar"
       }
     }
+  },
+  "addWidgetToHomeScreen": "Add Widget to Home Screen",
+  "@addWidgetToHomeScreen": {
+    "description": "Title for the widget info dialog"
+  },
+  "widgetNeededOnHomeScreen": "The Azkary widget needs to be added to your home screen before it can be updated.",
+  "@widgetNeededOnHomeScreen": {
+    "description": "Explanation about widget requirement"
+  },
+  "toAddWidget": "To add the widget:",
+  "@toAddWidget": {
+    "description": "Header for widget addition instructions"
+  },
+  "longPressHomeScreen": "Long press on an empty area of your home screen",
+  "@longPressHomeScreen": {
+    "description": "Step 1 for adding widget"
+  },
+  "selectWidgets": "Select \"Widgets\" from the menu that appears",
+  "@selectWidgets": {
+    "description": "Step 2 for adding widget"
+  },
+  "findAzkaryWidget": "Find \"Azkary\" in the list of widgets",
+  "@findAzkaryWidget": {
+    "description": "Step 3 for adding widget"
+  },
+  "dragWidget": "Drag the Azkary widget to your home screen",
+  "@dragWidget": {
+    "description": "Step 4 for adding widget"
+  },
+  "widgetUpdateInstructions": "Once added, you can update the widget by pressing the refresh button in this app.",
+  "@widgetUpdateInstructions": {
+    "description": "Instructions for updating the widget"
+  },
+  "deviceSpecificNote": "Note: Different Android devices may have slightly different steps to add widgets.",
+  "@deviceSpecificNote": {
+    "description": "Note about device-specific differences"
+  },
+  "widgetUpdatedSuccessfully": "Widget updated successfully",
+  "@widgetUpdatedSuccessfully": {
+    "description": "Success message for widget update"
   }
 }

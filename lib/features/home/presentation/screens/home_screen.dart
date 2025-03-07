@@ -6,6 +6,7 @@ import '../../../tasbih/presentation/screens/tasbih_screen.dart';
 import '../../../bookmarks/presentation/screens/bookmarks_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
 
+
 final selectedIndexProvider = StateProvider<int>((ref) => 0);
 
 class HomeScreen extends ConsumerWidget {

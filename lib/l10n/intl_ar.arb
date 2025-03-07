@@ -86,5 +86,16 @@
   "noAudioAvailable": "لا يوجد صوت متاح لهذا الذكر",
   "errorPlayingAudio": "خطأ في تشغيل الصوت: {error}",
   "audioComingSoon": "ميزة الصوت قريباً!",
-  "categoryName": "{name}"
+  "categoryName": "{name}",
+  
+  "addWidgetToHomeScreen": "إضافة ودجت إلى الشاشة الرئيسية",
+  "widgetNeededOnHomeScreen": "يجب إضافة ودجت أذكاري إلى الشاشة الرئيسية قبل أن يمكن تحديثه.",
+  "toAddWidget": "لإضافة الودجت:",
+  "longPressHomeScreen": "اضغط مطولاً على منطقة فارغة في الشاشة الرئيسية",
+  "selectWidgets": "اختر \"الودجت\" من القائمة التي تظهر",
+  "findAzkaryWidget": "ابحث عن \"أذكاري\" في قائمة الودجت",
+  "dragWidget": "اسحب ودجت أذكاري إلى الشاشة الرئيسية",
+  "widgetUpdateInstructions": "بعد الإضافة، يمكنك تحديث الودجت بالضغط على زر التحديث في هذا التطبيق.",
+  "deviceSpecificNote": "ملاحظة: قد تختلف خطوات إضافة الودجت قليلاً بين أجهزة الأندرويد المختلفة.",
+  "widgetUpdatedSuccessfully": "تم تحديث الودجت بنجاح"
 }

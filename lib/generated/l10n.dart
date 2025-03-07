@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -142,42 +147,22 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
   /// `Full Name`
   String get fullName {
-    return Intl.message(
-      'Full Name',
-      name: 'fullName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Full Name', name: 'fullName', desc: '', args: []);
   }
 
   /// `Log in`
   String get login {
-    return Intl.message(
-      'Log in',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log in', name: 'login', desc: '', args: []);
   }
 
   /// `Register`
   String get register {
-    return Intl.message(
-      'Register',
-      name: 'register',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Register', name: 'register', desc: '', args: []);
   }
 
   /// `Welcome to Dawar`
@@ -222,22 +207,12 @@ class S {
 
   /// `Ok`
   String get ok {
-    return Intl.message(
-      'Ok',
-      name: 'ok',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ok', name: 'ok', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Register with OTP`
@@ -252,22 +227,12 @@ class S {
 
   /// `OTP`
   String get otp {
-    return Intl.message(
-      'OTP',
-      name: 'otp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('OTP', name: 'otp', desc: '', args: []);
   }
 
   /// `Success...`
   String get success {
-    return Intl.message(
-      'Success...',
-      name: 'success',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Success...', name: 'success', desc: '', args: []);
   }
 
   /// `Already registered`
@@ -282,22 +247,12 @@ class S {
 
   /// `Weight`
   String get weight {
-    return Intl.message(
-      'Weight',
-      name: 'weight',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Weight', name: 'weight', desc: '', args: []);
   }
 
   /// `KG`
   String get kg {
-    return Intl.message(
-      'KG',
-      name: 'kg',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('KG', name: 'kg', desc: '', args: []);
   }
 
   /// `Receive load`
@@ -332,22 +287,12 @@ class S {
 
   /// `Bags number`
   String get bagsNumber {
-    return Intl.message(
-      'Bags number',
-      name: 'bagsNumber',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Bags number', name: 'bagsNumber', desc: '', args: []);
   }
 
   /// `Ticket No`
   String get ticketNo {
-    return Intl.message(
-      'Ticket No',
-      name: 'ticketNo',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ticket No', name: 'ticketNo', desc: '', args: []);
   }
 
   /// `Total previous weight from this material  `
@@ -372,22 +317,12 @@ class S {
 
   /// `Language`
   String get language {
-    return Intl.message(
-      'Language',
-      name: 'language',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Language', name: 'language', desc: '', args: []);
   }
 
   /// `Log Out`
   String get logOut {
-    return Intl.message(
-      'Log Out',
-      name: 'logOut',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Log Out', name: 'logOut', desc: '', args: []);
   }
 
   /// `Azkary`
@@ -927,6 +862,106 @@ class S {
       name: 'categoryName',
       desc: 'The name of a category',
       args: [name],
+    );
+  }
+
+  /// `Add Widget to Home Screen`
+  String get addWidgetToHomeScreen {
+    return Intl.message(
+      'Add Widget to Home Screen',
+      name: 'addWidgetToHomeScreen',
+      desc: 'Title for the widget info dialog',
+      args: [],
+    );
+  }
+
+  /// `The Azkary widget needs to be added to your home screen before it can be updated.`
+  String get widgetNeededOnHomeScreen {
+    return Intl.message(
+      'The Azkary widget needs to be added to your home screen before it can be updated.',
+      name: 'widgetNeededOnHomeScreen',
+      desc: 'Explanation about widget requirement',
+      args: [],
+    );
+  }
+
+  /// `To add the widget:`
+  String get toAddWidget {
+    return Intl.message(
+      'To add the widget:',
+      name: 'toAddWidget',
+      desc: 'Header for widget addition instructions',
+      args: [],
+    );
+  }
+
+  /// `Long press on an empty area of your home screen`
+  String get longPressHomeScreen {
+    return Intl.message(
+      'Long press on an empty area of your home screen',
+      name: 'longPressHomeScreen',
+      desc: 'Step 1 for adding widget',
+      args: [],
+    );
+  }
+
+  /// `Select "Widgets" from the menu that appears`
+  String get selectWidgets {
+    return Intl.message(
+      'Select "Widgets" from the menu that appears',
+      name: 'selectWidgets',
+      desc: 'Step 2 for adding widget',
+      args: [],
+    );
+  }
+
+  /// `Find "Azkary" in the list of widgets`
+  String get findAzkaryWidget {
+    return Intl.message(
+      'Find "Azkary" in the list of widgets',
+      name: 'findAzkaryWidget',
+      desc: 'Step 3 for adding widget',
+      args: [],
+    );
+  }
+
+  /// `Drag the Azkary widget to your home screen`
+  String get dragWidget {
+    return Intl.message(
+      'Drag the Azkary widget to your home screen',
+      name: 'dragWidget',
+      desc: 'Step 4 for adding widget',
+      args: [],
+    );
+  }
+
+  /// `Once added, you can update the widget by pressing the refresh button in this app.`
+  String get widgetUpdateInstructions {
+    return Intl.message(
+      'Once added, you can update the widget by pressing the refresh button in this app.',
+      name: 'widgetUpdateInstructions',
+      desc: 'Instructions for updating the widget',
+      args: [],
+    );
+  }
+
+  /// `Note: Different Android devices may have slightly different steps to add widgets.`
+  String get deviceSpecificNote {
+    return Intl.message(
+      'Note: Different Android devices may have slightly different steps to add widgets.',
+      name: 'deviceSpecificNote',
+      desc: 'Note about device-specific differences',
+      args: [],
+    );
+  }
+
+  /// `Widget updated successfully`
+  String get widgetUpdatedSuccessfully {
+    return Intl.message(
+      'Widget updated successfully',
+      name: 'widgetUpdatedSuccessfully',
+      desc: 'Success message for widget update',
+      args: [],
     );
   }
 }

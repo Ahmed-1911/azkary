@@ -277,4 +277,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String categoryName(String name) {
     return '$name';
   }
+
+  @override
+  String get addWidgetToHomeScreen => 'إضافة ودجت إلى الشاشة الرئيسية';
+
+  @override
+  String get widgetNeededOnHomeScreen => 'يجب إضافة ودجت أذكاري إلى الشاشة الرئيسية قبل أن يمكن تحديثه.';
+
+  @override
+  String get toAddWidget => 'لإضافة الودجت:';
+
+  @override
+  String get longPressHomeScreen => 'اضغط مطولاً على منطقة فارغة في الشاشة الرئيسية';
+
+  @override
+  String get selectWidgets => 'اختر \"الودجت\" من القائمة التي تظهر';
+
+  @override
+  String get findAzkaryWidget => 'ابحث عن \"أذكاري\" في قائمة الودجت';
+
+  @override
+  String get dragWidget => 'اسحب ودجت أذكاري إلى الشاشة الرئيسية';
+
+  @override
+  String get widgetUpdateInstructions => 'بعد الإضافة، يمكنك تحديث الودجت بالضغط على زر التحديث في هذا التطبيق.';
+
+  @override
+  String get deviceSpecificNote => 'ملاحظة: قد تختلف خطوات إضافة الودجت قليلاً بين أجهزة الأندرويد المختلفة.';
+
+  @override
+  String get widgetUpdatedSuccessfully => 'تم تحديث الودجت بنجاح';
 }

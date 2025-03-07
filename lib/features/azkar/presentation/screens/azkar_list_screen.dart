@@ -32,7 +32,12 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
     Future.microtask(() {
       if (!_isDisposed) {
         ref.read(azkarListControllerProvider(widget.category).notifier).initializeIfNeeded();
-        ref.read(adsServiceProvider).initBannerAd();
+        try {
+          ref.read(adsServiceProvider).initBannerAd();
+        } catch (e) {
+          // Ignore ad initialization errors
+          debugPrint('Error initializing banner ad: $e');
+        }
       }
     });
   }
@@ -143,10 +148,12 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
             ),
           ),
           if (adsService.isBannerAdLoaded && adsService.bannerAd != null)
-            Container(
-              width: adsService.bannerAd!.size.width.toDouble(),
-              height: adsService.bannerAd!.size.height.toDouble(),
-              child: AdWidget(ad: adsService.bannerAd!),
+            SafeArea(
+              child: Container(
+                width: adsService.bannerAd!.size.width.toDouble(),
+                height: adsService.bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: adsService.bannerAd!),
+              ),
             ),
         ],
       ),

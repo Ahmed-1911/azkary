@@ -10,20 +10,56 @@ import 'core/services/storage_service.dart';
 import 'features/azkar/presentation/screens/splash_screen.dart';
 import 'features/bookmarks/presentation/providers/bookmark_providers.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'dart:async';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.instance.initialize();
   
-  final prefs = await SharedPreferences.getInstance();
+  try {
+    // Initialize Mobile Ads with a timeout
+    bool adsInitialized = false;
+    
+    await Future.any([
+      MobileAds.instance.initialize().then((_) {
+        adsInitialized = true;
+      }),
+      Future.delayed(const Duration(seconds: 5)).then((_) {
+        if (!adsInitialized) {
+          debugPrint('MobileAds initialization timed out, continuing anyway');
+        }
+      })
+    ]);
+  } catch (e) {
+    // Continue even if ads initialization fails
+    debugPrint('MobileAds initialization failed: $e');
+  }
+  
+  late SharedPreferences prefs;
+  try {
+    prefs = await SharedPreferences.getInstance();
+  } catch (e) {
+    // Fallback to create a new instance if there's an error
+    debugPrint('Error getting SharedPreferences: $e');
+    prefs = await SharedPreferences.getInstance();
+  }
+  
   final container = ProviderContainer(
     overrides: [
       sharedPreferencesProvider.overrideWithValue(prefs),
     ],
   );
   
-  await container.read(notificationServiceProvider).initialize();
-  await container.read(storageServiceProvider).initialize();
+  try {
+    await container.read(notificationServiceProvider).initialize();
+  } catch (e) {
+    debugPrint('Error initializing notification service: $e');
+  }
+  
+  try {
+    await container.read(storageServiceProvider).initialize();
+  } catch (e) {
+    debugPrint('Error initializing storage service: $e');
+  }
   
   runApp(
     UncontrolledProviderScope(

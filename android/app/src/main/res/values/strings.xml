@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Azkary</string>
+    <string name="widget_description">Display random Azkar that changes every 10 seconds</string>
+    <string name="widget_title">Azkary</string>
+    <string name="last_updated">Last updated: %1$s</string>
+</resources> 

@@ -10,32 +10,55 @@ class AdsService {
 
   BannerAd? _bannerAd;
   bool _isBannerAdLoaded = false;
+  int _retryAttempt = 0;
+  static const int _maxRetryAttempts = 3;
 
   bool get isBannerAdLoaded => _isBannerAdLoaded;
   BannerAd? get bannerAd => _bannerAd;
 
   void initBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: _bannerAdUnitId,
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          _isBannerAdLoaded = true;
-        },
-        onAdFailedToLoad: (ad, error) {
-          _isBannerAdLoaded = false;
-          ad.dispose();
-        },
-      ),
-    );
+    try {
+      _bannerAd = BannerAd(
+        adUnitId: _bannerAdUnitId,
+        size: AdSize.banner,
+        request: const AdRequest(),
+        listener: BannerAdListener(
+          onAdLoaded: (_) {
+            _isBannerAdLoaded = true;
+            _retryAttempt = 0; // Reset retry counter on success
+          },
+          onAdFailedToLoad: (ad, error) {
+            _isBannerAdLoaded = false;
+            ad.dispose();
+            
+            // Implement retry logic with backoff
+            if (_retryAttempt < _maxRetryAttempts) {
+              _retryAttempt++;
+              Future.delayed(
+                Duration(seconds: _retryAttempt * 2), // Exponential backoff
+                () => initBannerAd(),
+              );
+            }
+          },
+        ),
+      );
 
-    _bannerAd?.load();
+      _bannerAd?.load();
+    } catch (e) {
+      // Silently handle exceptions to prevent app crashes
+      _isBannerAdLoaded = false;
+    }
   }
 
   void disposeBannerAd() {
-    _bannerAd?.dispose();
-    _bannerAd = null;
-    _isBannerAdLoaded = false;
+    try {
+      _bannerAd?.dispose();
+    } catch (e) {
+      // Ignore errors during disposal
+    } finally {
+      _bannerAd = null;
+      _isBannerAdLoaded = false;
+      _retryAttempt = 0;
+    }
   }
 } 

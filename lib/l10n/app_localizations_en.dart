@@ -277,4 +277,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String categoryName(String name) {
     return '$name';
   }
+
+  @override
+  String get addWidgetToHomeScreen => 'Add Widget to Home Screen';
+
+  @override
+  String get widgetNeededOnHomeScreen => 'The Azkary widget needs to be added to your home screen before it can be updated.';
+
+  @override
+  String get toAddWidget => 'To add the widget:';
+
+  @override
+  String get longPressHomeScreen => 'Long press on an empty area of your home screen';
+
+  @override
+  String get selectWidgets => 'Select \"Widgets\" from the menu that appears';
+
+  @override
+  String get findAzkaryWidget => 'Find \"Azkary\" in the list of widgets';
+
+  @override
+  String get dragWidget => 'Drag the Azkary widget to your home screen';
+
+  @override
+  String get widgetUpdateInstructions => 'Once added, you can update the widget by pressing the refresh button in this app.';
+
+  @override
+  String get deviceSpecificNote => 'Note: Different Android devices may have slightly different steps to add widgets.';
+
+  @override
+  String get widgetUpdatedSuccessfully => 'Widget updated successfully';
 }
