@@ -95,6 +95,16 @@ class S {
     );
   }
 
+  /// `Tools`
+  String get tools {
+    return Intl.message(
+      'Tools',
+      name: 'tools',
+      desc: 'Label for Tools section in settings',
+      args: [],
+    );
+  }
+
   /// `No internet connection, please check you network and try again`
   String get no_internet_connection {
     return Intl.message(
@@ -205,9 +215,9 @@ class S {
     );
   }
 
-  /// `Ok`
+  /// `OK`
   String get ok {
-    return Intl.message('Ok', name: 'ok', desc: '', args: []);
+    return Intl.message('OK', name: 'ok', desc: '', args: []);
   }
 
   /// `Cancel`
@@ -331,6 +341,16 @@ class S {
       'Azkary',
       name: 'appName',
       desc: 'The name of the application',
+      args: [],
+    );
+  }
+
+  /// `Quran`
+  String get quran {
+    return Intl.message(
+      'Quran',
+      name: 'quran',
+      desc: 'Label for Quran navigation item',
       args: [],
     );
   }
@@ -875,20 +895,20 @@ class S {
     );
   }
 
-  /// `The Azkary widget needs to be added to your home screen before it can be updated.`
+  /// `Widget needed on home screen`
   String get widgetNeededOnHomeScreen {
     return Intl.message(
-      'The Azkary widget needs to be added to your home screen before it can be updated.',
+      'Widget needed on home screen',
       name: 'widgetNeededOnHomeScreen',
       desc: 'Explanation about widget requirement',
       args: [],
     );
   }
 
-  /// `To add the widget:`
+  /// `To add the widget to your home screen:`
   String get toAddWidget {
     return Intl.message(
-      'To add the widget:',
+      'To add the widget to your home screen:',
       name: 'toAddWidget',
       desc: 'Header for widget addition instructions',
       args: [],
@@ -905,50 +925,50 @@ class S {
     );
   }
 
-  /// `Select "Widgets" from the menu that appears`
+  /// `Select 'Widgets' or 'Add widget'`
   String get selectWidgets {
     return Intl.message(
-      'Select "Widgets" from the menu that appears',
+      'Select \'Widgets\' or \'Add widget\'',
       name: 'selectWidgets',
       desc: 'Step 2 for adding widget',
       args: [],
     );
   }
 
-  /// `Find "Azkary" in the list of widgets`
+  /// `Find and select 'Azkary' widget`
   String get findAzkaryWidget {
     return Intl.message(
-      'Find "Azkary" in the list of widgets',
+      'Find and select \'Azkary\' widget',
       name: 'findAzkaryWidget',
       desc: 'Step 3 for adding widget',
       args: [],
     );
   }
 
-  /// `Drag the Azkary widget to your home screen`
+  /// `Drag and place the widget where you want it`
   String get dragWidget {
     return Intl.message(
-      'Drag the Azkary widget to your home screen',
+      'Drag and place the widget where you want it',
       name: 'dragWidget',
       desc: 'Step 4 for adding widget',
       args: [],
     );
   }
 
-  /// `Once added, you can update the widget by pressing the refresh button in this app.`
+  /// `The widget will update automatically with new Azkar periodically.`
   String get widgetUpdateInstructions {
     return Intl.message(
-      'Once added, you can update the widget by pressing the refresh button in this app.',
+      'The widget will update automatically with new Azkar periodically.',
       name: 'widgetUpdateInstructions',
       desc: 'Instructions for updating the widget',
       args: [],
     );
   }
 
-  /// `Note: Different Android devices may have slightly different steps to add widgets.`
+  /// `Note: The exact steps may vary slightly depending on your device model and Android version.`
   String get deviceSpecificNote {
     return Intl.message(
-      'Note: Different Android devices may have slightly different steps to add widgets.',
+      'Note: The exact steps may vary slightly depending on your device model and Android version.',
       name: 'deviceSpecificNote',
       desc: 'Note about device-specific differences',
       args: [],
@@ -961,6 +981,381 @@ class S {
       'Widget updated successfully',
       name: 'widgetUpdatedSuccessfully',
       desc: 'Success message for widget update',
+      args: [],
+    );
+  }
+
+  /// `Prayer Times`
+  String get prayerTimes {
+    return Intl.message(
+      'Prayer Times',
+      name: 'prayerTimes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fajr`
+  String get fajr {
+    return Intl.message('Fajr', name: 'fajr', desc: '', args: []);
+  }
+
+  /// `Sunrise`
+  String get sunrise {
+    return Intl.message('Sunrise', name: 'sunrise', desc: '', args: []);
+  }
+
+  /// `Dhuhr`
+  String get dhuhr {
+    return Intl.message('Dhuhr', name: 'dhuhr', desc: '', args: []);
+  }
+
+  /// `Asr`
+  String get asr {
+    return Intl.message('Asr', name: 'asr', desc: '', args: []);
+  }
+
+  /// `Maghrib`
+  String get maghrib {
+    return Intl.message('Maghrib', name: 'maghrib', desc: '', args: []);
+  }
+
+  /// `Isha`
+  String get isha {
+    return Intl.message('Isha', name: 'isha', desc: '', args: []);
+  }
+
+  /// `Today's Prayer Times`
+  String get todayPrayerTimes {
+    return Intl.message(
+      'Today\'s Prayer Times',
+      name: 'todayPrayerTimes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading prayer times. Please check your location settings and try again.`
+  String get errorLoadingPrayerTimes {
+    return Intl.message(
+      'Error loading prayer times. Please check your location settings and try again.',
+      name: 'errorLoadingPrayerTimes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
+  }
+
+  /// `Next Prayer`
+  String get nextPrayer {
+    return Intl.message('Next Prayer', name: 'nextPrayer', desc: '', args: []);
+  }
+
+  /// `Location updated successfully`
+  String get locationUpdatedSuccessfully {
+    return Intl.message(
+      'Location updated successfully',
+      name: 'locationUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error updating location`
+  String get errorUpdatingLocation {
+    return Intl.message(
+      'Error updating location',
+      name: 'errorUpdatingLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Current Location`
+  String get updateCurrentLocation {
+    return Intl.message(
+      'Update Current Location',
+      name: 'updateCurrentLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location not available`
+  String get locationNotAvailable {
+    return Intl.message(
+      'Location not available',
+      name: 'locationNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading location...`
+  String get loadingLocation {
+    return Intl.message(
+      'Loading location...',
+      name: 'loadingLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading location`
+  String get errorLoadingLocation {
+    return Intl.message(
+      'Error loading location',
+      name: 'errorLoadingLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message('Close', name: 'close', desc: '', args: []);
+  }
+
+  /// `Prayer Times Settings`
+  String get prayerTimesSettings {
+    return Intl.message(
+      'Prayer Times Settings',
+      name: 'prayerTimesSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calculation Method`
+  String get calculationMethod {
+    return Intl.message(
+      'Calculation Method',
+      name: 'calculationMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Madhab (Asr Calculation)`
+  String get madhabAsrCalculation {
+    return Intl.message(
+      'Madhab (Asr Calculation)',
+      name: 'madhabAsrCalculation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get location {
+    return Intl.message('Location', name: 'location', desc: '', args: []);
+  }
+
+  /// `Save & Close`
+  String get saveAndClose {
+    return Intl.message(
+      'Save & Close',
+      name: 'saveAndClose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Egyptian General Authority of Survey`
+  String get egyptianGeneralAuthorityOfSurvey {
+    return Intl.message(
+      'Egyptian General Authority of Survey',
+      name: 'egyptianGeneralAuthorityOfSurvey',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `University of Islamic Sciences, Karachi`
+  String get universityOfIslamicSciencesKarachi {
+    return Intl.message(
+      'University of Islamic Sciences, Karachi',
+      name: 'universityOfIslamicSciencesKarachi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Muslim World League`
+  String get muslimWorldLeague {
+    return Intl.message(
+      'Muslim World League',
+      name: 'muslimWorldLeague',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `North America (ISNA)`
+  String get northAmericaISNA {
+    return Intl.message(
+      'North America (ISNA)',
+      name: 'northAmericaISNA',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dubai (UAE)`
+  String get dubaiUAE {
+    return Intl.message('Dubai (UAE)', name: 'dubaiUAE', desc: '', args: []);
+  }
+
+  /// `Moonsighting Committee`
+  String get moonsightingCommittee {
+    return Intl.message(
+      'Moonsighting Committee',
+      name: 'moonsightingCommittee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kuwait`
+  String get kuwait {
+    return Intl.message('Kuwait', name: 'kuwait', desc: '', args: []);
+  }
+
+  /// `Qatar`
+  String get qatar {
+    return Intl.message('Qatar', name: 'qatar', desc: '', args: []);
+  }
+
+  /// `Singapore`
+  String get singapore {
+    return Intl.message('Singapore', name: 'singapore', desc: '', args: []);
+  }
+
+  /// `Turkey`
+  String get turkey {
+    return Intl.message('Turkey', name: 'turkey', desc: '', args: []);
+  }
+
+  /// `Tehran`
+  String get tehran {
+    return Intl.message('Tehran', name: 'tehran', desc: '', args: []);
+  }
+
+  /// `Umm al-Qura University, Makkah`
+  String get ummAlQuraUniversityMakkah {
+    return Intl.message(
+      'Umm al-Qura University, Makkah',
+      name: 'ummAlQuraUniversityMakkah',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shafi, Maliki, Hanbali`
+  String get shafiMalikiHanbali {
+    return Intl.message(
+      'Shafi, Maliki, Hanbali',
+      name: 'shafiMalikiHanbali',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hanafi`
+  String get hanafi {
+    return Intl.message('Hanafi', name: 'hanafi', desc: '', args: []);
+  }
+
+  /// `h`
+  String get hours {
+    return Intl.message('h', name: 'hours', desc: '', args: []);
+  }
+
+  /// `min`
+  String get minutes {
+    return Intl.message('min', name: 'minutes', desc: '', args: []);
+  }
+
+  /// `Tomorrow`
+  String get tomorrow {
+    return Intl.message(
+      'Tomorrow',
+      name: 'tomorrow',
+      desc: 'Label for tomorrow',
+      args: [],
+    );
+  }
+
+  /// `Rate App`
+  String get rateApp {
+    return Intl.message(
+      'Rate App',
+      name: 'rateApp',
+      desc: 'Label for rate app option in settings',
+      args: [],
+    );
+  }
+
+  /// `Share App`
+  String get shareApp {
+    return Intl.message(
+      'Share App',
+      name: 'shareApp',
+      desc: 'Label for share app option in settings',
+      args: [],
+    );
+  }
+
+  /// `Page {number} not available`
+  String pageNotAvailable(int number) {
+    return Intl.message(
+      'Page $number not available',
+      name: 'pageNotAvailable',
+      desc: 'Message shown when a Quran page is not available',
+      args: [number],
+    );
+  }
+
+  /// `Hide navigation bar`
+  String get hideNavigationBar {
+    return Intl.message(
+      'Hide navigation bar',
+      name: 'hideNavigationBar',
+      desc: 'Tooltip for the button to hide the bottom navigation bar',
+      args: [],
+    );
+  }
+
+  /// `Show navigation bar`
+  String get showNavigationBar {
+    return Intl.message(
+      'Show navigation bar',
+      name: 'showNavigationBar',
+      desc: 'Tooltip for the button to show the bottom navigation bar',
+      args: [],
+    );
+  }
+
+  /// `Enter full screen`
+  String get enterFullScreen {
+    return Intl.message(
+      'Enter full screen',
+      name: 'enterFullScreen',
+      desc: 'Tooltip for the button to enter full screen mode',
+      args: [],
+    );
+  }
+
+  /// `Exit full screen`
+  String get exitFullScreen {
+    return Intl.message(
+      'Exit full screen',
+      name: 'exitFullScreen',
+      desc: 'Tooltip for the button to exit full screen mode',
       args: [],
     );
   }

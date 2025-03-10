@@ -119,6 +119,12 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// Label for Tools section in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get tools;
+
   /// No description provided for @no_internet_connection.
   ///
   /// In en, this message translates to:
@@ -200,7 +206,7 @@ abstract class AppLocalizations {
   /// No description provided for @ok.
   ///
   /// In en, this message translates to:
-  /// **'Ok'**
+  /// **'OK'**
   String get ok;
 
   /// No description provided for @cancel.
@@ -304,6 +310,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Azkary'**
   String get appName;
+
+  /// Label for Quran navigation item
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get quran;
 
   /// Title for morning remembrance category
   ///
@@ -632,13 +644,13 @@ abstract class AppLocalizations {
   /// Explanation about widget requirement
   ///
   /// In en, this message translates to:
-  /// **'The Azkary widget needs to be added to your home screen before it can be updated.'**
+  /// **'Widget needed on home screen'**
   String get widgetNeededOnHomeScreen;
 
   /// Header for widget addition instructions
   ///
   /// In en, this message translates to:
-  /// **'To add the widget:'**
+  /// **'To add the widget to your home screen:'**
   String get toAddWidget;
 
   /// Step 1 for adding widget
@@ -650,31 +662,31 @@ abstract class AppLocalizations {
   /// Step 2 for adding widget
   ///
   /// In en, this message translates to:
-  /// **'Select \"Widgets\" from the menu that appears'**
+  /// **'Select \'Widgets\' or \'Add widget\''**
   String get selectWidgets;
 
   /// Step 3 for adding widget
   ///
   /// In en, this message translates to:
-  /// **'Find \"Azkary\" in the list of widgets'**
+  /// **'Find and select \'Azkary\' widget'**
   String get findAzkaryWidget;
 
   /// Step 4 for adding widget
   ///
   /// In en, this message translates to:
-  /// **'Drag the Azkary widget to your home screen'**
+  /// **'Drag and place the widget where you want it'**
   String get dragWidget;
 
   /// Instructions for updating the widget
   ///
   /// In en, this message translates to:
-  /// **'Once added, you can update the widget by pressing the refresh button in this app.'**
+  /// **'The widget will update automatically with new Azkar periodically.'**
   String get widgetUpdateInstructions;
 
   /// Note about device-specific differences
   ///
   /// In en, this message translates to:
-  /// **'Note: Different Android devices may have slightly different steps to add widgets.'**
+  /// **'Note: The exact steps may vary slightly depending on your device model and Android version.'**
   String get deviceSpecificNote;
 
   /// Success message for widget update
@@ -682,6 +694,288 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Widget updated successfully'**
   String get widgetUpdatedSuccessfully;
+
+  /// No description provided for @prayerTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times'**
+  String get prayerTimes;
+
+  /// No description provided for @fajr.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get fajr;
+
+  /// No description provided for @sunrise.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise'**
+  String get sunrise;
+
+  /// No description provided for @dhuhr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get dhuhr;
+
+  /// No description provided for @asr.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get asr;
+
+  /// No description provided for @maghrib.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get maghrib;
+
+  /// No description provided for @isha.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get isha;
+
+  /// No description provided for @todayPrayerTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Prayer Times'**
+  String get todayPrayerTimes;
+
+  /// No description provided for @errorLoadingPrayerTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading prayer times. Please check your location settings and try again.'**
+  String get errorLoadingPrayerTimes;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// No description provided for @nextPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Prayer'**
+  String get nextPrayer;
+
+  /// No description provided for @locationUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Location updated successfully'**
+  String get locationUpdatedSuccessfully;
+
+  /// No description provided for @errorUpdatingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Error updating location'**
+  String get errorUpdatingLocation;
+
+  /// No description provided for @updateCurrentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Current Location'**
+  String get updateCurrentLocation;
+
+  /// No description provided for @locationNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Location not available'**
+  String get locationNotAvailable;
+
+  /// No description provided for @loadingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading location...'**
+  String get loadingLocation;
+
+  /// No description provided for @errorLoadingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading location'**
+  String get errorLoadingLocation;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @prayerTimesSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times Settings'**
+  String get prayerTimesSettings;
+
+  /// No description provided for @calculationMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculation Method'**
+  String get calculationMethod;
+
+  /// No description provided for @madhabAsrCalculation.
+  ///
+  /// In en, this message translates to:
+  /// **'Madhab (Asr Calculation)'**
+  String get madhabAsrCalculation;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @saveAndClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Save & Close'**
+  String get saveAndClose;
+
+  /// No description provided for @egyptianGeneralAuthorityOfSurvey.
+  ///
+  /// In en, this message translates to:
+  /// **'Egyptian General Authority of Survey'**
+  String get egyptianGeneralAuthorityOfSurvey;
+
+  /// No description provided for @universityOfIslamicSciencesKarachi.
+  ///
+  /// In en, this message translates to:
+  /// **'University of Islamic Sciences, Karachi'**
+  String get universityOfIslamicSciencesKarachi;
+
+  /// No description provided for @muslimWorldLeague.
+  ///
+  /// In en, this message translates to:
+  /// **'Muslim World League'**
+  String get muslimWorldLeague;
+
+  /// No description provided for @northAmericaISNA.
+  ///
+  /// In en, this message translates to:
+  /// **'North America (ISNA)'**
+  String get northAmericaISNA;
+
+  /// No description provided for @dubaiUAE.
+  ///
+  /// In en, this message translates to:
+  /// **'Dubai (UAE)'**
+  String get dubaiUAE;
+
+  /// No description provided for @moonsightingCommittee.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonsighting Committee'**
+  String get moonsightingCommittee;
+
+  /// No description provided for @kuwait.
+  ///
+  /// In en, this message translates to:
+  /// **'Kuwait'**
+  String get kuwait;
+
+  /// No description provided for @qatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Qatar'**
+  String get qatar;
+
+  /// No description provided for @singapore.
+  ///
+  /// In en, this message translates to:
+  /// **'Singapore'**
+  String get singapore;
+
+  /// No description provided for @turkey.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkey'**
+  String get turkey;
+
+  /// No description provided for @tehran.
+  ///
+  /// In en, this message translates to:
+  /// **'Tehran'**
+  String get tehran;
+
+  /// No description provided for @ummAlQuraUniversityMakkah.
+  ///
+  /// In en, this message translates to:
+  /// **'Umm al-Qura University, Makkah'**
+  String get ummAlQuraUniversityMakkah;
+
+  /// No description provided for @shafiMalikiHanbali.
+  ///
+  /// In en, this message translates to:
+  /// **'Shafi, Maliki, Hanbali'**
+  String get shafiMalikiHanbali;
+
+  /// No description provided for @hanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanafi'**
+  String get hanafi;
+
+  /// No description provided for @hours.
+  ///
+  /// In en, this message translates to:
+  /// **'h'**
+  String get hours;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutes;
+
+  /// Label for tomorrow
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get tomorrow;
+
+  /// Label for rate app option in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Rate App'**
+  String get rateApp;
+
+  /// Label for share app option in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Share App'**
+  String get shareApp;
+
+  /// Message shown when a Quran page is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Page {number} not available'**
+  String pageNotAvailable(int number);
+
+  /// Tooltip for the button to hide the bottom navigation bar
+  ///
+  /// In en, this message translates to:
+  /// **'Hide navigation bar'**
+  String get hideNavigationBar;
+
+  /// Tooltip for the button to show the bottom navigation bar
+  ///
+  /// In en, this message translates to:
+  /// **'Show navigation bar'**
+  String get showNavigationBar;
+
+  /// Tooltip for the button to enter full screen mode
+  ///
+  /// In en, this message translates to:
+  /// **'Enter full screen'**
+  String get enterFullScreen;
+
+  /// Tooltip for the button to exit full screen mode
+  ///
+  /// In en, this message translates to:
+  /// **'Exit full screen'**
+  String get exitFullScreen;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

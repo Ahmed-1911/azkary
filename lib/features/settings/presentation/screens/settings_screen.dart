@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../tasbih/presentation/screens/tasbih_screen.dart';
 import '../providers/settings_providers.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -72,6 +73,25 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SizedBox(height: 16.h),
           _buildSection(
+            title: l10n.tools ?? 'Tools',
+            children: [
+              ListTile(
+                leading: const Icon(Icons.touch_app),
+                title: Text(l10n.tasbih),
+                subtitle: Text(l10n.digitalTasbih ?? 'Digital Tasbih Counter'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TasbihScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          SizedBox(height: 16.h),
+          _buildSection(
             title: l10n.notifications,
             children: [
               SwitchListTile(
@@ -112,14 +132,18 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               ListTile(
                 title: Text(l10n.version),
-                trailing: const Text('1.0.3'),
+                trailing: const Text('1.0.4'),
+              ),
+            
+              ListTile(
+                leading: const Icon(Icons.star_rate_rounded),
+                title: Text(l10n.rateApp),
+                onTap: () => controller.rateApp(context),
               ),
               ListTile(
-                title: Text(l10n.developer),
-                trailing: const Text('Ahmed Abdelsalam'),
-                onTap: () {
-                  // TODO: Open developer website/contact
-                },
+                leading: const Icon(Icons.share_rounded),
+                title: Text(l10n.shareApp),
+                onTap: () => controller.shareApp(context),
               ),
             ],
           ),

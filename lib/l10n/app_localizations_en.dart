@@ -19,6 +19,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
+  String get tools => 'Tools';
+
+  @override
   String get no_internet_connection => 'No internet connection, please check you network and try again';
 
   @override
@@ -58,7 +61,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordCompleted => 'Password has entered successfully';
 
   @override
-  String get ok => 'Ok';
+  String get ok => 'OK';
 
   @override
   String get cancel => 'Cancel';
@@ -110,6 +113,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appName => 'Azkary';
+
+  @override
+  String get quran => 'Quran';
 
   @override
   String get morningAzkar => 'Morning Azkar';
@@ -282,29 +288,172 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addWidgetToHomeScreen => 'Add Widget to Home Screen';
 
   @override
-  String get widgetNeededOnHomeScreen => 'The Azkary widget needs to be added to your home screen before it can be updated.';
+  String get widgetNeededOnHomeScreen => 'Widget needed on home screen';
 
   @override
-  String get toAddWidget => 'To add the widget:';
+  String get toAddWidget => 'To add the widget to your home screen:';
 
   @override
   String get longPressHomeScreen => 'Long press on an empty area of your home screen';
 
   @override
-  String get selectWidgets => 'Select \"Widgets\" from the menu that appears';
+  String get selectWidgets => 'Select \'Widgets\' or \'Add widget\'';
 
   @override
-  String get findAzkaryWidget => 'Find \"Azkary\" in the list of widgets';
+  String get findAzkaryWidget => 'Find and select \'Azkary\' widget';
 
   @override
-  String get dragWidget => 'Drag the Azkary widget to your home screen';
+  String get dragWidget => 'Drag and place the widget where you want it';
 
   @override
-  String get widgetUpdateInstructions => 'Once added, you can update the widget by pressing the refresh button in this app.';
+  String get widgetUpdateInstructions => 'The widget will update automatically with new Azkar periodically.';
 
   @override
-  String get deviceSpecificNote => 'Note: Different Android devices may have slightly different steps to add widgets.';
+  String get deviceSpecificNote => 'Note: The exact steps may vary slightly depending on your device model and Android version.';
 
   @override
   String get widgetUpdatedSuccessfully => 'Widget updated successfully';
+
+  @override
+  String get prayerTimes => 'Prayer Times';
+
+  @override
+  String get fajr => 'Fajr';
+
+  @override
+  String get sunrise => 'Sunrise';
+
+  @override
+  String get dhuhr => 'Dhuhr';
+
+  @override
+  String get asr => 'Asr';
+
+  @override
+  String get maghrib => 'Maghrib';
+
+  @override
+  String get isha => 'Isha';
+
+  @override
+  String get todayPrayerTimes => 'Today\'s Prayer Times';
+
+  @override
+  String get errorLoadingPrayerTimes => 'Error loading prayer times. Please check your location settings and try again.';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get nextPrayer => 'Next Prayer';
+
+  @override
+  String get locationUpdatedSuccessfully => 'Location updated successfully';
+
+  @override
+  String get errorUpdatingLocation => 'Error updating location';
+
+  @override
+  String get updateCurrentLocation => 'Update Current Location';
+
+  @override
+  String get locationNotAvailable => 'Location not available';
+
+  @override
+  String get loadingLocation => 'Loading location...';
+
+  @override
+  String get errorLoadingLocation => 'Error loading location';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get prayerTimesSettings => 'Prayer Times Settings';
+
+  @override
+  String get calculationMethod => 'Calculation Method';
+
+  @override
+  String get madhabAsrCalculation => 'Madhab (Asr Calculation)';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get saveAndClose => 'Save & Close';
+
+  @override
+  String get egyptianGeneralAuthorityOfSurvey => 'Egyptian General Authority of Survey';
+
+  @override
+  String get universityOfIslamicSciencesKarachi => 'University of Islamic Sciences, Karachi';
+
+  @override
+  String get muslimWorldLeague => 'Muslim World League';
+
+  @override
+  String get northAmericaISNA => 'North America (ISNA)';
+
+  @override
+  String get dubaiUAE => 'Dubai (UAE)';
+
+  @override
+  String get moonsightingCommittee => 'Moonsighting Committee';
+
+  @override
+  String get kuwait => 'Kuwait';
+
+  @override
+  String get qatar => 'Qatar';
+
+  @override
+  String get singapore => 'Singapore';
+
+  @override
+  String get turkey => 'Turkey';
+
+  @override
+  String get tehran => 'Tehran';
+
+  @override
+  String get ummAlQuraUniversityMakkah => 'Umm al-Qura University, Makkah';
+
+  @override
+  String get shafiMalikiHanbali => 'Shafi, Maliki, Hanbali';
+
+  @override
+  String get hanafi => 'Hanafi';
+
+  @override
+  String get hours => 'h';
+
+  @override
+  String get minutes => 'min';
+
+  @override
+  String get tomorrow => 'Tomorrow';
+
+  @override
+  String get rateApp => 'Rate App';
+
+  @override
+  String get shareApp => 'Share App';
+
+  @override
+  String pageNotAvailable(int number) {
+    return 'Page $number not available';
+  }
+
+  @override
+  String get hideNavigationBar => 'Hide navigation bar';
+
+  @override
+  String get showNavigationBar => 'Show navigation bar';
+
+  @override
+  String get enterFullScreen => 'Enter full screen';
+
+  @override
+  String get exitFullScreen => 'Exit full screen';
 }

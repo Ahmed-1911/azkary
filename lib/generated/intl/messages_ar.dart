@@ -24,9 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(error) => "خطأ في تشغيل الصوت: ${error}";
 
-  static String m2(count) => "التكرار ${count} مرات";
+  static String m2(number) => "الصفحة ${number} غير متوفرة";
 
-  static String m3(count) => "الهدف: ${count}";
+  static String m3(count) => "التكرار ${count} مرات";
+
+  static String m4(count) => "الهدف: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -43,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyRegistered": MessageLookupByLibrary.simpleMessage("لدى حساب "),
     "appName": MessageLookupByLibrary.simpleMessage("أذكاري"),
     "appearance": MessageLookupByLibrary.simpleMessage("المظهر"),
+    "asr": MessageLookupByLibrary.simpleMessage("العصر"),
     "audioComingSoon": MessageLookupByLibrary.simpleMessage(
       "ميزة الصوت قريباً!",
     ),
@@ -50,10 +53,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "azkarCategories": MessageLookupByLibrary.simpleMessage("أقسام الأذكار"),
     "bagsNumber": MessageLookupByLibrary.simpleMessage("عدد الاكياس"),
     "bookmarks": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "calculationMethod": MessageLookupByLibrary.simpleMessage("طريقة الحساب"),
     "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
     "categoryName": m0,
     "century": MessageLookupByLibrary.simpleMessage("المئة"),
     "chooseWasteType": MessageLookupByLibrary.simpleMessage("اختر الخامة اولا"),
+    "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
     "dailyReminderForEveningAzkar": MessageLookupByLibrary.simpleMessage(
       "تذكير يومي لأذكار المساء",
     ),
@@ -63,13 +68,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "developer": MessageLookupByLibrary.simpleMessage("المطور"),
     "deviceSpecificNote": MessageLookupByLibrary.simpleMessage(
-      "ملاحظة: قد تختلف خطوات إضافة الودجت قليلاً بين أجهزة الأندرويد المختلفة.",
+      "ملاحظة: قد تختلف الخطوات قليلاً حسب طراز جهازك وإصدار أندرويد.",
     ),
+    "dhuhr": MessageLookupByLibrary.simpleMessage("الظهر"),
     "digitalTasbih": MessageLookupByLibrary.simpleMessage("السبحة الإلكترونية"),
     "dragWidget": MessageLookupByLibrary.simpleMessage(
-      "اسحب ودجت أذكاري إلى الشاشة الرئيسية",
+      "اسحب الودجت وضعه حيث تريد",
+    ),
+    "dubaiUAE": MessageLookupByLibrary.simpleMessage("دبي (الإمارات)"),
+    "egyptianGeneralAuthorityOfSurvey": MessageLookupByLibrary.simpleMessage(
+      "الهيئة المصرية العامة للمساحة",
+    ),
+    "enterFullScreen": MessageLookupByLibrary.simpleMessage("وضع ملء الشاشة"),
+    "errorLoadingLocation": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تحميل الموقع",
+    ),
+    "errorLoadingPrayerTimes": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تحميل مواقيت الصلاة. يرجى التحقق من إعدادات الموقع والمحاولة مرة أخرى.",
     ),
     "errorPlayingAudio": m1,
+    "errorUpdatingLocation": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تحديث الموقع",
+    ),
     "eveningAzkar": MessageLookupByLibrary.simpleMessage("أذكار المساء"),
     "eveningAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار المساء"),
     "eveningAzkarDesc": MessageLookupByLibrary.simpleMessage(
@@ -87,20 +107,49 @@ class MessageLookup extends MessageLookupByLibrary {
     "exactAlarmPermission": MessageLookupByLibrary.simpleMessage(
       "يحتاج التطبيق إلى إذن لجدولة التنبيهات الدقيقة لتذكير الأذكار. يرجى منح هذا الإذن في إعدادات النظام.",
     ),
+    "exitFullScreen": MessageLookupByLibrary.simpleMessage(
+      "الخروج من وضع ملء الشاشة",
+    ),
+    "fajr": MessageLookupByLibrary.simpleMessage("الفجر"),
     "findAzkaryWidget": MessageLookupByLibrary.simpleMessage(
-      "ابحث عن \"أذكاري\" في قائمة الودجت",
+      "ابحث عن ودجت \'أذكاري\' واختره",
     ),
     "fontSize": MessageLookupByLibrary.simpleMessage("حجم الخط"),
     "fullName": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
+    "hanafi": MessageLookupByLibrary.simpleMessage("الحنفي"),
+    "hideNavigationBar": MessageLookupByLibrary.simpleMessage(
+      "إخفاء شريط التنقل",
+    ),
+    "hours": MessageLookupByLibrary.simpleMessage("س"),
     "internal_server_error": MessageLookupByLibrary.simpleMessage(
       "يوجد خطأ داخلي حاول مرة اخرى",
     ),
+    "isha": MessageLookupByLibrary.simpleMessage("العشاء"),
     "kg": MessageLookupByLibrary.simpleMessage("كجم"),
+    "kuwait": MessageLookupByLibrary.simpleMessage("الكويت"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "loadingLocation": MessageLookupByLibrary.simpleMessage(
+      "جاري تحميل الموقع...",
+    ),
+    "location": MessageLookupByLibrary.simpleMessage("الموقع"),
+    "locationNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "الموقع غير متاح",
+    ),
+    "locationUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "تم تحديث الموقع بنجاح",
+    ),
     "logOut": MessageLookupByLibrary.simpleMessage("تسجيل حروج"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "longPressHomeScreen": MessageLookupByLibrary.simpleMessage(
       "اضغط مطولاً على منطقة فارغة في الشاشة الرئيسية",
+    ),
+    "madhabAsrCalculation": MessageLookupByLibrary.simpleMessage(
+      "المذهب (حساب العصر)",
+    ),
+    "maghrib": MessageLookupByLibrary.simpleMessage("المغرب"),
+    "minutes": MessageLookupByLibrary.simpleMessage("د"),
+    "moonsightingCommittee": MessageLookupByLibrary.simpleMessage(
+      "لجنة رؤية الهلال",
     ),
     "morningAzkar": MessageLookupByLibrary.simpleMessage("أذكار الصباح"),
     "morningAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار الصباح"),
@@ -116,7 +165,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "morningReminderDesc": MessageLookupByLibrary.simpleMessage(
       "تذكير يومي لأذكار الصباح",
     ),
+    "muslimWorldLeague": MessageLookupByLibrary.simpleMessage(
+      "رابطة العالم الإسلامي",
+    ),
     "namesOfAllah": MessageLookupByLibrary.simpleMessage("أسماء الله الحسنى"),
+    "nextPrayer": MessageLookupByLibrary.simpleMessage("الصلاة القادمة"),
     "noAudioAvailable": MessageLookupByLibrary.simpleMessage(
       "لا يوجد صوت متاح لهذا الذكر",
     ),
@@ -130,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_order": MessageLookupByLibrary.simpleMessage(
       "لا يوجد طلبات متاحة الان",
     ),
+    "northAmericaISNA": MessageLookupByLibrary.simpleMessage(
+      "أمريكا الشمالية (ISNA)",
+    ),
     "notificationPermission": MessageLookupByLibrary.simpleMessage(
       "يرجى تفعيل الإشعارات في إعدادات النظام",
     ),
@@ -138,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "ordersNumber": MessageLookupByLibrary.simpleMessage("عدد الطلبات"),
     "otp": MessageLookupByLibrary.simpleMessage(" رمز التأكيد"),
+    "pageNotAvailable": m2,
     "password": MessageLookupByLibrary.simpleMessage("الرقم السرى"),
     "passwordCompleted": MessageLookupByLibrary.simpleMessage(
       "تم تعين كلمه السر بنجاخ",
@@ -150,28 +207,46 @@ class MessageLookup extends MessageLookupByLibrary {
     "prayerAzkarDesc": MessageLookupByLibrary.simpleMessage(
       "أذكار ما بعد الصلاة",
     ),
+    "prayerTimes": MessageLookupByLibrary.simpleMessage("مواقيت الصلاة"),
+    "prayerTimesSettings": MessageLookupByLibrary.simpleMessage(
+      "إعدادات مواقيت الصلاة",
+    ),
+    "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
+    "quran": MessageLookupByLibrary.simpleMessage("القرآن"),
     "quranicDuas": MessageLookupByLibrary.simpleMessage("أدعية قرآنية"),
     "quranicDuasAr": MessageLookupByLibrary.simpleMessage("أدعية قرآنية"),
     "quranicDuasDesc": MessageLookupByLibrary.simpleMessage(
       "أدعية من القرآن الكريم",
     ),
+    "rateApp": MessageLookupByLibrary.simpleMessage("تقييم التطبيق"),
     "receiveLoad": MessageLookupByLibrary.simpleMessage("استلام حمولة"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل جديد"),
     "registerWithOtp": MessageLookupByLibrary.simpleMessage(
       "تسجيل باستخدام رمز التأكيد",
     ),
     "repeat": MessageLookupByLibrary.simpleMessage("كرر"),
-    "repeatCount": m2,
+    "repeatCount": m3,
+    "saveAndClose": MessageLookupByLibrary.simpleMessage("حفظ وإغلاق"),
     "selectWidgets": MessageLookupByLibrary.simpleMessage(
-      "اختر \"الودجت\" من القائمة التي تظهر",
+      "اختر \'الودجت\' أو \'إضافة ودجت\'",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+    "shafiMalikiHanbali": MessageLookupByLibrary.simpleMessage(
+      "الشافعي، المالكي، الحنبلي",
+    ),
+    "shareApp": MessageLookupByLibrary.simpleMessage("مشاركة التطبيق"),
+    "showNavigationBar": MessageLookupByLibrary.simpleMessage(
+      "إظهار شريط التنقل",
+    ),
+    "singapore": MessageLookupByLibrary.simpleMessage("سنغافورة"),
     "sleepAzkar": MessageLookupByLibrary.simpleMessage("أذكار النوم"),
     "sleepAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار النوم"),
     "sleepAzkarDesc": MessageLookupByLibrary.simpleMessage("أذكار قبل النوم"),
     "success": MessageLookupByLibrary.simpleMessage("تم بنجاح..."),
-    "target": m3,
+    "sunrise": MessageLookupByLibrary.simpleMessage("الشروق"),
+    "target": m4,
     "tasbih": MessageLookupByLibrary.simpleMessage("تسبيح"),
+    "tehran": MessageLookupByLibrary.simpleMessage("طهران"),
     "ticketNo": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
     "timeForYourEveningRemembrance": MessageLookupByLibrary.simpleMessage(
       "حان وقت أذكار المساء",
@@ -180,9 +255,27 @@ class MessageLookup extends MessageLookupByLibrary {
       "حان وقت أذكار الصباح",
     ),
     "times": MessageLookupByLibrary.simpleMessage("مرات"),
-    "toAddWidget": MessageLookupByLibrary.simpleMessage("لإضافة الودجت:"),
+    "toAddWidget": MessageLookupByLibrary.simpleMessage(
+      "لإضافة الودجت إلى الشاشة الرئيسية:",
+    ),
+    "todayPrayerTimes": MessageLookupByLibrary.simpleMessage(
+      "مواقيت الصلاة اليوم",
+    ),
+    "tomorrow": MessageLookupByLibrary.simpleMessage("غداً"),
+    "tools": MessageLookupByLibrary.simpleMessage("الأدوات"),
     "totalWeight": MessageLookupByLibrary.simpleMessage(
       "اجمالى الوزن السابق من هذه الخامة ",
+    ),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
+    "turkey": MessageLookupByLibrary.simpleMessage("تركيا"),
+    "ummAlQuraUniversityMakkah": MessageLookupByLibrary.simpleMessage(
+      "جامعة أم القرى، مكة المكرمة",
+    ),
+    "universityOfIslamicSciencesKarachi": MessageLookupByLibrary.simpleMessage(
+      "جامعة العلوم الإسلامية، كراتشي",
+    ),
+    "updateCurrentLocation": MessageLookupByLibrary.simpleMessage(
+      "تحديث الموقع الحالي",
     ),
     "vehicleLoads": MessageLookupByLibrary.simpleMessage("الحمولات"),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),
@@ -194,10 +287,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "weight": MessageLookupByLibrary.simpleMessage("الوزن"),
     "welcomeMessage": MessageLookupByLibrary.simpleMessage("مرحبا بك في دور "),
     "widgetNeededOnHomeScreen": MessageLookupByLibrary.simpleMessage(
-      "يجب إضافة ودجت أذكاري إلى الشاشة الرئيسية قبل أن يمكن تحديثه.",
+      "يجب إضافة الودجت إلى الشاشة الرئيسية",
     ),
     "widgetUpdateInstructions": MessageLookupByLibrary.simpleMessage(
-      "بعد الإضافة، يمكنك تحديث الودجت بالضغط على زر التحديث في هذا التطبيق.",
+      "سيتم تحديث الودجت تلقائيًا بأذكار جديدة بشكل دوري.",
     ),
     "widgetUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم تحديث الودجت بنجاح",

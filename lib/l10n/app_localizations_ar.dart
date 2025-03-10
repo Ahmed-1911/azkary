@@ -19,6 +19,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings => 'الإعدادات';
 
   @override
+  String get tools => 'الأدوات';
+
+  @override
   String get no_internet_connection => 'لا يوجد اتصال بالإنترنت ، يرجى التحقق من الإتصال والمحاولة مرة أخرى';
 
   @override
@@ -110,6 +113,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get appName => 'أذكاري';
+
+  @override
+  String get quran => 'القرآن';
 
   @override
   String get morningAzkar => 'أذكار الصباح';
@@ -282,29 +288,172 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addWidgetToHomeScreen => 'إضافة ودجت إلى الشاشة الرئيسية';
 
   @override
-  String get widgetNeededOnHomeScreen => 'يجب إضافة ودجت أذكاري إلى الشاشة الرئيسية قبل أن يمكن تحديثه.';
+  String get widgetNeededOnHomeScreen => 'يجب إضافة الودجت إلى الشاشة الرئيسية';
 
   @override
-  String get toAddWidget => 'لإضافة الودجت:';
+  String get toAddWidget => 'لإضافة الودجت إلى الشاشة الرئيسية:';
 
   @override
   String get longPressHomeScreen => 'اضغط مطولاً على منطقة فارغة في الشاشة الرئيسية';
 
   @override
-  String get selectWidgets => 'اختر \"الودجت\" من القائمة التي تظهر';
+  String get selectWidgets => 'اختر \'الودجت\' أو \'إضافة ودجت\'';
 
   @override
-  String get findAzkaryWidget => 'ابحث عن \"أذكاري\" في قائمة الودجت';
+  String get findAzkaryWidget => 'ابحث عن ودجت \'أذكاري\' واختره';
 
   @override
-  String get dragWidget => 'اسحب ودجت أذكاري إلى الشاشة الرئيسية';
+  String get dragWidget => 'اسحب الودجت وضعه حيث تريد';
 
   @override
-  String get widgetUpdateInstructions => 'بعد الإضافة، يمكنك تحديث الودجت بالضغط على زر التحديث في هذا التطبيق.';
+  String get widgetUpdateInstructions => 'سيتم تحديث الودجت تلقائيًا بأذكار جديدة بشكل دوري.';
 
   @override
-  String get deviceSpecificNote => 'ملاحظة: قد تختلف خطوات إضافة الودجت قليلاً بين أجهزة الأندرويد المختلفة.';
+  String get deviceSpecificNote => 'ملاحظة: قد تختلف الخطوات قليلاً حسب طراز جهازك وإصدار أندرويد.';
 
   @override
   String get widgetUpdatedSuccessfully => 'تم تحديث الودجت بنجاح';
+
+  @override
+  String get prayerTimes => 'مواقيت الصلاة';
+
+  @override
+  String get fajr => 'الفجر';
+
+  @override
+  String get sunrise => 'الشروق';
+
+  @override
+  String get dhuhr => 'الظهر';
+
+  @override
+  String get asr => 'العصر';
+
+  @override
+  String get maghrib => 'المغرب';
+
+  @override
+  String get isha => 'العشاء';
+
+  @override
+  String get todayPrayerTimes => 'مواقيت الصلاة اليوم';
+
+  @override
+  String get errorLoadingPrayerTimes => 'خطأ في تحميل مواقيت الصلاة. يرجى التحقق من إعدادات الموقع والمحاولة مرة أخرى.';
+
+  @override
+  String get tryAgain => 'حاول مرة أخرى';
+
+  @override
+  String get nextPrayer => 'الصلاة القادمة';
+
+  @override
+  String get locationUpdatedSuccessfully => 'تم تحديث الموقع بنجاح';
+
+  @override
+  String get errorUpdatingLocation => 'خطأ في تحديث الموقع';
+
+  @override
+  String get updateCurrentLocation => 'تحديث الموقع الحالي';
+
+  @override
+  String get locationNotAvailable => 'الموقع غير متاح';
+
+  @override
+  String get loadingLocation => 'جاري تحميل الموقع...';
+
+  @override
+  String get errorLoadingLocation => 'خطأ في تحميل الموقع';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String get prayerTimesSettings => 'إعدادات مواقيت الصلاة';
+
+  @override
+  String get calculationMethod => 'طريقة الحساب';
+
+  @override
+  String get madhabAsrCalculation => 'المذهب (حساب العصر)';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get saveAndClose => 'حفظ وإغلاق';
+
+  @override
+  String get egyptianGeneralAuthorityOfSurvey => 'الهيئة المصرية العامة للمساحة';
+
+  @override
+  String get universityOfIslamicSciencesKarachi => 'جامعة العلوم الإسلامية، كراتشي';
+
+  @override
+  String get muslimWorldLeague => 'رابطة العالم الإسلامي';
+
+  @override
+  String get northAmericaISNA => 'أمريكا الشمالية (ISNA)';
+
+  @override
+  String get dubaiUAE => 'دبي (الإمارات)';
+
+  @override
+  String get moonsightingCommittee => 'لجنة رؤية الهلال';
+
+  @override
+  String get kuwait => 'الكويت';
+
+  @override
+  String get qatar => 'قطر';
+
+  @override
+  String get singapore => 'سنغافورة';
+
+  @override
+  String get turkey => 'تركيا';
+
+  @override
+  String get tehran => 'طهران';
+
+  @override
+  String get ummAlQuraUniversityMakkah => 'جامعة أم القرى، مكة المكرمة';
+
+  @override
+  String get shafiMalikiHanbali => 'الشافعي، المالكي، الحنبلي';
+
+  @override
+  String get hanafi => 'الحنفي';
+
+  @override
+  String get hours => 'س';
+
+  @override
+  String get minutes => 'د';
+
+  @override
+  String get tomorrow => 'غداً';
+
+  @override
+  String get rateApp => 'تقييم التطبيق';
+
+  @override
+  String get shareApp => 'مشاركة التطبيق';
+
+  @override
+  String pageNotAvailable(int number) {
+    return 'الصفحة $number غير متوفرة';
+  }
+
+  @override
+  String get hideNavigationBar => 'إخفاء شريط التنقل';
+
+  @override
+  String get showNavigationBar => 'إظهار شريط التنقل';
+
+  @override
+  String get enterFullScreen => 'وضع ملء الشاشة';
+
+  @override
+  String get exitFullScreen => 'الخروج من وضع ملء الشاشة';
 }

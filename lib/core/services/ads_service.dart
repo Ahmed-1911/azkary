@@ -1,12 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final adsServiceProvider = Provider((ref) => AdsService());
 
 class AdsService {
-  static const String _bannerAdUnitId = 'ca-app-pub-5104972431757675/2103070101';
-  // Use test ad unit ID for development
-  // static const String _bannerAdUnitId = 'ca-app-pub-3940256099942544/6300978111';
+  static const String _bannerAdUnitId = kDebugMode
+      ? 'ca-app-pub-3940256099942544/6300978111' // Test ad unit ID
+      : 'ca-app-pub-5104972431757675/2103070101'; // Release ad unit ID
 
   BannerAd? _bannerAd;
   bool _isBannerAdLoaded = false;

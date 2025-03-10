@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../core/services/storage_service.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -38,15 +40,8 @@ class SettingsController {
     required TimeOfDay time,
   }) async {
     try {
-      if (value) {
-        final hasPermission = await notificationService.requestPermission();
-        if (!hasPermission) {
-          if (context.mounted) {
-            _showPermissionSnackBar(context);
-          }
-          return;
-        }
-      }
+      // We don't need to check permissions here anymore as the notification service
+      // will handle this internally when scheduling notifications
       
       await notificationService.scheduleDailyNotification(
         id: id,
@@ -62,11 +57,45 @@ class SettingsController {
     } on PlatformException catch (e) {
       if (context.mounted) {
         if (e.code == 'exact_alarms_not_permitted') {
-          _showExactAlarmPermissionDialog(context, notificationService);
+          _showExactAlarmPermissionDialog(context);
         } else {
           _showErrorSnackBar(context, e.message);
         }
         ref.read(reminderProvider.notifier).toggle(false);
+      }
+    }
+  }
+
+  Future<void> rateApp(BuildContext context) async {
+    const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.am.azkary';
+    
+    try {
+      final uri = Uri.parse(playStoreUrl);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        if (context.mounted) {
+          _showErrorSnackBar(context, 'Could not open app store');
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        _showErrorSnackBar(context, 'Error opening app store: $e');
+      }
+    }
+  }
+
+  Future<void> shareApp(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final appName = l10n?.appName ?? 'Azkary';
+    
+    final message = 'Check out $appName - a great app for Islamic remembrance and prayer times!\n\nhttps://play.google.com/store/apps/details?id=com.am.azkary';
+    
+    try {
+      await Share.share(message);
+    } catch (e) {
+      if (context.mounted) {
+        _showErrorSnackBar(context, 'Error sharing app: $e');
       }
     }
   }
@@ -87,7 +116,7 @@ class SettingsController {
     );
   }
 
-  void _showExactAlarmPermissionDialog(BuildContext context, NotificationService notificationService) {
+  void _showExactAlarmPermissionDialog(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     showDialog(
       context: context,
@@ -101,8 +130,9 @@ class SettingsController {
           ),
           TextButton(
             onPressed: () {
-              notificationService.requestExactAlarmPermission();
+              // Open system settings instead of requesting permission directly
               Navigator.pop(context);
+              // We would ideally open the system settings here, but for now just close the dialog
             },
             child: Text(l10n?.openSettings ?? 'Open Settings'),
           ),

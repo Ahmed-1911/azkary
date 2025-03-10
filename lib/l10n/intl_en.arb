@@ -15,6 +15,10 @@
   "@settings": {
     "description": "Label for Settings navigation item"
   },
+  "tools": "Tools",
+  "@tools": {
+    "description": "Label for Tools section in settings"
+  },
   "no_internet_connection": "No internet connection, please check you network and try again",
   "no_data": "No Available Data",
   "no_order": "No Available Orders Now!",
@@ -28,7 +32,7 @@
   "addAllFieldsFirst": "Add all the data first",
   "phoneInvalid": "Phone number is incorrect",
   "passwordCompleted": "Password has entered successfully",
-  "ok": "Ok",
+  "ok": "OK",
   "cancel": "Cancel",
   "registerWithOtp": "Register with OTP",
   "otp": "OTP",
@@ -48,6 +52,10 @@
   "appName": "Azkary",
   "@appName": {
     "description": "The name of the application"
+  },
+  "quran": "Quran",
+  "@quran": {
+    "description": "Label for Quran navigation item"
   },
   "morningAzkar": "Morning Azkar",
   "@morningAzkar": {
@@ -289,11 +297,11 @@
   "@addWidgetToHomeScreen": {
     "description": "Title for the widget info dialog"
   },
-  "widgetNeededOnHomeScreen": "The Azkary widget needs to be added to your home screen before it can be updated.",
+  "widgetNeededOnHomeScreen": "Widget needed on home screen",
   "@widgetNeededOnHomeScreen": {
     "description": "Explanation about widget requirement"
   },
-  "toAddWidget": "To add the widget:",
+  "toAddWidget": "To add the widget to your home screen:",
   "@toAddWidget": {
     "description": "Header for widget addition instructions"
   },
@@ -301,28 +309,108 @@
   "@longPressHomeScreen": {
     "description": "Step 1 for adding widget"
   },
-  "selectWidgets": "Select \"Widgets\" from the menu that appears",
+  "selectWidgets": "Select 'Widgets' or 'Add widget'",
   "@selectWidgets": {
     "description": "Step 2 for adding widget"
   },
-  "findAzkaryWidget": "Find \"Azkary\" in the list of widgets",
+  "findAzkaryWidget": "Find and select 'Azkary' widget",
   "@findAzkaryWidget": {
     "description": "Step 3 for adding widget"
   },
-  "dragWidget": "Drag the Azkary widget to your home screen",
+  "dragWidget": "Drag and place the widget where you want it",
   "@dragWidget": {
     "description": "Step 4 for adding widget"
   },
-  "widgetUpdateInstructions": "Once added, you can update the widget by pressing the refresh button in this app.",
+  "widgetUpdateInstructions": "The widget will update automatically with new Azkar periodically.",
   "@widgetUpdateInstructions": {
     "description": "Instructions for updating the widget"
   },
-  "deviceSpecificNote": "Note: Different Android devices may have slightly different steps to add widgets.",
+  "deviceSpecificNote": "Note: The exact steps may vary slightly depending on your device model and Android version.",
   "@deviceSpecificNote": {
     "description": "Note about device-specific differences"
   },
   "widgetUpdatedSuccessfully": "Widget updated successfully",
   "@widgetUpdatedSuccessfully": {
     "description": "Success message for widget update"
+  },
+  "prayerTimes": "Prayer Times",
+  "fajr": "Fajr",
+  "sunrise": "Sunrise",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+  "todayPrayerTimes": "Today's Prayer Times",
+  "errorLoadingPrayerTimes": "Error loading prayer times. Please check your location settings and try again.",
+  "tryAgain": "Try Again",
+  "nextPrayer": "Next Prayer",
+  "locationUpdatedSuccessfully": "Location updated successfully",
+  "errorUpdatingLocation": "Error updating location",
+  "updateCurrentLocation": "Update Current Location",
+  "locationNotAvailable": "Location not available",
+  "loadingLocation": "Loading location...",
+  "errorLoadingLocation": "Error loading location",
+  "close": "Close",
+  "prayerTimesSettings": "Prayer Times Settings",
+  "calculationMethod": "Calculation Method",
+  "madhabAsrCalculation": "Madhab (Asr Calculation)",
+  "location": "Location",
+  "saveAndClose": "Save & Close",
+  
+  "egyptianGeneralAuthorityOfSurvey": "Egyptian General Authority of Survey",
+  "universityOfIslamicSciencesKarachi": "University of Islamic Sciences, Karachi",
+  "muslimWorldLeague": "Muslim World League",
+  "northAmericaISNA": "North America (ISNA)",
+  "dubaiUAE": "Dubai (UAE)",
+  "moonsightingCommittee": "Moonsighting Committee",
+  "kuwait": "Kuwait",
+  "qatar": "Qatar",
+  "singapore": "Singapore",
+  "turkey": "Turkey",
+  "tehran": "Tehran",
+  "ummAlQuraUniversityMakkah": "Umm al-Qura University, Makkah",
+  
+  "shafiMalikiHanbali": "Shafi, Maliki, Hanbali",
+  "hanafi": "Hanafi",
+  
+  "hours": "h",
+  "minutes": "min",
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "description": "Label for tomorrow"
+  },
+  "rateApp": "Rate App",
+  "@rateApp": {
+    "description": "Label for rate app option in settings"
+  },
+  "shareApp": "Share App",
+  "@shareApp": {
+    "description": "Label for share app option in settings"
+  },
+  "pageNotAvailable": "Page {number} not available",
+  "@pageNotAvailable": {
+    "description": "Message shown when a Quran page is not available",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "hideNavigationBar": "Hide navigation bar",
+  "@hideNavigationBar": {
+    "description": "Tooltip for the button to hide the bottom navigation bar"
+  },
+  "showNavigationBar": "Show navigation bar",
+  "@showNavigationBar": {
+    "description": "Tooltip for the button to show the bottom navigation bar"
+  },
+  "enterFullScreen": "Enter full screen",
+  "@enterFullScreen": {
+    "description": "Tooltip for the button to enter full screen mode"
+  },
+  "exitFullScreen": "Exit full screen",
+  "@exitFullScreen": {
+    "description": "Tooltip for the button to exit full screen mode"
   }
 }

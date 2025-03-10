@@ -24,9 +24,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(error) => "Error playing audio: ${error}";
 
-  static String m2(count) => "Repeat ${count} times";
+  static String m2(number) => "Page ${number} not available";
 
-  static String m3(count) => "Target: ${count}";
+  static String m3(count) => "Repeat ${count} times";
+
+  static String m4(count) => "Target: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -45,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "appName": MessageLookupByLibrary.simpleMessage("Azkary"),
     "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
+    "asr": MessageLookupByLibrary.simpleMessage("Asr"),
     "audioComingSoon": MessageLookupByLibrary.simpleMessage(
       "Audio feature coming soon!",
     ),
@@ -52,12 +55,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "azkarCategories": MessageLookupByLibrary.simpleMessage("Azkar Categories"),
     "bagsNumber": MessageLookupByLibrary.simpleMessage("Bags number"),
     "bookmarks": MessageLookupByLibrary.simpleMessage("Bookmarks"),
+    "calculationMethod": MessageLookupByLibrary.simpleMessage(
+      "Calculation Method",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "categoryName": m0,
     "century": MessageLookupByLibrary.simpleMessage("Century"),
     "chooseWasteType": MessageLookupByLibrary.simpleMessage(
       "Choose Waste Type First",
     ),
+    "close": MessageLookupByLibrary.simpleMessage("Close"),
     "dailyReminderForEveningAzkar": MessageLookupByLibrary.simpleMessage(
       "Daily reminder for evening azkar",
     ),
@@ -67,13 +74,30 @@ class MessageLookup extends MessageLookupByLibrary {
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "developer": MessageLookupByLibrary.simpleMessage("Developer"),
     "deviceSpecificNote": MessageLookupByLibrary.simpleMessage(
-      "Note: Different Android devices may have slightly different steps to add widgets.",
+      "Note: The exact steps may vary slightly depending on your device model and Android version.",
     ),
+    "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
     "digitalTasbih": MessageLookupByLibrary.simpleMessage("Digital Tasbih"),
     "dragWidget": MessageLookupByLibrary.simpleMessage(
-      "Drag the Azkary widget to your home screen",
+      "Drag and place the widget where you want it",
+    ),
+    "dubaiUAE": MessageLookupByLibrary.simpleMessage("Dubai (UAE)"),
+    "egyptianGeneralAuthorityOfSurvey": MessageLookupByLibrary.simpleMessage(
+      "Egyptian General Authority of Survey",
+    ),
+    "enterFullScreen": MessageLookupByLibrary.simpleMessage(
+      "Enter full screen",
+    ),
+    "errorLoadingLocation": MessageLookupByLibrary.simpleMessage(
+      "Error loading location",
+    ),
+    "errorLoadingPrayerTimes": MessageLookupByLibrary.simpleMessage(
+      "Error loading prayer times. Please check your location settings and try again.",
     ),
     "errorPlayingAudio": m1,
+    "errorUpdatingLocation": MessageLookupByLibrary.simpleMessage(
+      "Error updating location",
+    ),
     "eveningAzkar": MessageLookupByLibrary.simpleMessage("Evening Azkar"),
     "eveningAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار المساء"),
     "eveningAzkarDesc": MessageLookupByLibrary.simpleMessage(
@@ -91,20 +115,47 @@ class MessageLookup extends MessageLookupByLibrary {
     "exactAlarmPermission": MessageLookupByLibrary.simpleMessage(
       "This app needs permission to schedule exact alarms for Azkar reminders. Please grant this permission in system settings.",
     ),
+    "exitFullScreen": MessageLookupByLibrary.simpleMessage("Exit full screen"),
+    "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
     "findAzkaryWidget": MessageLookupByLibrary.simpleMessage(
-      "Find \"Azkary\" in the list of widgets",
+      "Find and select \'Azkary\' widget",
     ),
     "fontSize": MessageLookupByLibrary.simpleMessage("Font Size"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "hanafi": MessageLookupByLibrary.simpleMessage("Hanafi"),
+    "hideNavigationBar": MessageLookupByLibrary.simpleMessage(
+      "Hide navigation bar",
+    ),
+    "hours": MessageLookupByLibrary.simpleMessage("h"),
     "internal_server_error": MessageLookupByLibrary.simpleMessage(
       "Internal Server Error",
     ),
+    "isha": MessageLookupByLibrary.simpleMessage("Isha"),
     "kg": MessageLookupByLibrary.simpleMessage("KG"),
+    "kuwait": MessageLookupByLibrary.simpleMessage("Kuwait"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "loadingLocation": MessageLookupByLibrary.simpleMessage(
+      "Loading location...",
+    ),
+    "location": MessageLookupByLibrary.simpleMessage("Location"),
+    "locationNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Location not available",
+    ),
+    "locationUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Location updated successfully",
+    ),
     "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
     "login": MessageLookupByLibrary.simpleMessage("Log in"),
     "longPressHomeScreen": MessageLookupByLibrary.simpleMessage(
       "Long press on an empty area of your home screen",
+    ),
+    "madhabAsrCalculation": MessageLookupByLibrary.simpleMessage(
+      "Madhab (Asr Calculation)",
+    ),
+    "maghrib": MessageLookupByLibrary.simpleMessage("Maghrib"),
+    "minutes": MessageLookupByLibrary.simpleMessage("min"),
+    "moonsightingCommittee": MessageLookupByLibrary.simpleMessage(
+      "Moonsighting Committee",
     ),
     "morningAzkar": MessageLookupByLibrary.simpleMessage("Morning Azkar"),
     "morningAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار الصباح"),
@@ -120,7 +171,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "morningReminderDesc": MessageLookupByLibrary.simpleMessage(
       "Daily reminder for morning azkar",
     ),
+    "muslimWorldLeague": MessageLookupByLibrary.simpleMessage(
+      "Muslim World League",
+    ),
     "namesOfAllah": MessageLookupByLibrary.simpleMessage("Names of Allah"),
+    "nextPrayer": MessageLookupByLibrary.simpleMessage("Next Prayer"),
     "noAudioAvailable": MessageLookupByLibrary.simpleMessage(
       "No audio available for this dhikr",
     ),
@@ -132,14 +187,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "no_order": MessageLookupByLibrary.simpleMessage(
       "No Available Orders Now!",
     ),
+    "northAmericaISNA": MessageLookupByLibrary.simpleMessage(
+      "North America (ISNA)",
+    ),
     "notificationPermission": MessageLookupByLibrary.simpleMessage(
       "Please enable notifications in system settings",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
-    "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+    "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
     "ordersNumber": MessageLookupByLibrary.simpleMessage("Orders number"),
     "otp": MessageLookupByLibrary.simpleMessage("OTP"),
+    "pageNotAvailable": m2,
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCompleted": MessageLookupByLibrary.simpleMessage(
       "Password has entered successfully",
@@ -156,30 +215,48 @@ class MessageLookup extends MessageLookupByLibrary {
     "prayerAzkarDesc": MessageLookupByLibrary.simpleMessage(
       "Azkar after completing prayer",
     ),
+    "prayerTimes": MessageLookupByLibrary.simpleMessage("Prayer Times"),
+    "prayerTimesSettings": MessageLookupByLibrary.simpleMessage(
+      "Prayer Times Settings",
+    ),
+    "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
+    "quran": MessageLookupByLibrary.simpleMessage("Quran"),
     "quranicDuas": MessageLookupByLibrary.simpleMessage("Quranic Duas"),
     "quranicDuasAr": MessageLookupByLibrary.simpleMessage("أدعية قرآنية"),
     "quranicDuasDesc": MessageLookupByLibrary.simpleMessage(
       "Supplications from the Holy Quran",
     ),
+    "rateApp": MessageLookupByLibrary.simpleMessage("Rate App"),
     "receiveLoad": MessageLookupByLibrary.simpleMessage("Receive load"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "registerWithOtp": MessageLookupByLibrary.simpleMessage(
       "Register with OTP",
     ),
     "repeat": MessageLookupByLibrary.simpleMessage("Repeat"),
-    "repeatCount": m2,
+    "repeatCount": m3,
+    "saveAndClose": MessageLookupByLibrary.simpleMessage("Save & Close"),
     "selectWidgets": MessageLookupByLibrary.simpleMessage(
-      "Select \"Widgets\" from the menu that appears",
+      "Select \'Widgets\' or \'Add widget\'",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "shafiMalikiHanbali": MessageLookupByLibrary.simpleMessage(
+      "Shafi, Maliki, Hanbali",
+    ),
+    "shareApp": MessageLookupByLibrary.simpleMessage("Share App"),
+    "showNavigationBar": MessageLookupByLibrary.simpleMessage(
+      "Show navigation bar",
+    ),
+    "singapore": MessageLookupByLibrary.simpleMessage("Singapore"),
     "sleepAzkar": MessageLookupByLibrary.simpleMessage("Sleep Azkar"),
     "sleepAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار النوم"),
     "sleepAzkarDesc": MessageLookupByLibrary.simpleMessage(
       "Azkar before sleeping",
     ),
     "success": MessageLookupByLibrary.simpleMessage("Success..."),
-    "target": m3,
+    "sunrise": MessageLookupByLibrary.simpleMessage("Sunrise"),
+    "target": m4,
     "tasbih": MessageLookupByLibrary.simpleMessage("Tasbih"),
+    "tehran": MessageLookupByLibrary.simpleMessage("Tehran"),
     "ticketNo": MessageLookupByLibrary.simpleMessage("Ticket No"),
     "timeForYourEveningRemembrance": MessageLookupByLibrary.simpleMessage(
       "Time for your evening remembrance",
@@ -188,9 +265,27 @@ class MessageLookup extends MessageLookupByLibrary {
       "Time for your morning remembrance",
     ),
     "times": MessageLookupByLibrary.simpleMessage("times"),
-    "toAddWidget": MessageLookupByLibrary.simpleMessage("To add the widget:"),
+    "toAddWidget": MessageLookupByLibrary.simpleMessage(
+      "To add the widget to your home screen:",
+    ),
+    "todayPrayerTimes": MessageLookupByLibrary.simpleMessage(
+      "Today\'s Prayer Times",
+    ),
+    "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
+    "tools": MessageLookupByLibrary.simpleMessage("Tools"),
     "totalWeight": MessageLookupByLibrary.simpleMessage(
       "Total previous weight from this material  ",
+    ),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
+    "turkey": MessageLookupByLibrary.simpleMessage("Turkey"),
+    "ummAlQuraUniversityMakkah": MessageLookupByLibrary.simpleMessage(
+      "Umm al-Qura University, Makkah",
+    ),
+    "universityOfIslamicSciencesKarachi": MessageLookupByLibrary.simpleMessage(
+      "University of Islamic Sciences, Karachi",
+    ),
+    "updateCurrentLocation": MessageLookupByLibrary.simpleMessage(
+      "Update Current Location",
     ),
     "vehicleLoads": MessageLookupByLibrary.simpleMessage("Vehicle Loads"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
@@ -202,10 +297,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "weight": MessageLookupByLibrary.simpleMessage("Weight"),
     "welcomeMessage": MessageLookupByLibrary.simpleMessage("Welcome to Dawar"),
     "widgetNeededOnHomeScreen": MessageLookupByLibrary.simpleMessage(
-      "The Azkary widget needs to be added to your home screen before it can be updated.",
+      "Widget needed on home screen",
     ),
     "widgetUpdateInstructions": MessageLookupByLibrary.simpleMessage(
-      "Once added, you can update the widget by pressing the refresh button in this app.",
+      "The widget will update automatically with new Azkar periodically.",
     ),
     "widgetUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Widget updated successfully",
