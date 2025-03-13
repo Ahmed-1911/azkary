@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/foundation.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../core/services/geocoding_service.dart';
 import '../../../bookmarks/presentation/providers/bookmark_providers.dart';
@@ -19,6 +20,38 @@ final geocodingServiceProvider = Provider<GeocodingService>((ref) {
   return GeocodingService();
 });
 
+// Provider to get current location
+final getCurrentLocationProvider = FutureProvider<Location>((ref) async {
+  // Check if location services are enabled
+  bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    throw Exception('Location services are disabled');
+  }
+
+  // Check location permission
+  LocationPermission permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      throw Exception('Location permission denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    throw Exception('Location permissions are permanently denied');
+  }
+
+  // Get current position
+  final position = await Geolocator.getCurrentPosition(
+    desiredAccuracy: LocationAccuracy.high
+  );
+
+  return Location(
+    latitude: position.latitude,
+    longitude: position.longitude,
+  );
+});
+
 // Provider for location with city name
 final locationWithCityProvider = FutureProvider<Location>((ref) async {
   final location = ref.watch(locationProvider);
@@ -28,8 +61,6 @@ final locationWithCityProvider = FutureProvider<Location>((ref) async {
 
 // Provider for location
 final locationProvider = StateProvider<Location>((ref) {
-  // This will be initialized with default values
-  // and later updated with actual values
   return Location();
 });
 
@@ -40,6 +71,17 @@ final initializeLocationProvider = FutureProvider<void>((ref) async {
   
   if (savedLocation != null) {
     ref.read(locationProvider.notifier).state = savedLocation;
+  } else {
+    try {
+      // Try to get current location if no saved location exists
+      final currentLocation = await ref.read(getCurrentLocationProvider.future);
+      // Update location with city name
+      await ref.read(updateLocationWithCityProvider)(currentLocation);
+    } catch (e) {
+      debugPrint('Error getting current location: $e');
+      // Keep default Makkah location if current location cannot be obtained
+      ref.read(locationProvider.notifier).state = Location();
+    }
   }
 });
 

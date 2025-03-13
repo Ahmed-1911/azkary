@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../../core/services/notification_service.dart';
 import '../../../../core/services/storage_service.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../generated/l10n.dart';
 import '../providers/settings_providers.dart';
 
 class SettingsController {
@@ -86,8 +86,8 @@ class SettingsController {
   }
 
   Future<void> shareApp(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
-    final appName = l10n?.appName ?? 'Azkary';
+    final l10n = S.of(context);
+    final appName = l10n.appName;
     
     final message = 'Check out $appName - a great app for Islamic remembrance and prayer times!\n\nhttps://play.google.com/store/apps/details?id=com.am.azkary';
     
@@ -103,7 +103,7 @@ class SettingsController {
   void _showPermissionSnackBar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(AppLocalizations.of(context)?.notificationPermission ?? 'Please enable notifications in system settings'),
+        content: Text(S.of(context).notificationPermission),
       ),
     );
   }
@@ -117,16 +117,16 @@ class SettingsController {
   }
 
   void _showExactAlarmPermissionDialog(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = S.of(context);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(l10n?.permissionRequired ?? 'Permission Required'),
-        content: Text(l10n?.exactAlarmPermission ?? 'This app needs permission to schedule exact alarms for Azkar reminders. Please grant this permission in system settings.'),
+        title: Text(l10n.permissionRequired),
+        content: Text(l10n.exactAlarmPermission),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
@@ -134,7 +134,7 @@ class SettingsController {
               Navigator.pop(context);
               // We would ideally open the system settings here, but for now just close the dialog
             },
-            child: Text(l10n?.openSettings ?? 'Open Settings'),
+            child: Text(l10n.openSettings),
           ),
         ],
       ),
@@ -143,7 +143,7 @@ class SettingsController {
 
   void showLanguageDialog(BuildContext context) {
     final currentLanguage = ref.read(languageProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     
     showDialog(
       context: context,

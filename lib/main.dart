@@ -1,6 +1,7 @@
 import 'package:azkary/features/settings/presentation/providers/settings_providers.dart';
-import 'package:azkary/l10n/app_localizations.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,7 +13,7 @@ import 'features/bookmarks/presentation/providers/bookmark_providers.dart';
 import 'features/prayer_times/presentation/providers/prayer_times_providers.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:async';
-import 'package:flutter/foundation.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Global provider container for use in main and for background tasks
 late ProviderContainer globalContainer;
@@ -20,6 +21,11 @@ late ProviderContainer globalContainer;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
+  // Lock app orientation to portrait mode
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   // Initialize ads with timeout
   _initializeAds();
   
@@ -46,7 +52,7 @@ void main() async {
   
   // Schedule notifications after app is running
   // This is done after runApp to ensure the app is responsive first
-  _scheduleNotifications(globalContainer);
+ // _scheduleNotifications(globalContainer);
 }
 
 Future<void> _initializeAds() async {
@@ -111,18 +117,18 @@ Future<void> _initializeServices(ProviderContainer container) async {
   }
 }
 
-void _scheduleNotifications(ProviderContainer container) {
-  // Schedule notifications after a short delay to ensure app is responsive
-  Future.delayed(const Duration(seconds: 2), () async {
-    try {
-      debugPrint('Scheduling prayer notifications');
-      await container.read(schedulePrayerNotificationsProvider)();
-      debugPrint('Prayer notifications scheduled successfully');
-    } catch (e) {
-      debugPrint('Error scheduling prayer notifications: $e');
-    }
-  });
-}
+// void _scheduleNotifications(ProviderContainer container) {
+//   // Schedule notifications after a short delay to ensure app is responsive
+//   Future.delayed(const Duration(seconds: 2), () async {
+//     try {
+//       debugPrint('Scheduling prayer notifications');
+//       await container.read(schedulePrayerNotificationsProvider)();
+//       debugPrint('Prayer notifications scheduled successfully');
+//     } catch (e) {
+//       debugPrint('Error scheduling prayer notifications: $e');
+//     }
+//   });
+// }
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -157,8 +163,13 @@ class MyApp extends ConsumerWidget {
           ),
           themeMode: ref.watch(themeProvider),
           locale: currentLanguage,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
           home: const SplashScreen(),
         );
       },

@@ -1,3 +1,4 @@
+import 'package:azkary/generated/l10n.dart';
 import 'package:azkary/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,15 +21,15 @@ class AzkarCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = S.of(context);
 
     Future<void> handlePlayback() async {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n?.audioComingSoon ?? 'Audio feature coming soon!'),
+          content: Text(l10n.audioComingSoon ),
           duration: const Duration(seconds: 2),
           action: SnackBarAction(
-            label: l10n?.ok ?? 'OK',
+            label: l10n.ok,
             onPressed: () {},
           ),
         ),

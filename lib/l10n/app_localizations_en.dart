@@ -228,7 +228,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exactAlarmPermission => 'This app needs permission to schedule exact alarms for Azkar reminders. Please grant this permission in system settings.';
 
   @override
-  String get openSettings => 'Open Settings';
+  String get openSettings => 'Settings';
 
   @override
   String get digitalTasbih => 'Digital Tasbih';
@@ -456,4 +456,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exitFullScreen => 'Exit full screen';
+
+  @override
+  String get locationServicesDisabled => 'Location services are disabled. Please enable the services';
+
+  @override
+  String get locationPermissionDenied => 'Location permissions are denied';
+
+  @override
+  String get locationPermissionPermanentlyDenied => 'Location permissions are permanently denied, please enable them in app settings';
+
+  @override
+  String get updatingLocation => 'Updating location...';
 }

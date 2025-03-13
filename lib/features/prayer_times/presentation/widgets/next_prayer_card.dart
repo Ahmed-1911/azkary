@@ -1,4 +1,4 @@
-import 'package:azkary/l10n/app_localizations.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +18,7 @@ class NextPrayerCard extends StatelessWidget {
     final timeFormat = DateFormat.jm();
     final dateFormat = DateFormat.yMMMMd();
     final theme = Theme.of(context);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context); 
     
     // Calculate time remaining
     final now = DateTime.now();
@@ -72,71 +72,72 @@ class NextPrayerCard extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.all(20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: IntrinsicHeight(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      isTomorrowFajr ? '${l10n.nextPrayer} (${l10n.tomorrow})' : l10n.nextPrayer,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isTomorrowFajr ? '${l10n.nextPrayer} (${l10n.tomorrow})' : l10n.nextPrayer,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.spMin,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 4.h),
+                        Text(
+                          dateFormat.format(dateToShow),
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.8),
+                            fontSize: 14.spMin,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 4.h),
-                    Text(
-                      dateFormat.format(dateToShow),
-                      style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                        fontSize: 14.sp,
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(100),
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: Text(
+                        timeRemaining,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.spMin,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withAlpha(100),
-                    borderRadius: BorderRadius.circular(20.r),
+                SizedBox(height: 4.h),
+                Text(
+                  translatedPrayer,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28.spMin,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: Text(
-                    timeRemaining,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                Text(
+                  timeFormat.format(nextPrayerTime),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.spMin,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 16.h),
-            Text(
-              translatedPrayer,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              timeFormat.format(nextPrayerTime),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
     );
   }
 
@@ -181,21 +182,21 @@ class NextPrayerCard extends StatelessWidget {
   }
 
   String _getTranslatedPrayerName(BuildContext context, String prayerName) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = S.of(context);
     
     switch (prayerName) {
       case 'Fajr':
-        return l10n?.fajr ?? prayerName;
+        return l10n.fajr;
       case 'Sunrise':
-        return l10n?.sunrise ?? prayerName;
+        return l10n.sunrise;
       case 'Dhuhr':
-        return l10n?.dhuhr ?? prayerName;
+        return l10n.dhuhr;
       case 'Asr':
-        return l10n?.asr ?? prayerName;
+        return l10n.asr;
       case 'Maghrib':
-        return l10n?.maghrib ?? prayerName;
+        return l10n.maghrib;
       case 'Isha':
-        return l10n?.isha ?? prayerName;
+        return l10n.isha;
       default:
         return prayerName;
     }

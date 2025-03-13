@@ -715,10 +715,10 @@ class S {
     );
   }
 
-  /// `Open Settings`
+  /// `Settings`
   String get openSettings {
     return Intl.message(
-      'Open Settings',
+      'Settings',
       name: 'openSettings',
       desc: 'Label for button to open settings',
       args: [],
@@ -1359,7 +1359,78 @@ class S {
       args: [],
     );
   }
+
+  /// `Location services are disabled. Please enable the services`
+  String get locationServicesDisabled {
+    return Intl.message(
+      'Location services are disabled. Please enable the services',
+      name: 'locationServicesDisabled',
+      desc: 'Message shown when location services are disabled',
+      args: [],
+    );
+  }
+
+  /// `Location permissions are denied`
+  String get locationPermissionDenied {
+    return Intl.message(
+      'Location permissions are denied',
+      name: 'locationPermissionDenied',
+      desc: 'Message shown when location permissions are denied',
+      args: [],
+    );
+  }
+
+  /// `Location permissions are permanently denied, please enable them in app settings`
+  String get locationPermissionPermanentlyDenied {
+    return Intl.message(
+      'Location permissions are permanently denied, please enable them in app settings',
+      name: 'locationPermissionPermanentlyDenied',
+      desc: 'Message shown when location permissions are permanently denied',
+      args: [],
+    );
+  }
+
+  /// `Updating location...`
+  String get updatingLocation {
+    return Intl.message(
+      'Updating location...',
+      name: 'updatingLocation',
+      desc: 'Message shown when updating location',
+      args: [],
+    );  
+  }
+
+  /// `Select Surah`
+  String get selectSurah {
+    return Intl.message(
+      'Select Surah',
+      name: 'selectSurah',
+      desc: 'Label for select surah option in app',
+      args: [],
+    );
+  }
+
+  /// `Surah {name}`
+  String surahName(String name) {
+    return Intl.message(
+      'Surah $name',
+      name: 'surahName',
+      desc: 'Label for surah name in app',
+      args: [name],
+    );
+  }
+
+  /// `Page {number}`
+  String pageNumber(int number) {
+    return Intl.message(
+      'Page $number',
+      name: 'pageNumber',
+      desc: 'Label for page number in app',
+      args: [number],
+    );
+  }
 }
+
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();

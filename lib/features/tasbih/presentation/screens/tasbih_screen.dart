@@ -1,3 +1,4 @@
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +50,7 @@ class _TasbihScreenState extends ConsumerState<TasbihScreen> {
     final targetCount = ref.watch(targetCountProvider);
     final shouldVibrate = ref.watch(vibrateProvider);
     final canVibrate = ref.watch(canVibrateProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     final names = ref.watch(namesOfAllahProvider);
 
     return Scaffold(

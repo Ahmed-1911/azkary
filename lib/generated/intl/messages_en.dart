@@ -141,6 +141,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "locationNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Location not available",
     ),
+    "locationPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Location permissions are denied",
+    ),
+    "locationPermissionPermanentlyDenied": MessageLookupByLibrary.simpleMessage(
+      "Location permissions are permanently denied, please enable them in app settings",
+    ),
+    "locationServicesDisabled": MessageLookupByLibrary.simpleMessage(
+      "Location services are disabled. Please enable the services",
+    ),
     "locationUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Location updated successfully",
     ),
@@ -195,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
-    "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
+    "openSettings": MessageLookupByLibrary.simpleMessage("Settings"),
     "ordersNumber": MessageLookupByLibrary.simpleMessage("Orders number"),
     "otp": MessageLookupByLibrary.simpleMessage("OTP"),
     "pageNotAvailable": m2,
@@ -286,6 +295,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "updateCurrentLocation": MessageLookupByLibrary.simpleMessage(
       "Update Current Location",
+    ),
+    "updatingLocation": MessageLookupByLibrary.simpleMessage(
+      "Updating location...",
     ),
     "vehicleLoads": MessageLookupByLibrary.simpleMessage("Vehicle Loads"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),

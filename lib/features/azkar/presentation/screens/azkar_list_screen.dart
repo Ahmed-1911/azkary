@@ -33,9 +33,8 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
       if (!_isDisposed) {
         ref.read(azkarListControllerProvider(widget.category).notifier).initializeIfNeeded();
         try {
-          ref.read(adsServiceProvider).initBannerAd();
+          ref.read(adsServiceProvider.notifier).initBannerAd();
         } catch (e) {
-          // Ignore ad initialization errors
           debugPrint('Error initializing banner ad: $e');
         }
       }
@@ -46,9 +45,9 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
   void dispose() {
     _isDisposed = true;
     try {
-      ref.read(adsServiceProvider).disposeBannerAd();
+      ref.read(adsServiceProvider.notifier).disposeBannerAd();
     } catch (e) {
-      // Ignore errors during disposal
+      debugPrint('Error disposing banner ad: $e');
     }
     super.dispose();
   }
@@ -147,12 +146,13 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
               },
             ),
           ),
-          if (adsService.isBannerAdLoaded && adsService.bannerAd != null)
+          if (ref.watch(adsServiceProvider).isBannerAdLoaded && 
+              ref.watch(adsServiceProvider).bannerAd != null)
             SafeArea(
-              child: Container(
-                width: adsService.bannerAd!.size.width.toDouble(),
-                height: adsService.bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: adsService.bannerAd!),
+              child: SizedBox(
+                width: ref.watch(adsServiceProvider).bannerAd!.size.width.toDouble(),
+                height: ref.watch(adsServiceProvider).bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: ref.watch(adsServiceProvider).bannerAd!),
               ),
             ),
         ],

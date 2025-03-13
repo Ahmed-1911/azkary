@@ -1,9 +1,7 @@
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:azkary/l10n/app_localizations.dart';
-import '../../../../core/services/notification_service.dart';
 import '../providers/prayer_times_providers.dart';
 import '../widgets/prayer_time_card.dart';
 import '../widgets/next_prayer_card.dart';
@@ -21,7 +19,7 @@ class PrayerTimesScreen extends ConsumerWidget {
       ref.invalidate(locationWithCityProvider);
     });
 
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     final prayerTimesAsync = ref.watch(prayerTimesProvider);
     final locationWithCityAsync = ref.watch(locationWithCityProvider);
     final notificationsEnabled = ref.watch(prayerNotificationsEnabledProvider);
@@ -75,8 +73,7 @@ class PrayerTimesScreen extends ConsumerWidget {
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                  ),
-                                  
+                                  ), 
                                 ],
                               ),
                             )
@@ -87,7 +84,7 @@ class PrayerTimesScreen extends ConsumerWidget {
                                   Icon(Icons.location_on, size: 16.sp, color: Colors.grey),
                                   SizedBox(width: 4.w),
                                   Text(
-                                    AppLocalizations.of(context)!.locationNotAvailable,
+                                    S.of(context).locationNotAvailable,
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w500,
@@ -106,30 +103,7 @@ class PrayerTimesScreen extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                      loading: () => Padding(
-                        padding: EdgeInsets.only(bottom: 8.h),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 16.sp,
-                              height: 16.sp,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.w,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ),
-                            SizedBox(width: 4.w),
-                            Text(
-                              AppLocalizations.of(context)?.loadingLocation ?? 'Loading location...',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      loading: () => const Center(child: CircularProgressIndicator()),
                       error: (_, __) => Padding(
                         padding: EdgeInsets.only(bottom: 8.h),
                         child: Row(
@@ -137,7 +111,7 @@ class PrayerTimesScreen extends ConsumerWidget {
                             Icon(Icons.error_outline, size: 16.sp, color: Colors.red),
                             SizedBox(width: 4.w),
                             Text(
-                              AppLocalizations.of(context)?.errorLoadingLocation ?? 'Error loading location',
+                              S.of(context).errorLoadingLocation,
                               style: TextStyle(
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
@@ -161,35 +135,35 @@ class PrayerTimesScreen extends ConsumerWidget {
                       nextPrayer: nextPrayer,
                       nextPrayerTime: nextPrayerTime,
                     ),
-                    SizedBox(height: 24.h),
+                    SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           l10n.todayPrayerTimes,
                           style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 18.spMin,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              l10n.notifications,
-                              style: TextStyle(fontSize: 14.sp),
-                            ),
-                            Switch(
-                              value: notificationsEnabled,
-                              onChanged: (value) {
-                                ref.read(prayerNotificationsEnabledProvider.notifier).state = value;
-                                ref.read(schedulePrayerNotificationsProvider)();
-                              },
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       l10n.notifications,
+                        //       style: TextStyle(fontSize: 14.sp),
+                        //     ),
+                        //     Switch(
+                        //       value: notificationsEnabled,
+                        //       onChanged: (value) {
+                        //         ref.read(prayerNotificationsEnabledProvider.notifier).state = value;
+                        //         ref.read(schedulePrayerNotificationsProvider)();
+                        //       },
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 10.h),
                     PrayerTimeCard(
                       name: 'Fajr',
                       time: prayerTimes.fajr,

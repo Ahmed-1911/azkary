@@ -1,4 +1,4 @@
-import 'package:azkary/l10n/app_localizations.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +31,7 @@ class _BookmarksScreenState extends ConsumerState<BookmarksScreen> {
   Widget build(BuildContext context) {
     final bookmarkedIds = ref.watch(bookmarkedAzkarProvider);
     final bookmarkedAzkar = getBookmarkedAzkar(ref, bookmarkedIds);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
 
     // Filter out completed items
     final displayedAzkar = bookmarkedAzkar.where((azkar) => 

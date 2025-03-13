@@ -228,7 +228,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exactAlarmPermission => 'يحتاج التطبيق إلى إذن لجدولة التنبيهات الدقيقة لتذكير الأذكار. يرجى منح هذا الإذن في إعدادات النظام.';
 
   @override
-  String get openSettings => 'فتح الإعدادات';
+  String get openSettings => 'الإعدادات';
 
   @override
   String get digitalTasbih => 'السبحة الإلكترونية';
@@ -456,4 +456,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exitFullScreen => 'الخروج من وضع ملء الشاشة';
+
+  @override
+  String get locationServicesDisabled => 'خدمات الموقع معطلة. يرجى تفعيل الخدمات';
+
+  @override
+  String get locationPermissionDenied => 'تم رفض أذونات الموقع';
+
+  @override
+  String get locationPermissionPermanentlyDenied => 'تم رفض أذونات الموقع بشكل دائم، يرجى تفعيلها في إعدادات التطبيق';
+
+  @override
+  String get updatingLocation => 'جاري تحديث الموقع...';
 }

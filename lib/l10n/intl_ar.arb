@@ -72,7 +72,7 @@
   "permissionRequired": "الإذن مطلوب",
   "notificationPermission": "يرجى تفعيل الإشعارات في إعدادات النظام",
   "exactAlarmPermission": "يحتاج التطبيق إلى إذن لجدولة التنبيهات الدقيقة لتذكير الأذكار. يرجى منح هذا الإذن في إعدادات النظام.",
-  "openSettings": "فتح الإعدادات",
+  "openSettings": "الإعدادات",
   "digitalTasbih": "السبحة الإلكترونية",
   "target": "الهدف: {count}",
   "namesOfAllah": "أسماء الله الحسنى",
@@ -151,5 +151,9 @@
   "hideNavigationBar": "إخفاء شريط التنقل",
   "showNavigationBar": "إظهار شريط التنقل",
   "enterFullScreen": "وضع ملء الشاشة",
-  "exitFullScreen": "الخروج من وضع ملء الشاشة"
+  "exitFullScreen": "الخروج من وضع ملء الشاشة",
+  "locationServicesDisabled": "خدمات الموقع معطلة. يرجى تفعيل الخدمات",
+  "locationPermissionDenied": "تم رفض أذونات الموقع",
+  "locationPermissionPermanentlyDenied": "تم رفض أذونات الموقع بشكل دائم، يرجى تفعيلها في إعدادات التطبيق",
+  "updatingLocation": "جاري تحديث الموقع..."
 }

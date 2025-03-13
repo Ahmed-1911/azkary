@@ -536,7 +536,7 @@ abstract class AppLocalizations {
   /// Label for button to open settings
   ///
   /// In en, this message translates to:
-  /// **'Open Settings'**
+  /// **'Settings'**
   String get openSettings;
 
   /// Title for tasbih screen
@@ -976,6 +976,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Exit full screen'**
   String get exitFullScreen;
+
+  /// Message shown when location services are disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are disabled. Please enable the services'**
+  String get locationServicesDisabled;
+
+  /// Message shown when location permissions are denied
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are denied'**
+  String get locationPermissionDenied;
+
+  /// Message shown when location permissions are permanently denied
+  ///
+  /// In en, this message translates to:
+  /// **'Location permissions are permanently denied, please enable them in app settings'**
+  String get locationPermissionPermanentlyDenied;
+
+  /// Message shown when updating location
+  ///
+  /// In en, this message translates to:
+  /// **'Updating location...'**
+  String get updatingLocation;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

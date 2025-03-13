@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
 
 final notificationServiceProvider = Provider<NotificationService>((ref) {
   return NotificationService();
@@ -32,17 +32,12 @@ class NotificationService {
       const initializationSettings = InitializationSettings(android: androidSettings);
       
       // Initialize the plugin
-      final initialized = await _notifications.initialize(
+      await _notifications.initialize(
         initializationSettings,
         onDidReceiveNotificationResponse: (NotificationResponse response) {
           debugPrint('NotificationService: Notification response received: ${response.payload}');
         },
       );
-      
-      if (initialized != null && !initialized) {
-        debugPrint('NotificationService: Initialization returned false');
-        return false;
-      }
       
       // Request permissions
       final permissionGranted = await _requestPermissions();
@@ -98,40 +93,38 @@ class NotificationService {
     debugPrint('NotificationService: Scheduling prayer notification $id at ${time.hour}:${time.minute}');
     
     try {
-      // Cancel any existing notification with this ID
-      await _notifications.cancel(id);
-      
       // Create the notification details
-      const androidDetails = AndroidNotificationDetails(
+      final androidDetails = AndroidNotificationDetails(
         'prayer_times_channel',
         'Prayer Times',
         channelDescription: 'Notifications for prayer times',
-        importance: Importance.high,
+        importance: Importance.max,
         priority: Priority.high,
         playSound: true,
-        sound: RawResourceAndroidNotificationSound('adhan'),
+        sound: const RawResourceAndroidNotificationSound('adhan'),
+        enableVibration: true,
+        category: AndroidNotificationCategory.alarm,
+        fullScreenIntent: true,
+        visibility: NotificationVisibility.public,
       );
       
       // Calculate the next occurrence of this time
       final scheduledTime = _nextInstanceOfTime(time);
       
-      // Schedule the notification
-      await _notifications.zonedSchedule(
+      // Show the notification immediately with a scheduled time
+      await _notifications.show(
         id,
         title,
         body,
-        scheduledTime,
-        const NotificationDetails(android: androidDetails),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
+        NotificationDetails(android: androidDetails),
+        payload: 'prayer_notification_$id',
       );
       
       debugPrint('NotificationService: Prayer notification scheduled for ${scheduledTime.toString()}');
       return true;
     } catch (e) {
       debugPrint('NotificationService: Error scheduling prayer notification: $e');
-      return _scheduleSimpleNotification(id, title, body, time);
+      return false;
     }
   }
   
@@ -143,19 +136,13 @@ class NotificationService {
     required TimeOfDay time,
     required bool enabled,
   }) async {
-    debugPrint('NotificationService: scheduleDailyNotification called for $id at ${time.hour}:${time.minute}, enabled=$enabled');
-    
-    if (!_initialized) {
-      final initialized = await initialize();
-      if (!initialized) {
-        debugPrint('NotificationService: Failed to initialize in scheduleDailyNotification');
-        return false;
-      }
-    }
-    
     if (!enabled) {
       debugPrint('NotificationService: Notification disabled, cancelling $id');
-      await _notifications.cancel(id);
+      try {
+        await _notifications.cancel(id);
+      } catch (e) {
+        debugPrint('NotificationService: Error cancelling notification: $e');
+      }
       return true;
     }
     
@@ -165,39 +152,6 @@ class NotificationService {
       body: body,
       time: time,
     );
-  }
-  
-  // Fallback method to schedule a simple notification
-  Future<bool> _scheduleSimpleNotification(int id, String title, String body, TimeOfDay time) async {
-    debugPrint('NotificationService: Trying simple notification scheduling');
-    
-    try {
-      // Create the notification details
-      const androidDetails = AndroidNotificationDetails(
-        'prayer_times_simple_channel',
-        'Prayer Times (Simple)',
-        channelDescription: 'Simple notifications for prayer times',
-        importance: Importance.high,
-        priority: Priority.high,
-        playSound: true,
-      );
-      
-      // Schedule the notification using a simpler method
-      await _notifications.periodicallyShow(
-        id,
-        title,
-        body,
-        RepeatInterval.daily,
-        const NotificationDetails(android: androidDetails),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      );
-      
-      debugPrint('NotificationService: Simple notification scheduled successfully');
-      return true;
-    } catch (e) {
-      debugPrint('NotificationService: Even simple notification failed: $e');
-      return false;
-    }
   }
   
   // Calculate the next occurrence of a specific time

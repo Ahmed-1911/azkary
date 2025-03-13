@@ -1,9 +1,9 @@
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/services/notification_service.dart';
-import '../../../../l10n/app_localizations.dart';
 import '../../../tasbih/presentation/screens/tasbih_screen.dart';
 import '../providers/settings_providers.dart';
 
@@ -18,7 +18,7 @@ class SettingsScreen extends ConsumerWidget {
     final eveningReminder = ref.watch(eveningReminderProvider);
     final fontSize = ref.watch(fontSizeProvider);
     final notificationService = ref.watch(notificationServiceProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     final currentLanguage = ref.watch(languageProvider);
 
     return Scaffold(

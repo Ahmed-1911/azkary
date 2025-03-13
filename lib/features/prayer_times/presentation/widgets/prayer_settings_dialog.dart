@@ -1,4 +1,4 @@
-import 'package:azkary/l10n/app_localizations.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +8,66 @@ import 'package:geolocator/geolocator.dart';
 
 class PrayerSettingsDialog extends ConsumerWidget {
   const PrayerSettingsDialog({super.key});
+
+  // Function to check and request location permissions
+  Future<bool> _handleLocationPermission(BuildContext context) async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).locationServicesDisabled),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      return false;
+    }
+
+    // Check location permission status
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      // Request permission if denied
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(S.of(context).locationPermissionDenied),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+        return false;
+      }
+    }
+    
+    // Handle permanently denied permissions
+    if (permission == LocationPermission.deniedForever) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).locationPermissionPermanentlyDenied),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
+            action: SnackBarAction(
+              label: S.of(context).openSettings,
+              onPressed: () {
+                Geolocator.openAppSettings();
+              },
+            ),
+          ),
+        );
+      }
+      return false;
+    }
+    
+    return true;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +93,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppLocalizations.of(context)?.prayerTimesSettings ?? 'Prayer Times Settings',
+                    S.of(context).prayerTimesSettings,
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
@@ -54,7 +114,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppLocalizations.of(context)?.calculationMethod ?? 'Calculation Method',
+                      S.of(context).calculationMethod,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.sp,
@@ -65,7 +125,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                     _buildCalculationMethodDropdown(context, calculationMethod, ref, isDarkMode),
                     SizedBox(height: 16.h),
                     Text(
-                      AppLocalizations.of(context)?.madhabAsrCalculation ?? 'Madhab (Asr Calculation)',
+                      S.of(context).madhabAsrCalculation,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.sp,
@@ -76,7 +136,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                     _buildMadhabDropdown(context, madhab, ref, isDarkMode),
                     SizedBox(height: 16.h),
                     Text(
-                      AppLocalizations.of(context)?.location ?? 'Location',
+                      S.of(context).location,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.sp,
@@ -96,17 +156,23 @@ class PrayerSettingsDialog extends ConsumerWidget {
                           ),
                         ),
                         onPressed: () async {
+                          // First check and request location permissions
+                          final hasPermission = await _handleLocationPermission(context);
+                          if (!hasPermission) {
+                            return; // Exit if permissions not granted
+                          }
+                          
                           final repository = ref.read(prayerTimesRepositoryProvider);
                           try {
                             // Show loading indicator
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                 SnackBar(
                                   content: Row(
                                     children: [
                                       const CircularProgressIndicator(color: Colors.white),
                                       const SizedBox(width: 16),
-                                      Text('Updating location...'),
+                                      Text(S.of(context).updatingLocation),
                                     ],
                                   ),
                                   duration: const Duration(seconds: 10),
@@ -142,7 +208,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                               
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(AppLocalizations.of(context)?.locationUpdatedSuccessfully ?? 'Location updated successfully'),
+                                  content: Text(S.of(context).locationUpdatedSuccessfully),
                                   duration: const Duration(seconds: 2),
                                   backgroundColor: Colors.green,
                                 ),
@@ -164,7 +230,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                           }
                         },
                         icon: const Icon(Icons.my_location),
-                        label: Text( AppLocalizations.of(context)?.updateCurrentLocation ?? 'Update Current Location'),
+                        label: Text( S.of(context).updateCurrentLocation),
                       ),
                     ),
                     SizedBox(height: 16.h),
@@ -184,7 +250,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
                           // Schedule notifications with new settings
                           ref.read(schedulePrayerNotificationsProvider)();
                         },
-                        child: Text( AppLocalizations.of(context)?.saveAndClose ?? 'Save & Close'),
+                        child: Text( S.of(context).saveAndClose),
                       ),
                     ),
                   ],
@@ -200,18 +266,18 @@ class PrayerSettingsDialog extends ConsumerWidget {
   Widget _buildCalculationMethodDropdown(BuildContext context, int currentValue, WidgetRef ref, bool isDarkMode) {
     final theme = Theme.of(context);
     final methods = [
-      AppLocalizations.of(context)?.egyptianGeneralAuthorityOfSurvey ?? 'Egyptian General Authority of Survey',
-      AppLocalizations.of(context)?.universityOfIslamicSciencesKarachi ?? 'University of Islamic Sciences, Karachi',
-      AppLocalizations.of(context)?.muslimWorldLeague ?? 'Muslim World League',
-      AppLocalizations.of(context)?.northAmericaISNA ?? 'North America (ISNA)',
-      AppLocalizations.of(context)?.dubaiUAE ?? 'Dubai (UAE)',
-      AppLocalizations.of(context)?.moonsightingCommittee ?? 'Moonsighting Committee',
-      AppLocalizations.of(context)?.kuwait ?? 'Kuwait',
-      AppLocalizations.of(context)?.qatar ?? 'Qatar',
-      AppLocalizations.of(context)?.singapore ?? 'Singapore',
-      AppLocalizations.of(context)?.turkey ?? 'Turkey',
-      AppLocalizations.of(context)?.tehran ?? 'Tehran',
-      AppLocalizations.of(context)?.ummAlQuraUniversityMakkah ?? 'Umm al-Qura University, Makkah',
+      S.of(context).egyptianGeneralAuthorityOfSurvey,
+      S.of(context).universityOfIslamicSciencesKarachi,
+      S.of(context).muslimWorldLeague,
+      S.of(context).northAmericaISNA,
+      S.of(context).dubaiUAE,
+      S.of(context).moonsightingCommittee,
+      S.of(context).kuwait,
+      S.of(context).qatar,
+      S.of(context).singapore,
+      S.of(context).turkey,
+      S.of(context).tehran,
+      S.of(context).ummAlQuraUniversityMakkah,
     ];
     
     return DropdownButtonFormField<int>(
@@ -259,8 +325,8 @@ class PrayerSettingsDialog extends ConsumerWidget {
   Widget _buildMadhabDropdown(BuildContext context, int currentValue, WidgetRef ref, bool isDarkMode) {
     final theme = Theme.of(context);
     final madhabs = [
-      AppLocalizations.of(context)?.shafiMalikiHanbali ?? 'Shafi, Maliki, Hanbali',
-      AppLocalizations.of(context)?.hanafi ?? 'Hanafi',
+      S.of(context).shafiMalikiHanbali,
+      S.of(context).hanafi,
     ];
     
     return DropdownButtonFormField<int>(

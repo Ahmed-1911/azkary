@@ -1,8 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:azkary/features/azkar/presentation/screens/azkar_list_screen.dart';
-import 'package:azkary/l10n/app_localizations.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +17,7 @@ class AzkarCategoriesScreen extends ConsumerWidget {
   }
 
   void _showWidgetInfoDialog(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     
     showDialog(
       context: context,
@@ -94,7 +93,7 @@ class AzkarCategoriesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context);
     final categories = ref.watch(azkarCategoriesProvider);
 
     return Scaffold(

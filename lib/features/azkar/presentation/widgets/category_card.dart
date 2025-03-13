@@ -1,4 +1,5 @@
 import 'package:azkary/features/azkar/presentation/providers/azkar_provider.dart';
+import 'package:azkary/generated/l10n.dart';
 import 'package:azkary/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,37 +39,41 @@ class CategoryCard extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                category.icon,
-                size: 40.w,
-                color: Colors.white,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                Localizations.localeOf(context).languageCode == 'en'
-                    ? category.name
-                    : category.nameAr,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 4.h),
-              Consumer(builder: (context, ref, child) {
-                return Text(
-                  '${ref.read(azkarByCategoryProvider(category.id)).length} ${AppLocalizations.of(context)?.azkar}',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Colors.white70,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  category.icon,
+                  size: 40.spMin,
+                  color: Colors.white,
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  Localizations.localeOf(context).languageCode == 'en'
+                      ? category.name
+                      : category.nameAr,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
                       ),
-                );
-              }),
-            ],
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 4.h),
+                Consumer(builder: (context, ref, child) {
+                  return Text(
+                    '${ref.read(azkarByCategoryProvider(category.id)).length} ${ S.of(context).azkar}',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.white70,
+                        ),
+                  );
+                },
+                ),
+              ],
+            ),
           ),
         ),
       ),

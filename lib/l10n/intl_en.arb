@@ -412,5 +412,25 @@
   "exitFullScreen": "Exit full screen",
   "@exitFullScreen": {
     "description": "Tooltip for the button to exit full screen mode"
+  },
+  "locationServicesDisabled": "Location services are disabled. Please enable the services",
+  "@locationServicesDisabled": {
+    "description": "Message shown when location services are disabled"
+  },
+  "locationPermissionDenied": "Location permissions are denied",
+  "@locationPermissionDenied": {
+    "description": "Message shown when location permissions are denied"
+  },
+  "locationPermissionPermanentlyDenied": "Location permissions are permanently denied, please enable them in app settings",
+  "@locationPermissionPermanentlyDenied": {
+    "description": "Message shown when location permissions are permanently denied"
+  },
+  "updatingLocation": "Updating location...",
+  "@updatingLocation": {
+    "description": "Message shown when updating location"
+  },
+  "openSettings": "Settings",
+  "@openSettings": {
+    "description": "Label for button to open settings"
   }
 }

@@ -135,6 +135,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "locationNotAvailable": MessageLookupByLibrary.simpleMessage(
       "الموقع غير متاح",
     ),
+    "locationPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "تم رفض أذونات الموقع",
+    ),
+    "locationPermissionPermanentlyDenied": MessageLookupByLibrary.simpleMessage(
+      "تم رفض أذونات الموقع بشكل دائم، يرجى تفعيلها في إعدادات التطبيق",
+    ),
+    "locationServicesDisabled": MessageLookupByLibrary.simpleMessage(
+      "خدمات الموقع معطلة. يرجى تفعيل الخدمات",
+    ),
     "locationUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم تحديث الموقع بنجاح",
     ),
@@ -191,7 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "ok": MessageLookupByLibrary.simpleMessage("موافق"),
-    "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
+    "openSettings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "ordersNumber": MessageLookupByLibrary.simpleMessage("عدد الطلبات"),
     "otp": MessageLookupByLibrary.simpleMessage(" رمز التأكيد"),
     "pageNotAvailable": m2,
@@ -276,6 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "updateCurrentLocation": MessageLookupByLibrary.simpleMessage(
       "تحديث الموقع الحالي",
+    ),
+    "updatingLocation": MessageLookupByLibrary.simpleMessage(
+      "جاري تحديث الموقع...",
     ),
     "vehicleLoads": MessageLookupByLibrary.simpleMessage("الحمولات"),
     "version": MessageLookupByLibrary.simpleMessage("الإصدار"),

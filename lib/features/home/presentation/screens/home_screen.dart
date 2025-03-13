@@ -1,3 +1,4 @@
+import 'package:azkary/generated/l10n.dart';
 import 'package:azkary/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(selectedIndexProvider);
     final isBottomNavBarVisible = ref.watch(bottomNavBarVisibilityProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = S.of(context)!;
 
     final screens = [
       const AzkarCategoriesScreen(),
@@ -47,7 +48,7 @@ class HomeScreen extends ConsumerWidget {
               NavigationDestination(
                 icon: const Icon(Icons.access_time_outlined),
                 selectedIcon: const Icon(Icons.access_time_filled),
-                label: l10n.prayerTimes ?? 'Prayer Times',
+                label: l10n.prayerTimes ,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.auto_stories_outlined),
