@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../../../core/services/notification_service.dart';
 import '../../../../core/services/geocoding_service.dart';
 import '../../../bookmarks/presentation/providers/bookmark_providers.dart';
 import '../../data/models/prayer_time_model.dart';
@@ -161,105 +159,6 @@ final nextPrayerTimeProvider = Provider<DateTime?>((ref) {
     loading: () => null,
     error: (_, __) => null,
   );
-});
-
-// Provider for prayer notifications enabled state
-final prayerNotificationsEnabledProvider = StateProvider<bool>((ref) {
-  final prefs = ref.watch(sharedPreferencesProvider);
-  return prefs.getBool('prayer_notifications_enabled') ?? true;
-});
-
-// Provider to schedule prayer notifications
-final schedulePrayerNotificationsProvider = Provider<Future<void> Function()>((ref) {
-  return () async {
-    debugPrint('Scheduling prayer notifications...');
-    final notificationService = ref.read(notificationServiceProvider);
-    final isEnabled = ref.read(prayerNotificationsEnabledProvider);
-    
-    // Save the notification preference
-    final prefs = ref.read(sharedPreferencesProvider);
-    await prefs.setBool('prayer_notifications_enabled', isEnabled);
-    
-    // Initialize notification service
-    final initialized = await notificationService.initialize();
-    if (!initialized) {
-      debugPrint('Failed to initialize notification service');
-    }
-    
-    if (!isEnabled) {
-      // If notifications are disabled, cancel all notifications
-      debugPrint('Prayer notifications disabled, cancelling all notifications');
-      await notificationService.cancelAllNotifications();
-      return;
-    }
-    
-    // Get today's prayer times
-    try {
-      final prayerTimes = await ref.read(prayerTimesProvider.future);
-      
-      // First cancel all existing notifications
-      await notificationService.cancelAllNotifications();
-      
-      final now = DateTime.now();
-      final prayers = {
-        'Fajr': prayerTimes.fajr,
-        'Sunrise': prayerTimes.sunrise,
-        'Dhuhr': prayerTimes.dhuhr,
-        'Asr': prayerTimes.asr,
-        'Maghrib': prayerTimes.maghrib,
-        'Isha': prayerTimes.isha,
-      };
-      
-      // Schedule notifications for today's remaining prayers
-      int idOffset = 0;
-      for (final entry in prayers.entries) {
-        final prayerName = entry.key;
-        final prayerTime = entry.value;
-        
-        if (prayerTime.isAfter(now)) {
-          final time = TimeOfDay(hour: prayerTime.hour, minute: prayerTime.minute);
-          debugPrint('Scheduling notification for $prayerName at ${time.hour}:${time.minute}');
-          
-          await notificationService.schedulePrayerNotification(
-            id: 1000 + idOffset,
-            title: 'Prayer Time',
-            body: 'It\'s time for $prayerName prayer',
-            time: time,
-          );
-          
-          idOffset++;
-        } else {
-          debugPrint('Skipping $prayerName as it has already passed today');
-        }
-      }
-      
-      // Schedule tomorrow's Fajr
-      try {
-        final tomorrow = DateTime.now().add(const Duration(days: 1));
-        debugPrint('Getting prayer times for tomorrow: ${tomorrow.toString()}');
-        
-        final tomorrowPrayerTimes = await ref.read(prayerTimesForDateProvider(tomorrow).future);
-        
-        final fajrTime = TimeOfDay(
-          hour: tomorrowPrayerTimes.fajr.hour, 
-          minute: tomorrowPrayerTimes.fajr.minute
-        );
-        
-        debugPrint('Scheduling notification for tomorrow\'s Fajr at ${fajrTime.hour}:${fajrTime.minute}');
-        
-        await notificationService.schedulePrayerNotification(
-          id: 1000 + 6,
-          title: 'Prayer Time',
-          body: 'It\'s time for Fajr prayer',
-          time: fajrTime,
-        );
-      } catch (e) {
-        debugPrint('Error scheduling notification for tomorrow\'s Fajr: $e');
-      }
-    } catch (e) {
-      debugPrint('Error scheduling prayer notifications: $e');
-    }
-  };
 });
 
 // Provider for calculation method

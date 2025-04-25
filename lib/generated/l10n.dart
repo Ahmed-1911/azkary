@@ -1117,7 +1117,12 @@ class S {
 
   /// `Close`
   String get close {
-    return Intl.message('Close', name: 'close', desc: '', args: []);
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: 'Text for close button',
+      args: [],
+    );
   }
 
   /// `Prayer Times Settings`
@@ -1310,12 +1315,12 @@ class S {
     );
   }
 
-  /// `Page {number} not available`
-  String pageNotAvailable(int number) {
+  /// `Page {number}`
+  String page(int number) {
     return Intl.message(
-      'Page $number not available',
-      name: 'pageNotAvailable',
-      desc: 'Message shown when a Quran page is not available',
+      'Page $number',
+      name: 'page',
+      desc: 'Text for page number',
       args: [number],
     );
   }
@@ -1397,7 +1402,27 @@ class S {
       name: 'updatingLocation',
       desc: 'Message shown when updating location',
       args: [],
-    );  
+    );
+  }
+
+  /// `Ads are disabled in this version`
+  String get adsDisabled {
+    return Intl.message(
+      'Ads are disabled in this version',
+      name: 'adsDisabled',
+      desc: 'Message shown when ads are disabled',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to exit?`
+  String get pressBackToExit {
+    return Intl.message(
+      'Are you sure you want to exit?',
+      name: 'pressBackToExit',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Select Surah`
@@ -1405,32 +1430,221 @@ class S {
     return Intl.message(
       'Select Surah',
       name: 'selectSurah',
-      desc: 'Label for select surah option in app',
+      desc: 'Title for the surah selection dialog',
       args: [],
     );
   }
 
-  /// `Surah {name}`
-  String surahName(String name) {
+  /// `Page {number} not available`
+  String pageNotAvailable(int number) {
     return Intl.message(
-      'Surah $name',
-      name: 'surahName',
-      desc: 'Label for surah name in app',
-      args: [name],
-    );
-  }
-
-  /// `Page {number}`
-  String pageNumber(int number) {
-    return Intl.message(
-      'Page $number',
-      name: 'pageNumber',
-      desc: 'Label for page number in app',
+      'Page $number not available',
+      name: 'pageNotAvailable',
+      desc: 'Message shown when a Quran page is not available',
       args: [number],
     );
   }
-}
 
+  /// `Add Bookmark`
+  String get addBookmark {
+    return Intl.message(
+      'Add Bookmark',
+      name: 'addBookmark',
+      desc: 'Text for add bookmark action',
+      args: [],
+    );
+  }
+
+  /// `Remove Bookmark`
+  String get removeBookmark {
+    return Intl.message(
+      'Remove Bookmark',
+      name: 'removeBookmark',
+      desc: 'Text for remove bookmark action',
+      args: [],
+    );
+  }
+
+  /// `View Bookmarks`
+  String get viewBookmarks {
+    return Intl.message(
+      'View Bookmarks',
+      name: 'viewBookmarks',
+      desc: 'Text for view bookmarks action',
+      args: [],
+    );
+  }
+
+  /// `Tap to view this page`
+  String get tapToView {
+    return Intl.message(
+      'Tap to view this page',
+      name: 'tapToView',
+      desc: 'Hint text for tapping on a bookmark to view it',
+      args: [],
+    );
+  }
+
+  /// `No bookmarks yet`
+  String get bookmarksEmpty {
+    return Intl.message(
+      'No bookmarks yet',
+      name: 'bookmarksEmpty',
+      desc: 'Message shown when no bookmarks exist',
+      args: [],
+    );
+  }
+
+  /// `Qibla Direction`
+  String get qiblaDirection {
+    return Intl.message(
+      'Qibla Direction',
+      name: 'qiblaDirection',
+      desc: 'Title for Qibla direction feature',
+      args: [],
+    );
+  }
+
+  /// `Compass not available on this device`
+  String get compassNotAvailable {
+    return Intl.message(
+      'Compass not available on this device',
+      name: 'compassNotAvailable',
+      desc: 'Message shown when compass is not available',
+      args: [],
+    );
+  }
+
+  /// `Enter city name`
+  String get enterCityName {
+    return Intl.message(
+      'Enter city name',
+      name: 'enterCityName',
+      desc: 'Label for city name input field',
+      args: [],
+    );
+  }
+
+  /// `Use my location`
+  String get useMyLocation {
+    return Intl.message(
+      'Use my location',
+      name: 'useMyLocation',
+      desc: 'Label for use my location button',
+      args: [],
+    );
+  }
+
+  /// `Qibla direction:`
+  String get qiblaIs {
+    return Intl.message(
+      'Qibla direction:',
+      name: 'qiblaIs',
+      desc: 'Label for Qibla direction info',
+      args: [],
+    );
+  }
+
+  /// `Distance to Kaaba`
+  String get distanceToKaaba {
+    return Intl.message(
+      'Distance to Kaaba',
+      name: 'distanceToKaaba',
+      desc: 'Label for distance to Kaaba info',
+      args: [],
+    );
+  }
+
+  /// `Latitude`
+  String get latitude {
+    return Intl.message(
+      'Latitude',
+      name: 'latitude',
+      desc: 'Label for latitude info',
+      args: [],
+    );
+  }
+
+  /// `Longitude`
+  String get longitude {
+    return Intl.message(
+      'Longitude',
+      name: 'longitude',
+      desc: 'Label for longitude info',
+      args: [],
+    );
+  }
+
+  /// `Qibla Compass`
+  String get qiblaCompass {
+    return Intl.message(
+      'Qibla Compass',
+      name: 'qiblaCompass',
+      desc: 'Label for Qibla compass',
+      args: [],
+    );
+  }
+
+  /// `You are facing Qibla direction`
+  String get youAreFacingQiblaDirection {
+    return Intl.message(
+      'You are facing Qibla direction',
+      name: 'youAreFacingQiblaDirection',
+      desc: 'Label for you are facing Qibla direction',
+      args: [],
+    );
+  }
+
+  /// `Turn to find Qibla direction`
+  String get turnToFindQiblaDirection {
+    return Intl.message(
+      'Turn to find Qibla direction',
+      name: 'turnToFindQiblaDirection',
+      desc: 'Label for turn to find Qibla direction',
+      args: [],
+    );
+  }
+
+  /// `Current heading`
+  String get currentHeading {
+    return Intl.message(
+      'Current heading',
+      name: 'currentHeading',
+      desc: 'Label for current heading',
+      args: [],
+    );
+  }
+
+  /// `Your Location`
+  String get yourLocation {
+    return Intl.message(
+      'Your Location',
+      name: 'yourLocation',
+      desc: 'Label for your location',
+      args: [],
+    );
+  }
+
+  /// `Angle to Qibla`
+  String get angleToQibla {
+    return Intl.message(
+      'Angle to Qibla',
+      name: 'angleToQibla',
+      desc: 'Label for angle to Qibla',
+      args: [],
+    );
+  }
+
+  /// `Qibla direction is:`
+  String get qiblaDirectionIs {
+    return Intl.message(
+      'Qibla direction is:',
+      name: 'qiblaDirectionIs',
+      desc: 'Label for qibla direction',
+      args: [],
+    );
+  }
+}
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();

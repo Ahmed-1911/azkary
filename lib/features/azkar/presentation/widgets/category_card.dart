@@ -1,6 +1,5 @@
 import 'package:azkary/features/azkar/presentation/providers/azkar_provider.dart';
 import 'package:azkary/generated/l10n.dart';
-import 'package:azkary/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

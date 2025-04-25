@@ -441,8 +441,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareApp => 'Share App';
 
   @override
-  String pageNotAvailable(int number) {
-    return 'Page $number not available';
+  String page(int number) {
+    return 'Page $number';
   }
 
   @override
@@ -468,4 +468,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get updatingLocation => 'Updating location...';
+
+  @override
+  String get adsDisabled => 'Ads are disabled in this version';
+
+  @override
+  String get pressBackToExit => 'Are you sure you want to exit?';
+
+  @override
+  String get selectSurah => 'Select Surah';
+
+  @override
+  String pageNotAvailable(int number) {
+    return 'Page $number not available';
+  }
+
+  @override
+  String get addBookmark => 'Add Bookmark';
+
+  @override
+  String get removeBookmark => 'Remove Bookmark';
+
+  @override
+  String get viewBookmarks => 'View Bookmarks';
+
+  @override
+  String get tapToView => 'Tap to view this page';
+
+  @override
+  String get bookmarksEmpty => 'No bookmarks yet';
+
+  @override
+  String get qiblaDirection => 'Qibla Direction';
+
+  @override
+  String get compassNotAvailable => 'Compass not available on this device';
+
+  @override
+  String get enterCityName => 'Enter city name';
+
+  @override
+  String get useMyLocation => 'Use my location';
+
+  @override
+  String get qiblaIs => 'Qibla direction:';
+
+  @override
+  String get distanceToKaaba => 'Distance to Kaaba';
+
+  @override
+  String get latitude => 'Latitude';
+
+  @override
+  String get longitude => 'Longitude';
+
+  @override
+  String get qiblaCompass => 'Qibla Compass';
+
+  @override
+  String get youAreFacingQiblaDirection => 'You are facing Qibla direction';
+
+  @override
+  String get turnToFindQiblaDirection => 'Turn to find Qibla direction';
+
+  @override
+  String get currentHeading => 'Current heading';
+
+  @override
+  String get yourLocation => 'Your Location';
+
+  @override
+  String get angleToQibla => 'Angle to Qibla';
+
+  @override
+  String get qiblaDirectionIs => 'Qibla direction is:';
 }

@@ -222,7 +222,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get permissionRequired => 'الإذن مطلوب';
 
   @override
-  String get notificationPermission => 'يرجى تفعيل الإشعارات في إعدادات النظام';
+  String get notificationPermission => 'يرجى تمكين الإشعارات في إعدادات النظام';
 
   @override
   String get exactAlarmPermission => 'يحتاج التطبيق إلى إذن لجدولة التنبيهات الدقيقة لتذكير الأذكار. يرجى منح هذا الإذن في إعدادات النظام.';
@@ -441,8 +441,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get shareApp => 'مشاركة التطبيق';
 
   @override
-  String pageNotAvailable(int number) {
-    return 'الصفحة $number غير متوفرة';
+  String page(int number) {
+    return 'الصفحة';
   }
 
   @override
@@ -468,4 +468,78 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get updatingLocation => 'جاري تحديث الموقع...';
+
+  @override
+  String get adsDisabled => 'الإعلانات معطلة في هذا الإصدار';
+
+  @override
+  String get pressBackToExit => 'هل أنت متأكد أنك تريد الخروج؟';
+
+  @override
+  String get selectSurah => 'اختر السورة';
+
+  @override
+  String pageNotAvailable(int number) {
+    return 'الصفحة $number غير متوفرة';
+  }
+
+  @override
+  String get addBookmark => 'إضافة الصفحة إلى المفضلة';
+
+  @override
+  String get removeBookmark => 'إزالة الصفحة من المفضلة';
+
+  @override
+  String get viewBookmarks => 'عرض المفضلة';
+
+  @override
+  String get tapToView => 'اضغط لعرض هذه الصفحة';
+
+  @override
+  String get bookmarksEmpty => 'لا يوجد صفحات مفضلة ';
+
+  @override
+  String get qiblaDirection => 'اتجاه القبلة';
+
+  @override
+  String get compassNotAvailable => 'البوصلة غير متوفرة على هذا الجهاز';
+
+  @override
+  String get enterCityName => 'أدخل اسم المدينة';
+
+  @override
+  String get useMyLocation => 'استخدم موقعي';
+
+  @override
+  String get qiblaIs => 'اتجاه القبلة:';
+
+  @override
+  String get distanceToKaaba => 'المسافة إلى الكعبة';
+
+  @override
+  String get latitude => 'خط العرض';
+
+  @override
+  String get longitude => 'خط الطول';
+
+  @override
+  String get qiblaCompass => 'بوصلة القبلة';
+
+  @override
+  String get youAreFacingQiblaDirection => 'أنت تتجه نحو القبلة';
+
+  @override
+  String get turnToFindQiblaDirection => 'استدارة لإيجاد اتجاه القبلة';
+
+  @override
+  String get currentHeading => 'الاتجاه الحالي';
+
+  @override
+  String get yourLocation => 'موقعك';
+
+  @override
+  String get angleToQibla => 'الزاوية إلى القبلة';
+
+  @override
+  String get qiblaDirectionIs => 'Qibla direction is:';
 }

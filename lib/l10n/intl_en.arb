@@ -351,6 +351,9 @@
   "loadingLocation": "Loading location...",
   "errorLoadingLocation": "Error loading location",
   "close": "Close",
+  "@close": {
+    "description": "Text for close button"
+  },
   "prayerTimesSettings": "Prayer Times Settings",
   "calculationMethod": "Calculation Method",
   "madhabAsrCalculation": "Madhab (Asr Calculation)",
@@ -387,9 +390,9 @@
   "@shareApp": {
     "description": "Label for share app option in settings"
   },
-  "pageNotAvailable": "Page {number} not available",
-  "@pageNotAvailable": {
-    "description": "Message shown when a Quran page is not available",
+  "page": "Page {number}",
+  "@page": {
+    "description": "Text for page number",
     "placeholders": {
       "number": {
         "type": "int",
@@ -432,5 +435,105 @@
   "openSettings": "Settings",
   "@openSettings": {
     "description": "Label for button to open settings"
+  },
+  "adsDisabled": "Ads are disabled in this version",
+  "@adsDisabled": {
+    "description": "Message shown when ads are disabled"
+  },
+  "pressBackToExit": "Are you sure you want to exit?",
+
+  "selectSurah": "Select Surah",
+  "@selectSurah": {
+    "description": "Title for the surah selection dialog"
+  },
+  "pageNotAvailable": "Page {number} not available",
+  "@pageNotAvailable": {
+    "description": "Message shown when a Quran page is not available",
+    "placeholders": {
+      "number": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "addBookmark": "Add Bookmark",
+  "@addBookmark": {
+    "description": "Text for add bookmark action"
+  },
+  "removeBookmark": "Remove Bookmark",
+  "@removeBookmark": {
+    "description": "Text for remove bookmark action"
+  },
+  "viewBookmarks": "View Bookmarks",
+  "@viewBookmarks": {
+    "description": "Text for view bookmarks action"
+  },
+  "tapToView": "Tap to view this page",
+  "@tapToView": {
+    "description": "Hint text for tapping on a bookmark to view it"
+  },
+  "bookmarksEmpty": "No bookmarks yet",
+  "@bookmarksEmpty": {
+    "description": "Message shown when no bookmarks exist"
+  },
+  "qiblaDirection": "Qibla Direction",
+  "@qiblaDirection": {
+    "description": "Title for Qibla direction feature"
+  },
+  "compassNotAvailable": "Compass not available on this device",
+  "@compassNotAvailable": {
+    "description": "Message shown when compass is not available"
+  },
+  "enterCityName": "Enter city name",
+  "@enterCityName": {
+    "description": "Label for city name input field"
+  },
+  "useMyLocation": "Use my location",
+  "@useMyLocation": {
+    "description": "Label for use my location button"
+  },
+  "qiblaIs": "Qibla direction:",
+  "@qiblaIs": {
+    "description": "Label for Qibla direction info"
+  },
+  "distanceToKaaba": "Distance to Kaaba",
+  "@distanceToKaaba": {
+    "description": "Label for distance to Kaaba info"
+  },
+  "latitude": "Latitude",
+  "@latitude": {
+    "description": "Label for latitude info"
+  },
+  "longitude": "Longitude",
+  "@longitude": {
+    "description": "Label for longitude info"
+  },
+  "qiblaCompass": "Qibla Compass",
+  "@qiblaCompass": {
+    "description": "Label for Qibla compass"
+  },
+  "youAreFacingQiblaDirection": "You are facing Qibla direction",
+  "@youAreFacingQiblaDirection": {
+    "description": "Label for you are facing Qibla direction"
+  },
+  "turnToFindQiblaDirection": "Turn to find Qibla direction",
+  "@turnToFindQiblaDirection": {
+    "description": "Label for turn to find Qibla direction"
+  },
+  "currentHeading": "Current heading",
+  "@currentHeading": {
+    "description": "Label for current heading"
+  },
+  "yourLocation": "Your Location",
+  "@yourLocation": {
+    "description": "Label for your location"
+  },
+  "angleToQibla": "Angle to Qibla",
+  "@angleToQibla": {
+    "description": "Label for angle to Qibla"
+  },
+  "qiblaDirectionIs": "Qibla direction is:",
+  "@qiblaDirectionIs": {
+    "description": "Label for qibla direction"
   }
 }

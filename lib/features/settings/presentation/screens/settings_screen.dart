@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/app_theme.dart';
-import '../../../../core/services/notification_service.dart';
 import '../../../tasbih/presentation/screens/tasbih_screen.dart';
 import '../providers/settings_providers.dart';
+import '../../../qibla/presentation/screens/qibla_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -14,10 +14,6 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(settingsControllerProvider);
     final isDarkMode = ref.watch(themeProvider) == ThemeMode.dark;
-    final morningReminder = ref.watch(morningReminderProvider);
-    final eveningReminder = ref.watch(eveningReminderProvider);
-    final fontSize = ref.watch(fontSizeProvider);
-    final notificationService = ref.watch(notificationServiceProvider);
     final l10n = S.of(context);
     final currentLanguage = ref.watch(languageProvider);
 
@@ -37,17 +33,7 @@ class SettingsScreen extends ConsumerWidget {
                 value: isDarkMode,
                 onChanged: controller.toggleTheme,
               ),
-              ListTile(
-                title: Text(l10n.fontSize),
-                subtitle: Slider(
-                  value: fontSize,
-                  min: 0.8,
-                  max: 1.4,
-                  divisions: 6,
-                  label: '${(fontSize * 100).round()}%',
-                  onChanged: controller.setFontSize,
-                ),
-              ),
+            
               ListTile(
                 title: Text(l10n.language),
                 trailing: Row(
@@ -73,12 +59,12 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SizedBox(height: 16.h),
           _buildSection(
-            title: l10n.tools ?? 'Tools',
+            title: l10n.tools ,
             children: [
               ListTile(
                 leading: const Icon(Icons.touch_app),
                 title: Text(l10n.tasbih),
-                subtitle: Text(l10n.digitalTasbih ?? 'Digital Tasbih Counter'),
+                subtitle: Text(l10n.digitalTasbih),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -88,41 +74,18 @@ class SettingsScreen extends ConsumerWidget {
                   );
                 },
               ),
-            ],
-          ),
-          SizedBox(height: 16.h),
-          _buildSection(
-            title: l10n.notifications,
-            children: [
-              SwitchListTile(
-                title: Text(l10n.morningAzkarReminder),
-                subtitle: Text(l10n.dailyReminderForMorningAzkar),
-                value: morningReminder,
-                onChanged: (value) => controller.handleNotificationToggle(
-                  context: context,
-                  notificationService: notificationService,
-                  reminderProvider: morningReminderProvider,
-                  value: value,
-                  id: 1,
-                  title: l10n.morningAzkar,
-                  body: l10n.timeForYourMorningRemembrance,
-                  time: const TimeOfDay(hour: 5, minute: 0),
-                ),
-              ),
-              SwitchListTile(
-                title: Text(l10n.eveningAzkarReminder),
-                subtitle: Text(l10n.dailyReminderForEveningAzkar),
-                value: eveningReminder,
-                onChanged: (value) => controller.handleNotificationToggle(
-                  context: context,
-                  notificationService: notificationService,
-                  reminderProvider: eveningReminderProvider,
-                  value: value,
-                  id: 2,
-                  title: l10n.eveningAzkar,
-                  body: l10n.timeForYourEveningRemembrance,
-                  time: const TimeOfDay(hour: 17, minute: 0),
-                ),
+              ListTile(
+                leading: const Icon(Icons.explore),
+                title: Text(l10n.qiblaDirection),
+                subtitle: Text(l10n.qiblaIs.split(':')[0]),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const QiblaCompass(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -132,7 +95,7 @@ class SettingsScreen extends ConsumerWidget {
             children: [
               ListTile(
                 title: Text(l10n.version),
-                trailing: const Text('1.0.4'),
+                trailing: const Text('1.0.10'),
               ),
             
               ListTile(

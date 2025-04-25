@@ -1,22 +1,17 @@
-import 'package:azkary/features/quran/data/models/surah_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:azkary/generated/l10n.dart';
 import 'package:azkary/core/services/storage_service.dart';
 import 'package:azkary/core/services/ads_service.dart';
 import 'package:azkary/core/providers/ui_providers.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../widgets/surah_selection_dialog.dart';
-
-final isFullScreenProvider = StateProvider<bool>((ref) => false);
-final currentPageProvider = StateProvider<int>((ref) {
-  // Initialize with the last viewed page from storage
-  final storageService = ref.watch(storageServiceProvider);
-  return storageService.getLastQuranPage();
-});
-final totalPagesProvider = Provider<int>((ref) => 604);
+import '../widgets/quran_page_view.dart';
+import '../widgets/quran_control_buttons.dart';
+import '../providers/quran_providers.dart';
+import 'quran_bookmarks_screen.dart';
 
 class QuranScreen extends ConsumerStatefulWidget {
   const QuranScreen({super.key});
@@ -32,24 +27,23 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
   @override
   void initState() {
     super.initState();
-    final currentPage = ref.read(currentPageProvider);
-    final totalPages = ref.read(totalPagesProvider);
+    _initializePageController();
 
-    // Initialize the page controller with the current page
+    // Ensure ads are loaded when the screen is created
+    Future.microtask(() {
+      if (!_isDisposed && mounted) {
+        ref.read(adsServiceProvider.notifier).ensureBannerAdLoaded();
+      }
+    });
+  }
+
+  void _initializePageController() {
+    final currentPage = ref.read(currentQuranPageProvider);
+    final totalPages = ref.read(totalQuranPagesProvider);
+
     _pageController = PageController(
       initialPage: totalPages - currentPage - 1,
     );
-
-    // Initialize ads
-    Future.microtask(() {
-      if (!_isDisposed) {
-        try {
-          ref.read(adsServiceProvider.notifier).initBannerAd();
-        } catch (e) {
-          debugPrint('Error initializing banner ad: $e');
-        }
-      }
-    });
   }
 
   Future<void> _saveLastPage(int page) async {
@@ -66,10 +60,120 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
       context: context,
       builder: (context) => SurahSelectionDialog(
         onPageSelected: (page) {
-          final totalPages = ref.read(totalPagesProvider);
+          final totalPages = ref.read(totalQuranPagesProvider);
           _pageController.jumpToPage(totalPages - page);
         },
       ),
+    );
+  }
+
+  // void _showBookmarksDialog() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) => QuranBookmarksDialog(
+  //       onPageSelected: (page) {
+  //         final totalPages = ref.read(totalQuranPagesProvider);
+  //         _pageController.jumpToPage(totalPages - page);
+  //       },
+  //     ),
+  //   );
+  // }
+
+  Future<void> _navigateToBookmarksScreen() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const QuranBookmarksScreen(),
+      ),
+    );
+
+    if (result != null && result is int) {
+      final totalPages = ref.read(totalQuranPagesProvider);
+      _pageController.jumpToPage(totalPages - result);
+    }
+  }
+
+  void _toggleFullScreen() {
+    final isFullScreen = ref.read(isQuranFullScreenProvider);
+    // Toggle full screen state
+    ref.read(isQuranFullScreenProvider.notifier).state = !isFullScreen;
+    setBottomNavBarVisibility(ref, isFullScreen);
+
+    if (isFullScreen) {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    }
+  }
+
+  void _exitFullScreenMode() {
+    final isFullScreen = ref.read(isQuranFullScreenProvider);
+    if (isFullScreen) {
+      ref.read(isQuranFullScreenProvider.notifier).state = false;
+      setBottomNavBarVisibility(ref, true);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    }
+  }
+
+  void _toggleBookmark(int page) {
+    ref.read(quranBookmarksProvider.notifier).toggleBookmark(page, context);
+  }
+
+  void _showBookmarkContextMenu(BuildContext context, int currentPage,
+      bool isCurrentPageBookmarked, List<int> bookmarks) {
+    final l10n = S.of(context);
+    final RenderBox renderBox = context.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(Offset.zero);
+
+    showMenu(
+      context: context,
+      position: RelativeRect.fromLTRB(
+        position.dx + 1,
+        position.dy + 70,
+        position.dx + 100,
+        position.dy + 0,
+      ),
+      items: [
+        PopupMenuItem(
+          value: 'toggle',
+          child: Row(
+            children: [
+              Icon(
+                isCurrentPageBookmarked
+                    ? Icons.bookmark_remove
+                    : Icons.bookmark_add,
+                color: Theme.of(context).primaryColor,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                isCurrentPageBookmarked
+                    ? l10n.removeBookmark
+                    : l10n.addBookmark,
+              ),
+            ],
+          ),
+        ),
+        if (bookmarks.isNotEmpty)
+          PopupMenuItem(
+            value: 'view',
+            child: Row(
+              children: [
+                Icon(
+                  Icons.list,
+                  color: Theme.of(context).primaryColor,
+                ),
+                const SizedBox(width: 8),
+                Text(l10n.viewBookmarks),
+              ],
+            ),
+          ),
+      ],
+    ).then(
+      (value) {
+        if (value == 'toggle') {
+          _toggleBookmark(currentPage);
+        } else if (value == 'view') {
+          _navigateToBookmarksScreen();
+        }
+      },
     );
   }
 
@@ -77,180 +181,72 @@ class _QuranScreenState extends ConsumerState<QuranScreen> {
   void dispose() {
     _isDisposed = true;
     _pageController.dispose();
-    try {
-      ref.read(adsServiceProvider.notifier).disposeBannerAd();
-    } catch (e) {
-      debugPrint('Error disposing banner ad: $e');
-    }
     super.dispose();
-  }
-
-  void _toggleFullScreen() {
-    final isFullScreen = ref.read(isFullScreenProvider);
-    // Toggle full screen state
-    ref.read(isFullScreenProvider.notifier).state = !isFullScreen;
-    setBottomNavBarVisibility(ref, isFullScreen);
-    if (!isFullScreen) {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    } else {
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isFullScreen = ref.watch(isFullScreenProvider);
-    final currentPage = ref.watch(currentPageProvider);
-    final totalPages = ref.watch(totalPagesProvider);
+    final isFullScreen = ref.watch(isQuranFullScreenProvider);
+    final currentPage = ref.watch(currentQuranPageProvider);
+    final bookmarks = ref.watch(quranBookmarksProvider);
+    final isCurrentPageBookmarked = bookmarks.contains(currentPage);
     final adsService = ref.watch(adsServiceProvider);
-    final l10n = S.of(context);
 
-    return Scaffold(
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: _toggleFullScreen,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              PageView.builder(
-                controller: _pageController,
-                reverse: true, // To read from right to left
-                onPageChanged: (index) {
-                  final newPage = totalPages - index - 1;
-                  ref.read(currentPageProvider.notifier).state = newPage;
-                  // Save the page whenever it changes
-                  _saveLastPage(newPage);
-                },
-                itemCount: totalPages,
-                itemBuilder: (context, index) {
-                  // Convert from 0-based index to 1-based page number
-                  final pageNumber = totalPages - index;
-                  return InteractiveViewer(
-                    minScale: 1.0,
-                    maxScale: 3.0,
-                    child: Container(
-                      color: const Color.fromARGB(255, 245, 243, 233),
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  surahs
-                                      .firstWhere(
-                                        (surah) =>
-                                            surah.startPage <= pageNumber &&
-                                            (surah.endPage ??
-                                                    surah.startPage) >=
-                                                pageNumber,
-                                        orElse: () => surahs.first,
-                                      )
-                                      .nameArabic,
-                                  style: TextStyle(
-                                    fontSize: 12.spMin,
-                                    fontFamily: 'Uthmanic',
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        const Color.fromARGB(255, 145, 64, 11),
-                                  ),
-                                ),
-                                Text(
-                                  '$pageNumber',
-                                  style: TextStyle(
-                                    fontSize: 12.spMin,
-                                    fontWeight: FontWeight.bold,
-                                    color:
-                                        const Color.fromARGB(255, 145, 64, 11),
-                                  ),
-                                ),
-                                Text(
-                                  '  جزء ${((pageNumber - 2) ~/ 20 + 1)}',
-                                  style: TextStyle(
-                                    fontSize: 12.spMin,
-                                    color: const Color.fromARGB(255, 145, 64, 11),
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Uthmanic',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          5.verticalSpace,
-                          Center(
-                            child: Image.asset(
-                              'assets/images/quran/p$pageNumber.png',
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Center(
-                                  child: Text(
-                                    l10n.pageNotAvailable(pageNumber),
-                                    style: TextStyle(
-                                      fontSize: 18.spMin,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+    return PopScope(
+      canPop: !isFullScreen,
+      onPopInvoked: (didPop) {
+        if (didPop) {
+          return;
+        }
+
+        // If in full screen mode, exit full screen mode first
+        if (isFullScreen) {
+          _exitFullScreenMode();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 245, 243, 233),
+        body: SafeArea(
+          child: GestureDetector(
+            onTap: _toggleFullScreen,
+            child: Column(
+              children: [
+                // Expanded area containing the Quran content
+                Expanded(
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Main content - Quran pages
+                      QuranPageView(
+                        pageController: _pageController,
+                        onPageChanged: _saveLastPage,
                       ),
-                    ),
-                  );
-                },
-              ),
-              // fehrs
-              if (isFullScreen)
-                Positioned(
-                  top: 5,
-                  right: 10,
-                  child: Container(
-                    padding: const EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.7),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.menu_book,
-                        color: Colors.white,
-                        size: 20.spMin,
+                      
+                      // Control buttons overlay
+                      QuranControlButtons(
+                        isFullScreen: isFullScreen,
+                        currentPage: currentPage,
+                        bookmarks: bookmarks,
+                        isCurrentPageBookmarked: isCurrentPageBookmarked,
+                        onSurahSelectionPressed: _showSurahSelectionDialog,
+                        onToggleBookmark: _toggleBookmark,
+                        onShowBookmarkContextMenu: _showBookmarkContextMenu,
                       ),
-                      onPressed: _showSurahSelectionDialog,
-                    ),
+                    ],
                   ),
                 ),
-              // Add banner ad at the bottom
-              if (ref.watch(adsServiceProvider).isBannerAdLoaded &&
-                  ref.watch(adsServiceProvider).bannerAd != null &&
-                  isFullScreen)
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: ref
-                        .watch(adsServiceProvider)
-                        .bannerAd!
-                        .size
-                        .width
-                        .toDouble(),
-                    height: ref
-                        .watch(adsServiceProvider)
-                        .bannerAd!
-                        .size
-                        .height
-                        .toDouble(),
-                    child:
-                        AdWidget(ad: ref.watch(adsServiceProvider).bannerAd!),
-                  ),
+                
+                // Fixed height container for ad in fullscreen mode
+                Container(
+                  height: isFullScreen ? 70.h : 0.0, // Fixed height
+                  width: double.infinity,
+                  color: isFullScreen ? Colors.transparent : Colors.transparent,
+                  child: isFullScreen && adsService.isNativeAdLoaded && adsService.nativeAd != null
+                    ? AdWidget(ad: adsService.nativeAd!)
+                    : const SizedBox.shrink(),
                 ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

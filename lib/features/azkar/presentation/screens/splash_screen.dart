@@ -33,12 +33,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 245, 243, 233),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/logo.svg',
+            Image.asset(
+              'assets/images/logo.png',
               width: 150.w,
               height: 150.h,
             )
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
               'Azkary',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
               ),
             )
             .animate()

@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(error) => "Error playing audio: ${error}";
 
-  static String m2(number) => "Page ${number} not available";
+  static String m2(number) => "Page ${number}";
 
-  static String m3(count) => "Repeat ${count} times";
+  static String m3(number) => "Page ${number} not available";
 
-  static String m4(count) => "Target: ${count}";
+  static String m4(count) => "Repeat ${count} times";
+
+  static String m5(count) => "Target: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -36,15 +38,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "addAllFieldsFirst": MessageLookupByLibrary.simpleMessage(
       "Add all the data first",
     ),
+    "addBookmark": MessageLookupByLibrary.simpleMessage("Add Bookmark"),
     "addBookmarksHint": MessageLookupByLibrary.simpleMessage(
       "Add Azkar to your bookmarks\nto access them quickly",
     ),
     "addWidgetToHomeScreen": MessageLookupByLibrary.simpleMessage(
       "Add Widget to Home Screen",
     ),
+    "adsDisabled": MessageLookupByLibrary.simpleMessage(
+      "Ads are disabled in this version",
+    ),
     "alreadyRegistered": MessageLookupByLibrary.simpleMessage(
       "Already registered",
     ),
+    "angleToQibla": MessageLookupByLibrary.simpleMessage("Angle to Qibla"),
     "appName": MessageLookupByLibrary.simpleMessage("Azkary"),
     "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
     "asr": MessageLookupByLibrary.simpleMessage("Asr"),
@@ -55,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "azkarCategories": MessageLookupByLibrary.simpleMessage("Azkar Categories"),
     "bagsNumber": MessageLookupByLibrary.simpleMessage("Bags number"),
     "bookmarks": MessageLookupByLibrary.simpleMessage("Bookmarks"),
+    "bookmarksEmpty": MessageLookupByLibrary.simpleMessage("No bookmarks yet"),
     "calculationMethod": MessageLookupByLibrary.simpleMessage(
       "Calculation Method",
     ),
@@ -65,6 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Choose Waste Type First",
     ),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
+    "compassNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Compass not available on this device",
+    ),
+    "currentHeading": MessageLookupByLibrary.simpleMessage("Current heading"),
     "dailyReminderForEveningAzkar": MessageLookupByLibrary.simpleMessage(
       "Daily reminder for evening azkar",
     ),
@@ -78,6 +90,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "dhuhr": MessageLookupByLibrary.simpleMessage("Dhuhr"),
     "digitalTasbih": MessageLookupByLibrary.simpleMessage("Digital Tasbih"),
+    "distanceToKaaba": MessageLookupByLibrary.simpleMessage(
+      "Distance to Kaaba",
+    ),
     "dragWidget": MessageLookupByLibrary.simpleMessage(
       "Drag and place the widget where you want it",
     ),
@@ -85,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "egyptianGeneralAuthorityOfSurvey": MessageLookupByLibrary.simpleMessage(
       "Egyptian General Authority of Survey",
     ),
+    "enterCityName": MessageLookupByLibrary.simpleMessage("Enter city name"),
     "enterFullScreen": MessageLookupByLibrary.simpleMessage(
       "Enter full screen",
     ),
@@ -134,6 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kg": MessageLookupByLibrary.simpleMessage("KG"),
     "kuwait": MessageLookupByLibrary.simpleMessage("Kuwait"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "latitude": MessageLookupByLibrary.simpleMessage("Latitude"),
     "loadingLocation": MessageLookupByLibrary.simpleMessage(
       "Loading location...",
     ),
@@ -158,6 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "longPressHomeScreen": MessageLookupByLibrary.simpleMessage(
       "Long press on an empty area of your home screen",
     ),
+    "longitude": MessageLookupByLibrary.simpleMessage("Longitude"),
     "madhabAsrCalculation": MessageLookupByLibrary.simpleMessage(
       "Madhab (Asr Calculation)",
     ),
@@ -207,7 +225,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "openSettings": MessageLookupByLibrary.simpleMessage("Settings"),
     "ordersNumber": MessageLookupByLibrary.simpleMessage("Orders number"),
     "otp": MessageLookupByLibrary.simpleMessage("OTP"),
-    "pageNotAvailable": m2,
+    "page": m2,
+    "pageNotAvailable": m3,
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordCompleted": MessageLookupByLibrary.simpleMessage(
       "Password has entered successfully",
@@ -228,7 +247,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "prayerTimesSettings": MessageLookupByLibrary.simpleMessage(
       "Prayer Times Settings",
     ),
+    "pressBackToExit": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to exit?",
+    ),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
+    "qiblaCompass": MessageLookupByLibrary.simpleMessage("Qibla Compass"),
+    "qiblaDirection": MessageLookupByLibrary.simpleMessage("Qibla Direction"),
+    "qiblaDirectionIs": MessageLookupByLibrary.simpleMessage(
+      "Qibla direction is:",
+    ),
+    "qiblaIs": MessageLookupByLibrary.simpleMessage("Qibla direction:"),
     "quran": MessageLookupByLibrary.simpleMessage("Quran"),
     "quranicDuas": MessageLookupByLibrary.simpleMessage("Quranic Duas"),
     "quranicDuasAr": MessageLookupByLibrary.simpleMessage("أدعية قرآنية"),
@@ -241,9 +269,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "registerWithOtp": MessageLookupByLibrary.simpleMessage(
       "Register with OTP",
     ),
+    "removeBookmark": MessageLookupByLibrary.simpleMessage("Remove Bookmark"),
     "repeat": MessageLookupByLibrary.simpleMessage("Repeat"),
-    "repeatCount": m3,
+    "repeatCount": m4,
     "saveAndClose": MessageLookupByLibrary.simpleMessage("Save & Close"),
+    "selectSurah": MessageLookupByLibrary.simpleMessage("Select Surah"),
     "selectWidgets": MessageLookupByLibrary.simpleMessage(
       "Select \'Widgets\' or \'Add widget\'",
     ),
@@ -263,7 +293,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "success": MessageLookupByLibrary.simpleMessage("Success..."),
     "sunrise": MessageLookupByLibrary.simpleMessage("Sunrise"),
-    "target": m4,
+    "tapToView": MessageLookupByLibrary.simpleMessage("Tap to view this page"),
+    "target": m5,
     "tasbih": MessageLookupByLibrary.simpleMessage("Tasbih"),
     "tehran": MessageLookupByLibrary.simpleMessage("Tehran"),
     "ticketNo": MessageLookupByLibrary.simpleMessage("Ticket No"),
@@ -287,6 +318,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "turkey": MessageLookupByLibrary.simpleMessage("Turkey"),
+    "turnToFindQiblaDirection": MessageLookupByLibrary.simpleMessage(
+      "Turn to find Qibla direction",
+    ),
     "ummAlQuraUniversityMakkah": MessageLookupByLibrary.simpleMessage(
       "Umm al-Qura University, Makkah",
     ),
@@ -299,8 +333,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "updatingLocation": MessageLookupByLibrary.simpleMessage(
       "Updating location...",
     ),
+    "useMyLocation": MessageLookupByLibrary.simpleMessage("Use my location"),
     "vehicleLoads": MessageLookupByLibrary.simpleMessage("Vehicle Loads"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
+    "viewBookmarks": MessageLookupByLibrary.simpleMessage("View Bookmarks"),
     "wakeupAzkar": MessageLookupByLibrary.simpleMessage("Wake Up Azkar"),
     "wakeupAzkarAr": MessageLookupByLibrary.simpleMessage("أذكار الاستيقاظ"),
     "wakeupAzkarDesc": MessageLookupByLibrary.simpleMessage(
@@ -317,5 +353,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "widgetUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Widget updated successfully",
     ),
+    "youAreFacingQiblaDirection": MessageLookupByLibrary.simpleMessage(
+      "You are facing Qibla direction",
+    ),
+    "yourLocation": MessageLookupByLibrary.simpleMessage("Your Location"),
   };
 }

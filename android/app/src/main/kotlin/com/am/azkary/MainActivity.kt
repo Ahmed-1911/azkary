@@ -9,6 +9,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import android.os.Bundle
+import io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin
 
 class MainActivity: FlutterActivity() {
     private val WIDGET_CHANNEL = "com.am.azkary/widget"
@@ -26,6 +27,13 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         
         Log.d(TAG, "Configuring Flutter Engine")
+        
+        // Register the native ad factory
+        GoogleMobileAdsPlugin.registerNativeAdFactory(
+            flutterEngine,
+            "listTile",
+            ListTileNativeAdFactory(context)
+        )
         
         // Widget update channel
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, WIDGET_CHANNEL).setMethodCallHandler { call, result ->
@@ -82,6 +90,13 @@ class MainActivity: FlutterActivity() {
                 result.notImplemented()
             }
         }
+    }
+    
+    override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        super.cleanUpFlutterEngine(flutterEngine)
+        
+        // Unregister the native ad factory
+        GoogleMobileAdsPlugin.unregisterNativeAdFactory(flutterEngine, "listTile")
     }
     
     private fun updateWidgets() {

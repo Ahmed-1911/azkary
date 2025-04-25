@@ -11,6 +11,7 @@ class StorageService {
   static const String _eveningReminderKey = 'evening_reminder';
   static const String _languageKey = 'language';
   static const String _lastQuranPageKey = 'last_quran_page';
+  static const String _quranBookmarksKey = 'quran_bookmarks';
   
   late final SharedPreferences _prefs;
   bool _isInitialized = false;
@@ -73,6 +74,62 @@ class StorageService {
       await _prefs.setInt(_lastQuranPageKey, page);
     } catch (e) {
       debugPrint('Error saving last Quran page: $e');
+    }
+  }
+
+  // Get all Quran bookmarks
+  List<int> getQuranBookmarks() {
+    try {
+      _checkInitialization();
+      final bookmarksJson = _prefs.getStringList(_quranBookmarksKey) ?? [];
+      return bookmarksJson.map((e) => int.parse(e)).toList();
+    } catch (e) {
+      debugPrint('Error getting Quran bookmarks: $e');
+      return [];
+    }
+  }
+
+  // Add a Quran bookmark
+  Future<void> addQuranBookmark(int page) async {
+    try {
+      _checkInitialization();
+      final bookmarks = getQuranBookmarks();
+      if (!bookmarks.contains(page)) {
+        bookmarks.add(page);
+        await _prefs.setStringList(
+          _quranBookmarksKey, 
+          bookmarks.map((e) => e.toString()).toList()
+        );
+      }
+    } catch (e) {
+      debugPrint('Error adding Quran bookmark: $e');
+    }
+  }
+
+  // Remove a Quran bookmark
+  Future<void> removeQuranBookmark(int page) async {
+    try {
+      _checkInitialization();
+      final bookmarks = getQuranBookmarks();
+      bookmarks.remove(page);
+      await _prefs.setStringList(
+        _quranBookmarksKey, 
+        bookmarks.map((e) => e.toString()).toList()
+      );
+    } catch (e) {
+      debugPrint('Error removing Quran bookmark: $e');
+    }
+  }
+
+  // Check if a page is bookmarked
+  bool isQuranPageBookmarked(int page) {
+    try {
+      _checkInitialization();
+      final bookmarks = getQuranBookmarks();
+      return bookmarks.contains(page);
+    } catch (e) {
+      debugPrint('Error checking if Quran page is bookmarked: $e');
+      return false;
     }
   }
 

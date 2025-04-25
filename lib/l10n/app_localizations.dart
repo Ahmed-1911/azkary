@@ -797,7 +797,7 @@ abstract class AppLocalizations {
   /// **'Error loading location'**
   String get errorLoadingLocation;
 
-  /// No description provided for @close.
+  /// Text for close button
   ///
   /// In en, this message translates to:
   /// **'Close'**
@@ -947,11 +947,11 @@ abstract class AppLocalizations {
   /// **'Share App'**
   String get shareApp;
 
-  /// Message shown when a Quran page is not available
+  /// Text for page number
   ///
   /// In en, this message translates to:
-  /// **'Page {number} not available'**
-  String pageNotAvailable(int number);
+  /// **'Page {number}'**
+  String page(int number);
 
   /// Tooltip for the button to hide the bottom navigation bar
   ///
@@ -1000,6 +1000,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Updating location...'**
   String get updatingLocation;
+
+  /// Message shown when ads are disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Ads are disabled in this version'**
+  String get adsDisabled;
+
+  /// No description provided for @pressBackToExit.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to exit?'**
+  String get pressBackToExit;
+
+  /// Title for the surah selection dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Select Surah'**
+  String get selectSurah;
+
+  /// Message shown when a Quran page is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Page {number} not available'**
+  String pageNotAvailable(int number);
+
+  /// Text for add bookmark action
+  ///
+  /// In en, this message translates to:
+  /// **'Add Bookmark'**
+  String get addBookmark;
+
+  /// Text for remove bookmark action
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Bookmark'**
+  String get removeBookmark;
+
+  /// Text for view bookmarks action
+  ///
+  /// In en, this message translates to:
+  /// **'View Bookmarks'**
+  String get viewBookmarks;
+
+  /// Hint text for tapping on a bookmark to view it
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to view this page'**
+  String get tapToView;
+
+  /// Message shown when no bookmarks exist
+  ///
+  /// In en, this message translates to:
+  /// **'No bookmarks yet'**
+  String get bookmarksEmpty;
+
+  /// Title for Qibla direction feature
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla Direction'**
+  String get qiblaDirection;
+
+  /// Message shown when compass is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Compass not available on this device'**
+  String get compassNotAvailable;
+
+  /// Label for city name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter city name'**
+  String get enterCityName;
+
+  /// Label for use my location button
+  ///
+  /// In en, this message translates to:
+  /// **'Use my location'**
+  String get useMyLocation;
+
+  /// Label for Qibla direction info
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla direction:'**
+  String get qiblaIs;
+
+  /// Label for distance to Kaaba info
+  ///
+  /// In en, this message translates to:
+  /// **'Distance to Kaaba'**
+  String get distanceToKaaba;
+
+  /// Label for latitude info
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get latitude;
+
+  /// Label for longitude info
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get longitude;
+
+  /// Label for Qibla compass
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla Compass'**
+  String get qiblaCompass;
+
+  /// Label for you are facing Qibla direction
+  ///
+  /// In en, this message translates to:
+  /// **'You are facing Qibla direction'**
+  String get youAreFacingQiblaDirection;
+
+  /// Label for turn to find Qibla direction
+  ///
+  /// In en, this message translates to:
+  /// **'Turn to find Qibla direction'**
+  String get turnToFindQiblaDirection;
+
+  /// Label for current heading
+  ///
+  /// In en, this message translates to:
+  /// **'Current heading'**
+  String get currentHeading;
+
+  /// Label for your location
+  ///
+  /// In en, this message translates to:
+  /// **'Your Location'**
+  String get yourLocation;
+
+  /// Label for angle to Qibla
+  ///
+  /// In en, this message translates to:
+  /// **'Angle to Qibla'**
+  String get angleToQibla;
+
+  /// Label for qibla direction
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla direction is:'**
+  String get qiblaDirectionIs;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

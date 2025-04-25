@@ -93,7 +93,7 @@ class AzkarCard extends ConsumerWidget {
                     ),
                     SizedBox(width: 4.w),
                     Text(
-                      '${l10n?.repeat} $remainingCount ${l10n?.times}',
+                      '${l10n.repeat} $remainingCount ${l10n.times}',
                       style: TextStyle(
                         fontSize: 12.sp,
                         color: Theme.of(context).primaryColor,

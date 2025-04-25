@@ -6,13 +6,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/theme/app_theme.dart';
-import 'core/services/notification_service.dart';
 import 'core/services/storage_service.dart';
+import 'core/services/ads_service.dart';
 import 'features/azkar/presentation/screens/splash_screen.dart';
 import 'features/bookmarks/presentation/providers/bookmark_providers.dart';
 import 'features/prayer_times/presentation/providers/prayer_times_providers.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:async';
+import 'dart:io' show Platform;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Global provider container for use in main and for background tasks
@@ -49,31 +50,27 @@ void main() async {
       child: const MyApp(),
     ),
   );
-  
-  // Schedule notifications after app is running
-  // This is done after runApp to ensure the app is responsive first
- // _scheduleNotifications(globalContainer);
 }
 
 Future<void> _initializeAds() async {
   try {
-    // Initialize Mobile Ads with a timeout
+    // Initialize Mobile Ads SDK with a timeout
     bool adsInitialized = false;
     
     await Future.any([
       MobileAds.instance.initialize().then((_) {
         adsInitialized = true;
-        debugPrint('MobileAds initialized successfully');
+        debugPrint('MobileAds SDK initialized successfully');
       }),
       Future.delayed(const Duration(seconds: 5)).then((_) {
         if (!adsInitialized) {
-          debugPrint('MobileAds initialization timed out, continuing anyway');
+          debugPrint('MobileAds SDK initialization timed out, continuing anyway');
         }
       })
     ]);
   } catch (e) {
     // Continue even if ads initialization fails
-    debugPrint('MobileAds initialization failed: $e');
+    debugPrint('MobileAds SDK initialization failed: $e');
   }
 }
 
@@ -89,15 +86,6 @@ Future<SharedPreferences> _initializeSharedPreferences() async {
 }
 
 Future<void> _initializeServices(ProviderContainer container) async {
-  // Initialize notification service
-  try {
-    debugPrint('Initializing notification service');
-    await container.read(notificationServiceProvider).initialize();
-    debugPrint('Notification service initialized successfully');
-  } catch (e) {
-    debugPrint('Error initializing notification service: $e');
-  }
-  
   // Initialize storage service
   try {
     debugPrint('Initializing storage service');
@@ -105,6 +93,15 @@ Future<void> _initializeServices(ProviderContainer container) async {
     debugPrint('Storage service initialized successfully');
   } catch (e) {
     debugPrint('Error initializing storage service: $e');
+  }
+  
+  // Initialize ads service
+  try {
+    debugPrint('Initializing ads service');
+    await container.read(adsServiceProvider.notifier).initialize();
+    debugPrint('Ads service initialized successfully');
+  } catch (e) {
+    debugPrint('Error initializing ads service: $e');
   }
   
   // Initialize location
@@ -116,19 +113,6 @@ Future<void> _initializeServices(ProviderContainer container) async {
     debugPrint('Error initializing location: $e');
   }
 }
-
-// void _scheduleNotifications(ProviderContainer container) {
-//   // Schedule notifications after a short delay to ensure app is responsive
-//   Future.delayed(const Duration(seconds: 2), () async {
-//     try {
-//       debugPrint('Scheduling prayer notifications');
-//       await container.read(schedulePrayerNotificationsProvider)();
-//       debugPrint('Prayer notifications scheduled successfully');
-//     } catch (e) {
-//       debugPrint('Error scheduling prayer notifications: $e');
-//     }
-//   });
-// }
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -170,9 +154,53 @@ class MyApp extends ConsumerWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          home: const SplashScreen(),
+          home: const AppLifecycleObserver(child: SplashScreen()),
         );
       },
     );
+  }
+}
+
+// Widget to observe app lifecycle and dispose ads when app is closed
+class AppLifecycleObserver extends ConsumerStatefulWidget {
+  final Widget child;
+  
+  const AppLifecycleObserver({super.key, required this.child});
+  
+  @override
+  ConsumerState<AppLifecycleObserver> createState() => _AppLifecycleObserverState();
+}
+
+class _AppLifecycleObserverState extends ConsumerState<AppLifecycleObserver> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+  
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+  
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint('App lifecycle state changed to: $state');
+    
+    if (state == AppLifecycleState.detached) {
+      // App is being terminated, dispose all ads
+      debugPrint('App is being terminated, disposing all ads');
+      ref.read(adsServiceProvider.notifier).disposeAllAds();
+    } else if (state == AppLifecycleState.resumed) {
+      // App is coming to the foreground, ensure ads are loaded
+      debugPrint('App is resuming, ensuring ads are loaded');
+      ref.read(adsServiceProvider.notifier).initialize();
+    }
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
   }
 }

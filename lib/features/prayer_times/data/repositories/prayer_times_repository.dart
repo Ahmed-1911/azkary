@@ -145,6 +145,6 @@ class PrayerTimesRepository {
     
     final prayerTimes = PrayerTimes(coordinates, dateComponents, calculationParameters);
     
-    return PrayerTimeModel.fromPrayerTimes(prayerTimes);
+    return PrayerTimeModel.fromPrayerTimes(prayerTimes, coordinates, calculationParameters);
   }
 } 

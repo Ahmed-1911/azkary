@@ -22,7 +22,6 @@ class PrayerTimesScreen extends ConsumerWidget {
     final l10n = S.of(context);
     final prayerTimesAsync = ref.watch(prayerTimesProvider);
     final locationWithCityAsync = ref.watch(locationWithCityProvider);
-    final notificationsEnabled = ref.watch(prayerNotificationsEnabledProvider);
     
     return Scaffold(
       appBar: AppBar(

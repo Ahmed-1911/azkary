@@ -247,8 +247,6 @@ class PrayerSettingsDialog extends ConsumerWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
-                          // Schedule notifications with new settings
-                          ref.read(schedulePrayerNotificationsProvider)();
                         },
                         child: Text( S.of(context).saveAndClose),
                       ),
@@ -298,7 +296,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         filled: true,
-        fillColor: isDarkMode ? theme.colorScheme.surfaceVariant : theme.colorScheme.surface,
+        fillColor: isDarkMode ? theme.colorScheme.surfaceContainerHighest : theme.colorScheme.surface,
       ),
       items: List.generate(methods.length, (index) {
         return DropdownMenuItem<int>(
@@ -347,7 +345,7 @@ class PrayerSettingsDialog extends ConsumerWidget {
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
         filled: true,
-        fillColor: isDarkMode ? theme.colorScheme.surfaceVariant : theme.colorScheme.surface,
+        fillColor: isDarkMode ? theme.colorScheme.surfaceContainerHighest : theme.colorScheme.surface,
       ),
       items: List.generate(madhabs.length, (index) {
         return DropdownMenuItem<int>(

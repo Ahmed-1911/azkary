@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../../../core/services/notification_service.dart';
 import '../../../../core/services/storage_service.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../generated/l10n.dart';
@@ -27,43 +26,6 @@ class SettingsController {
   void setLanguage(String languageCode) {
     ref.read(languageProvider.notifier).state = Locale(languageCode);
     ref.read(storageServiceProvider).setLanguage(languageCode);
-  }
-
-  Future<void> handleNotificationToggle({
-    required BuildContext context,
-    required NotificationService notificationService,
-    required StateNotifierProvider<ReminderNotifier, bool> reminderProvider,
-    required bool value,
-    required int id,
-    required String title,
-    required String body,
-    required TimeOfDay time,
-  }) async {
-    try {
-      // We don't need to check permissions here anymore as the notification service
-      // will handle this internally when scheduling notifications
-      
-      await notificationService.scheduleDailyNotification(
-        id: id,
-        title: title,
-        body: body,
-        time: time,
-        enabled: value,
-      );
-
-      if (context.mounted) {
-        ref.read(reminderProvider.notifier).toggle(value);
-      }
-    } on PlatformException catch (e) {
-      if (context.mounted) {
-        if (e.code == 'exact_alarms_not_permitted') {
-          _showExactAlarmPermissionDialog(context);
-        } else {
-          _showErrorSnackBar(context, e.message);
-        }
-        ref.read(reminderProvider.notifier).toggle(false);
-      }
-    }
   }
 
   Future<void> rateApp(BuildContext context) async {
@@ -100,43 +62,10 @@ class SettingsController {
     }
   }
 
-  void _showPermissionSnackBar(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(S.of(context).notificationPermission),
-      ),
-    );
-  }
-
   void _showErrorSnackBar(BuildContext context, String? message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Failed to schedule notification: $message'),
-      ),
-    );
-  }
-
-  void _showExactAlarmPermissionDialog(BuildContext context) {
-    final l10n = S.of(context);
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.permissionRequired),
-        content: Text(l10n.exactAlarmPermission),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.cancel),
-          ),
-          TextButton(
-            onPressed: () {
-              // Open system settings instead of requesting permission directly
-              Navigator.pop(context);
-              // We would ideally open the system settings here, but for now just close the dialog
-            },
-            child: Text(l10n.openSettings),
-          ),
-        ],
+        content: Text('Error: $message'),
       ),
     );
   }

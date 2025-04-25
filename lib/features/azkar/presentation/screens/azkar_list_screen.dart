@@ -9,6 +9,7 @@ import '../widgets/azkar_card.dart';
 import '../providers/azkar_provider.dart';
 import '../../../bookmarks/presentation/providers/bookmark_providers.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'dart:async';
 
 class AzkarListScreen extends ConsumerStatefulWidget {
   final AzkarCategory category;
@@ -25,50 +26,75 @@ class AzkarListScreen extends ConsumerStatefulWidget {
 class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
   final Map<String, bool> _fadingItems = {};
   bool _isDisposed = false;
+  Timer? _initTimer;
+  
+  // Store references to functions we'll need later
+  late final Function(String) _decrementFunction;
 
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      if (!_isDisposed) {
-        ref.read(azkarListControllerProvider(widget.category).notifier).initializeIfNeeded();
-        try {
-          ref.read(adsServiceProvider.notifier).initBannerAd();
-        } catch (e) {
-          debugPrint('Error initializing banner ad: $e');
+    
+    // Store function references that we'll need throughout the widget's lifecycle
+    _decrementFunction = ref.read(azkarRepeatCountsProvider.notifier).decrementCount;
+    
+    // Capture references before any async operations
+    final controller = ref.read(azkarListControllerProvider(widget.category).notifier);
+    final initializeFunction = controller.initializeIfNeeded;
+    
+    // Schedule initialization for the next frame
+    _initTimer = Timer(Duration.zero, () {
+      if (_isDisposed) return;
+      
+      try {
+        // Use the captured functions instead of accessing ref again
+        if (mounted && !_isDisposed) {
+          initializeFunction();
         }
+        
+        // Ensure ads are loaded
+        if (mounted && !_isDisposed) {
+          ref.read(adsServiceProvider.notifier).ensureNativeAdLoaded();
+        }
+      } catch (e) {
+        debugPrint('Error initializing: $e');
       }
     });
   }
 
   @override
   void dispose() {
+    // Mark as disposed first
     _isDisposed = true;
-    try {
-      ref.read(adsServiceProvider.notifier).disposeBannerAd();
-    } catch (e) {
-      debugPrint('Error disposing banner ad: $e');
-    }
+    
+    // Cancel any pending timers
+    _initTimer?.cancel();
+    
+    // Call super.dispose() to mark the widget as disposed
     super.dispose();
   }
 
   void _handleCountDecrement(String azkarId, int currentCount) {
-    if (_isDisposed) return;
+    if (_isDisposed || !mounted) return;
     
     if (currentCount <= 1) {
       setState(() {
         _fadingItems[azkarId] = true;
       });
+      
       Future.delayed(const Duration(milliseconds: 400), () {
-        if (mounted && !_isDisposed) {
-          setState(() {
-            _fadingItems.remove(azkarId);
-          });
-          ref.read(azkarRepeatCountsProvider.notifier).decrementCount(azkarId);
-        }
+        if (!mounted || _isDisposed) return;
+        
+        setState(() {
+          _fadingItems.remove(azkarId);
+        });
+        
+        // Use the stored function reference - no ref access here
+        _decrementFunction(azkarId);
       });
     } else {
-      ref.read(azkarRepeatCountsProvider.notifier).decrementCount(azkarId);
+      // Use the stored function reference
+      _decrementFunction(azkarId);
     }
   }
 
@@ -103,6 +129,7 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
       ),
       body: Column(
         children: [
+          
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -146,14 +173,22 @@ class _AzkarListScreenState extends ConsumerState<AzkarListScreen> {
               },
             ),
           ),
-          if (ref.watch(adsServiceProvider).isBannerAdLoaded && 
-              ref.watch(adsServiceProvider).bannerAd != null)
-            SafeArea(
-              child: SizedBox(
-                width: ref.watch(adsServiceProvider).bannerAd!.size.width.toDouble(),
-                height: ref.watch(adsServiceProvider).bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: ref.watch(adsServiceProvider).bannerAd!),
+          if (adsService.isNativeAdLoaded && adsService.nativeAd != null)
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(8.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
+              height: 80.h,
+              child: AdWidget(ad: adsService.nativeAd!),
             ),
         ],
       ),

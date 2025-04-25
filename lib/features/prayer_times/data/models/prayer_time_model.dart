@@ -7,6 +7,8 @@ class PrayerTimeModel {
   final DateTime asr;
   final DateTime maghrib;
   final DateTime isha;
+  final Coordinates coordinates;
+  final CalculationParameters calculationParameters;
 
   PrayerTimeModel({
     required this.fajr,
@@ -15,9 +17,11 @@ class PrayerTimeModel {
     required this.asr,
     required this.maghrib,
     required this.isha,
+    required this.coordinates,
+    required this.calculationParameters,
   });
 
-  factory PrayerTimeModel.fromPrayerTimes(PrayerTimes prayerTimes) {
+  factory PrayerTimeModel.fromPrayerTimes(PrayerTimes prayerTimes, Coordinates coordinates, CalculationParameters params) {
     return PrayerTimeModel(
       fajr: prayerTimes.fajr,
       sunrise: prayerTimes.sunrise,
@@ -25,6 +29,8 @@ class PrayerTimeModel {
       asr: prayerTimes.asr,
       maghrib: prayerTimes.maghrib,
       isha: prayerTimes.isha,
+      coordinates: coordinates,
+      calculationParameters: params,
     );
   }
 
@@ -60,11 +66,9 @@ class PrayerTimeModel {
     } else if (currentTime.isBefore(isha)) {
       return isha;
     } else {
-      // Calculate next day's Fajr
-      final coordinates = Coordinates(0, 0); // Placeholder, will be replaced
+      // Calculate next day's Fajr using the same coordinates and calculation parameters
       final date = DateComponents.from(currentTime.add(const Duration(days: 1)));
-      final params = CalculationMethod.egyptian.getParameters();
-      final prayerTimes = PrayerTimes(coordinates, date, params);
+      final prayerTimes = PrayerTimes(coordinates, date, calculationParameters);
       return prayerTimes.fajr;
     }
   }
